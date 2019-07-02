@@ -5,7 +5,7 @@ namespace BB {
     export class GameService {
         static BLOCK_EG_NAME: string = 'BB.BlockEG';
         // static BALL_EG_NAME: string = "BB.Ball";
-        static Game_EG_NAME: string = "BB.Game";
+        static Game_EG_NAME: string = "BB.GameTest";
 
         static mainCameraEntity: ut.Entity;
 
@@ -16,7 +16,7 @@ namespace BB {
         static IsGameState(world: ut.World, state: GameState): boolean {
             let gameContext = world.getConfigData(BB.GameContext);
 
-            return gameContext.state == state;
+            return gameContext.state == state; 
         }
 
         static GetMainCameraEntity(): ut.Entity {
@@ -87,6 +87,7 @@ namespace BB {
         private static FitScreenCamera(world: ut.World, layoutInfo: LayoutInfo): void {
             world.forEach([ut.Entity, CameraFitScreen, ut.Core2D.Camera2D], (entity, cameraFitScreen, camera2D) => {
                 camera2D.halfVerticalSize = layoutInfo.halfVerticalSize;
+                
             });
         }
 
@@ -97,78 +98,71 @@ namespace BB {
         static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext): void {
             let layoutInfo = world.getConfigData(LayoutInfo);
 
+            // let gameReferences = world.getConfigData(GameReferences);
+ 
+            // gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+
             ut.EntityGroup.instantiate(world, GameService.Game_EG_NAME);
 
-            ut.EntityGroup.instantiate(world, "BB.UIMain");
+            // ut.EntityGroup.instantiate(world, "BB.UIMain");
 
-            let platformPos = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5);
+            // let platformPos = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5);
 
-            GameService.blockPrefabEntity = world.getEntityByName("Block");
-
-            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
-
-            {
-                //修改方块原型的尺寸
-                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
-
-                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
-
-                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
-            }
-
-            {
-                //border
-                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions]
-                    , (entity, border, transformPos, spriteOptions) => {
-                        switch (border.Dir) {
-                            case 2:
-                                transformPos.position = new Vector3(0, -layoutInfo.canvasSize.y * 0.5 - spriteOptions.size.y * 0.5, 0);
-                                spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
-                                break;
-                            case 4:
-                                transformPos.position = new Vector3(-layoutInfo.canvasSize.x * 0.5 - spriteOptions.size.x * 0.5, 0, 0);
-                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
-                                break;
-                            case 6:
-                                transformPos.position = new Vector3(layoutInfo.canvasSize.x * 0.5 + spriteOptions.size.x * 0.5, 0, 0);
-                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
-                                break;
-                            case 8:
-                                transformPos.position = new Vector3(0, layoutInfo.canvasSize.y * 0.5 + spriteOptions.size.y * 0.5, 0);
-                                spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
-                                break;
-                        }
-                    });
-            }
+            // GameService.blockPrefabEntity = world.getEntityByName("Block");
  
-            let firstBall = null;
+            // console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
 
+            // {
+            //     //修改方块原型的尺寸
+            //     let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
+
+            //     blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
+
+            //     world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
+            // }
+
+            // {
+            //     //border
+            //     world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions]
+            //         , (entity, border, transformPos, spriteOptions) => {
+            //             switch (border.Dir) {
+            //                 case 2:
+            //                     transformPos.position = new Vector3(0, -layoutInfo.canvasSize.y * 0.5 - spriteOptions.size.y * 0.5, 0);
+            //                     spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+            //                     break;
+            //                 case 4:
+            //                     transformPos.position = new Vector3(-layoutInfo.canvasSize.x * 0.5 - spriteOptions.size.x * 0.5, 0, 0);
+            //                     spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+            //                     break;
+            //                 case 6:
+            //                     transformPos.position = new Vector3(layoutInfo.canvasSize.x * 0.5 + spriteOptions.size.x * 0.5, 0, 0);
+            //                     spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+            //                     break;
+            //                 case 8:
+            //                     transformPos.position = new Vector3(0, layoutInfo.canvasSize.y * 0.5 + spriteOptions.size.y * 0.5, 0);
+            //                     spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+            //                     break;
+            //             }
+            //         });
+            // }
+
+            // {
+            //     //platform
+            //     world.forEach([ut.Entity, Platform, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale, ut.Core2D.Sprite2DRendererOptions, TouchMovement]
+            //         , (platformEntity, platform, transformPos, transformScale, spriteOptions, touchMovement) => {
+            //             transformPos.position = platformPos;
+
+            //             touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.canvasSize.x, 0);
+
+            //             touchMovement.size = new Vector2(spriteOptions.size.x, 0);
+
+            //             gameReferences.platformEntity = platformEntity;
+            //         });
+            // }
+ 
             {
                 //ball
-                firstBall = GameService.SpawnBall(
-                    //停住 platform下的局部位置
-                    world, gameContext, new Vector3(0,0.2,0), new Vector3(0,0,0)
-                ); 
-
-                world.addComponent(firstBall, IdleBall);
-            }
-
-            {
-                //platform
-                world.forEach([ut.Entity, Platform, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale, ut.Core2D.Sprite2DRendererOptions, TouchMovement]
-                    , (platformEntity, platform, transformPos, transformScale, spriteOptions, touchMovement) => {
-                        transformPos.position = platformPos;
-
-                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.canvasSize.x, 0);
-
-                        touchMovement.size = new Vector2(spriteOptions.size.x, 0);
-
-                        let ballTransformNode = world.getComponentData(firstBall, ut.Core2D.TransformNode);
-
-                        ballTransformNode.parent = platformEntity;
-                        
-                        world.setComponentData(firstBall, ballTransformNode);
-                });
+                // GameService.SpawnIdleBall(world, gameContext,gameReferences.platformEntity);
             }
 
             {
@@ -188,50 +182,89 @@ namespace BB {
 
                 // gameContext.blockAmount = 2 * 36;
 
-                {
-                    let levels = world.getConfigData(Levels);
+                // {
+                //     let levels = world.getConfigData(Levels);
 
-                    let json = JSON.parse(levels.level0);
+                //     let json = JSON.parse(levels.level0);
 
-                    let blocks = json.blocks;
+                //     let blocks = json.blocks;
 
-                    gameContext.blockAmount = 0;
+                //     gameContext.blockAmount = 0;
 
-                    let blockInfo = new BlockConfig(); 
+                //     let blockInfo = new BlockConfig();
 
-                    for (var i = 0; i < 900; i++) {
-                        let block = blocks[i];
+                //     let collisionBorderInRow: [number, Array<number>];
 
-                        // console.log(`row:${block.row} col:${block.col}`);
- 
-                        blockInfo.row = block.row + 2;
+                //     for (var i = 0; i < 900; i++) {
+                //         let block = blocks[i];
 
-                        blockInfo.col = block.col + 2;
+                //         // console.log(`row:${block.row} col:${block.col}`);
 
-                        blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
+                //         //TODO
+                //         // if(collisionBorderInRow[block.row] == null) {
+                //         //     console.log(`collisionBorderInRow[${block.row}] is null`);
 
-                        blockInfo.isWall = false;
- 
-                        GameService.SpawnBlock(world, layoutInfo, blockInfo);
- 
-                        gameContext.blockAmount += 1;
-                    }
+                //         //     collisionBorderInRow[block.row] = new Array<number>(2);
 
-                    for(var j = 0; j < 30; j ++) {
-                        // let blockInfo = new BlockConfig(); 
+                //         //     console.log(collisionBorderInRow[block.row][0] + "|" + collisionBorderInRow[block.row][1]);
+                //         // }
 
-                        blockInfo.row = 0;
+                //         // if(collisionBorderInRow[block.row][0] > block.col) {
+                //         //     //left
+                //         //     collisionBorderInRow[block.row][0] = block.col;
+                //         // }
+                //         // else if(collisionBorderInRow[block.row][1] < block.col) {
+                //         //     //right
+                //         //     collisionBorderInRow[block.row][1] = block.col;
+                //         // }
 
-                        blockInfo.col = j + 2;
+                //         blockInfo.row = block.row + 2;
 
-                        blockInfo.isWall = true;
+                //         blockInfo.col = block.col + 2;
 
-                        blockInfo.color = new ut.Core2D.Color(0.3,  0.3, 0.3, 1);
+                //         blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
 
-                        GameService.SpawnBlock(world, layoutInfo, blockInfo);
-                    }
-                }
+                //         blockInfo.isWall = false;
+
+                //         GameService.SpawnBlock(world, layoutInfo, blockInfo);
+
+                //         gameContext.blockAmount += 1;
+                //     }
+
+                //     for (var j = 0; j < 30; j++) {
+                //         // let blockInfo = new BlockConfig(); 
+
+                //         blockInfo.row = 0;
+
+                //         blockInfo.col = j + 2;
+
+                //         blockInfo.isWall = true;
+
+                //         blockInfo.color = new ut.Core2D.Color(0.3, 0.3, 0.3, 1);
+
+                //         GameService.SpawnBlock(world, layoutInfo, blockInfo);
+                //     }
+                // }
             }
+
+            // world.setConfigData(gameReferences);
+
+            
+        }
+
+        static SpawnIdleBall(world: ut.World, gameContext: GameContext, platformEntity: ut.Entity): ut.Entity {
+            let entity = GameService.SpawnBall(
+                //停住 platform下的局部位置
+                world, gameContext, new Vector3(0, 0.2, 0), new Vector3(0, 0, 0)
+            );
+
+            world.addComponent(entity, IdleBall);
+
+            let transformNode = new ut.Core2D.TransformNode(platformEntity);
+
+            world.setComponentData(entity, transformNode);
+
+            return entity;
         }
 
         /**
@@ -258,14 +291,14 @@ namespace BB {
 
             let pos = lbOrigin.add(offset).add(new Vector3(blockSize * 0.5, blockSize * 0.5, 0));
 
-            GameService.CreateBlock(world, `block_${blockConfig.col}_${blockConfig.row}`, pos, blockConfig);
+            GameService.CreateBlock(world, BlockService.GenBlockName(blockConfig.row, blockConfig.col), pos, blockConfig);
         }
 
-        static CreateBlock(world: ut.World, id: string, pos: Vector3, blockConfig:BlockConfig): void {
+        static CreateBlock(world: ut.World, id: string, pos: Vector3, blockConfig: BlockConfig): void {
             let blockEntity = world.instantiateEntity(GameService.blockPrefabEntity);
 
             world.setEntityName(blockEntity, id);
- 
+
             world.usingComponentData(blockEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRenderer, Block]
                 , (transformPos, spriteRenderer, block) => {
                     transformPos.position = pos;
@@ -276,10 +309,10 @@ namespace BB {
                 });
         }
 
-        static CreateBall(world: ut.World) : ut.Entity {
+        static CreateBall(world: ut.World): ut.Entity {
             let ballEntity = ut.EntityGroup.instantiate(world, "BB.Ball")[0];
 
-            world.setEntityName(ballEntity, `ball_${ballEntity.index}_${ballEntity.version}`); 
+            world.setEntityName(ballEntity, `ball_${ballEntity.index}_${ballEntity.version}`);
 
             return ballEntity;
         }
@@ -291,11 +324,11 @@ namespace BB {
          * @param pos 
          * @param dir Target moment direction。 No normalized.
          */
-        static SpawnBall(world: ut.World, gameContext: GameContext, pos: Vector3, dir: Vector3) : ut.Entity {
+        static SpawnBall(world: ut.World, gameContext: GameContext, pos: Vector3, dir: Vector3): ut.Entity {
             let ballEntity = GameService.CreateBall(world);
 
             world.setEntityName(ballEntity, `ball_${ballEntity.index}_${ballEntity.version}`);
- 
+
             world.usingComponentData(ballEntity, [Ball, BB.Movement, ut.Core2D.TransformLocalPosition]
                 , (ball, movement, transformPos) => {
                     movement.speed = gameContext.ballSpeed;
@@ -309,7 +342,7 @@ namespace BB {
 
             return ballEntity;
         }
- 
+
         static GenRandomDir(rRange: ut.Math.Range): Vector3 {
 
             let randomEular = rRange.start + Math.random() * (rRange.end - rRange.start);
@@ -322,8 +355,8 @@ namespace BB {
         static CreateProp(world: ut.World, gameContext: GameContext, propType: PropType, pos: Vector3): void {
             let propEntity = ut.EntityGroup.instantiate(world, "BB.Prop")[0];
 
-            world.usingComponentData(propEntity, [Prop, Movement, ut.Core2D.TransformLocalPosition]
-                , (prop, moment, tranformPos) => {
+            world.usingComponentData(propEntity, [Prop, Movement, ut.Core2D.TransformLocalPosition,ut.Core2D.Sprite2DRenderer]
+                , (prop, moment, tranformPos,spriteRenderer) => {
                     moment.speed = gameContext.giftSpeed;
 
                     moment.dir = new Vector3(0, -1, 0);
@@ -331,6 +364,8 @@ namespace BB {
                     tranformPos.position = pos;
 
                     prop.type = propType;
+
+                    spriteRenderer.sprite = world.getEntityByName(`assets/sprites/Default/Prop_${propType}`);
                 });
         }
 
@@ -340,15 +375,18 @@ namespace BB {
             transformPos.position = pos;
         }
 
-        static ReceiveProp(world:ut.World, prop:Prop, gameContext: GameContext) : void {
-            switch(prop.type) {
+        static ReceiveProp(world: ut.World, prop: Prop, gameContext: GameContext): void {
+            switch (prop.type) {
                 case PropType.expand:
-                    SkillServices.IncreasBall(world, gameContext);
+                    SkillServices.SplitBall(world, gameContext);
+                    break;
+                case PropType.shoot3:
+                    SkillServices.ShootThreeBall(world, gameContext);
                     break;
             }
         }
 
-        static LoseBall(world:ut.World, ballEntity:ut.Entity, gameContext:GameContext) : void {
+        static LoseBall(world: ut.World, ballEntity: ut.Entity, gameContext: GameContext): void {
             gameContext.ballCutAmount -= 1;
 
             world.destroyEntity(ballEntity);

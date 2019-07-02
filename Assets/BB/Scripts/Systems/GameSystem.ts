@@ -10,6 +10,7 @@ namespace BB {
 
             switch (context.state) {
                 case GameState.Init:        
+                    // GameService.TestInitLayout(this.world, context);
                     GameService.InitGame(this.world, context);
                     // this.Test(context);
                     break;
@@ -18,6 +19,8 @@ namespace BB {
                     break;
                 case GameState.Loading:
                     GameService.SetupGameEntitys(this.world, context); 
+
+                    this.scheduler.pause();
                     context.state = GameState.Play;   
                     break;
                 case GameState.Play:
@@ -35,16 +38,25 @@ namespace BB {
 
             
         } 
- 
+  
         // private Test(gameContext : GameContext) : void {
         //     gameContext.state = GameState.Test;
 
-        //     // GameService.TestInitLayout(this.world, context);
-        //     let levels = this.world.getConfigData(BB.Levels);
+        //     // // GameService.TestInitLayout(this.world, context);
+        //     // let levels = this.world.getConfigData(BB.Levels);
 
-        //     let o = JSON.parse(levels.level0);
+        //     // let o = JSON.parse(levels.level0);
 
-        //     console.log(o);
+        //     // console.log(o);
+
+            
+            
+        //     let type = PropType.expand;
+        //     let path = `assets/sprites/Default/Prop_${type}`;
+        //     let testEn = this.world.getEntityByName(path);
+        //     console.log("en:" + testEn.isNone());
+            
+            
         // }
         
     }

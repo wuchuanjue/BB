@@ -5,7 +5,9 @@
     "ExportFlags": 0,
     "SerializedVersion": 0,
     "Entities": [
-        { "$TypeId": 9, "Id": "eba7092e6983409a98dba4eae6fb0127", "Name": "MainCamera" }
+        { "$TypeId": 9, "Id": "eba7092e6983409a98dba4eae6fb0127", "Name": "MainCamera" },
+        { "$TypeId": 9, "Id": "a7bc378e6b974a64965715711fef6b04", "Name": "HitBlockAudio" },
+        { "$TypeId": 9, "Id": "9ab84e49e9bf4f448d47e217b9ef8e26", "Name": "ReceivePropAudio" }
     ]
 },
 {
@@ -42,5 +44,37 @@
         }
     }, {
         "Type": { "Id": "f317f8b9e7054e36a778154200fef9b6", "Name": "CameraFitScreen" }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "a7bc378e6b974a64965715711fef6b04",
+    "Name": "HitBlockAudio",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
+        "Properties": {
+            "clip": { "$TypeId": 10, "Guid": "950d4f796cb1a456b887433cb060805b", "FileId": 8300000, "Type": 3 }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "9ab84e49e9bf4f448d47e217b9ef8e26",
+    "Name": "ReceivePropAudio",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
+        "Properties": {
+            "clip": { "$TypeId": 10, "Guid": "c8e82f6affb8d45c797ba369fd6928e3", "FileId": 8300000, "Type": 3 }
+        }
     }]
 }]

@@ -34,34 +34,22 @@
             "scale": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 0.2,
-                    "y": 0.2
+                    "x": 1,
+                    "y": 1
                 }
             }
         }
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "2ffe441de9d7a419696cc8b41f06b23b", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
                     "r": 1,
-                    "g": 0,
-                    "b": 0,
+                    "g": 1,
+                    "b": 1,
                     "a": 1
-                }
-            }
-        }
-    }, {
-        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
-        "Properties": {
-            "box": {
-                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
-                "Properties": {
-                    "x": -0.5,
-                    "y": -0.5,
-                    "width": 1,
-                    "height": 1
                 }
             }
         }
@@ -74,5 +62,12 @@
         }
     }, {
         "Type": { "Id": "c706421e1e5b416ea28a8ef4f7c36545", "Name": "Prop" }
+    }, {
+        "Type": { "Id": "5a68c59783d93e60c704f63111bcb0ad", "Name": "Sprite2DRendererHitBox2D" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 1
+        }
     }]
 }]

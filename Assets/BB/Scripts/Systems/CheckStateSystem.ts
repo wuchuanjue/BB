@@ -13,18 +13,20 @@ namespace BB {
                 return;
             }
 
-            if (gameContex.blockAmount <= 0) {
-                console.log("finish");
-                this.scheduler.pause();
+            // if (gameContex.blockAmount <= 0) {
+            //     console.log("finish");
+            //     this.scheduler.pause();
 
-                return;
-            }
+            //     return;
+            // }
 
-            if (gameContex.ballCutAmount <= 0) {
-                console.log("lose");
-                this.scheduler.pause();
-                return;
-            }
+            // if (gameContex.ballCutAmount <= 0) {
+            //     console.log("lose");
+                
+            //     //test restart
+            //     GameService.SpawnIdleBall(this.world, gameContex, this.world.getConfigData(GameReferences).platformEntity);
+            //     return;
+            // }
 
             if (ut.Runtime.Input.getMouseButtonUp(0)) {
                 this.world.forEach([ut.Entity, IdleBall], (entity, idleBall) => {

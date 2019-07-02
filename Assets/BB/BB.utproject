@@ -7,19 +7,19 @@
     "Settings": {
         "CanvasWidth": 1920,
         "CanvasHeight": 1080,
-        "EmbedAssets": true,
+        "EmbedAssets": false,
         "CanvasAutoResize": true,
         "RenderMode": 2,
         "DefaultTextureSettings": {
             "$TypeId": 2,
-            "Embedded": true,
+            "Embedded": false,
             "FormatType": 2,
             "JpgCompressionQuality": 100,
             "WebPCompressionQuality": 60
         },
         "DefaultAudioClipSettings": {
             "$TypeId": 3,
-            "Embedded": true
+            "Embedded": false
         },
         "DefaultAnimationClipSettings": {
             "$TypeId": 4,
@@ -27,7 +27,7 @@
         },
         "LocalWSServerPort": 17700,
         "LocalHTTPServerPort": 19050,
-        "SingleFileHtml": false,
+        "SingleFileHtml": true,
         "MemorySize": 64,
         "IncludeWebPDecompressor": false,
         "RunBabel": true,
@@ -107,5 +107,7 @@
         "Type": { "Id": "e1d37b6c33c94986aa7c9dc6bd190f0f", "Name": "Levels" }
     }, {
         "Type": { "Id": "e816e7b93a13b9e5ddf993486ca79278", "Name": "AudioConfig" }
+    }, {
+        "Type": { "Id": "f8d440354ce049a784948717bd8d8c1d", "Name": "GameReferences" }
     }]
 }]

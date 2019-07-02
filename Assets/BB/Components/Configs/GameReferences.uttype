@@ -1,0 +1,37 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "f8d440354ce049a784948717bd8d8c1d",
+    "Name": "GameReferences",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Configuration",
+    "Fields": [{
+        "Id": "6b6cd7a38fb244499b561cdebe08e035",
+        "Name": "hitBlockAudioEntity",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "41cf7573acdd4746b48aa64f582c2c0e",
+        "Name": "receivePropAudioEntity",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "86f4733c240c4d40b1e1558bc3be5f49",
+        "Name": "platformEntity",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "f8d440354ce049a784948717bd8d8c1d", "Name": "GameReferences" }
+    }
+}]

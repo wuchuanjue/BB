@@ -54,22 +54,6 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
-    }, {
-        "Id": "631afb92e534447682a5df3593b25da1",
-        "Name": "NewField",
-        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
-        "Id": "8cf341749ad042e39200ede60b1471ec",
-        "Name": "NewField1",
-        "FieldType": { "Id": "1ae8c073dc444f4fb2d3120e5e618326", "Name": "AudioClipEntity" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },

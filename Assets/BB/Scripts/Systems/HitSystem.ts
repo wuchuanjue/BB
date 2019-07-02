@@ -100,7 +100,7 @@ namespace BB {
 
                     if (ball.preHitEntity == target.index) {
                         return;
-                    } 
+                    }
 
                     ball.preHitEntity = target.index;
 
@@ -117,9 +117,9 @@ namespace BB {
                     if (this.world.hasComponent(target, BB.Border)) {
                         let border = this.world.getComponentData(target, BB.Border);
 
-                        if(border.Dir == 2) {
+                        if (border.Dir == 2) {
                             //lose ball;
-                            GameService.LoseBall(this.world, ballEntity,gameContex);
+                            GameService.LoseBall(this.world, ballEntity, gameContex);
 
                             return;
                         }
@@ -138,7 +138,7 @@ namespace BB {
                         hitArea = this.CalcRectHitInfo(blockTransformPos.position.clone(), ballTrans.position.clone(), movement.dir.clone());
 
                         // console.log(`hit block. hit area:${hitArea}`);
-                        
+
                         // // if(hitArea == 4 || hitArea == 6) {
                         //     DamageService.MarkBlock(this.world,target);
                         //     this.scheduler.pause();
@@ -175,7 +175,12 @@ namespace BB {
 
                     this.world.setComponentData(ballEntity, movement);
                 });
- 
+
+
+            if (hitSound != "none") {
+                SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
+            }
+
             this.world.forEach([ut.Entity, Prop, ut.HitBox2D.HitBoxOverlapResults], (propEntity, prop, overlapResults) => {
                 let overlaps = overlapResults.overlaps;
 
@@ -191,25 +196,20 @@ namespace BB {
                     GameService.ReceiveProp(this.world, prop, gameContex);
 
                     this.world.destroyEntity(propEntity);
- 
-                    // GameService.SpawnBall(this.world, gameContex, new Vector3(), new Vector3(0,1,1));
 
-                    hitSound = "border"
+                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
                 }
-                else if(this.world.hasComponent(target, Border)) {
+                else if (this.world.hasComponent(target, Border)) {
                     let border = this.world.getComponentData(target, Border);
 
-                    if(border.Dir == 2) {
+                    if (border.Dir == 2) {
                         this.world.destroyEntity(propEntity);
                     }
                 }
             });
- 
+
             this.world.setConfigData(gameContex);
 
-            if (hitSound != "border" && hitSound != "none") {
-                SoundService.PlayHitSound(this.world, this.world.getEntityByName("Platform"));
-            }
         }
 
         /**

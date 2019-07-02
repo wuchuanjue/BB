@@ -42,14 +42,23 @@ namespace BB {
         }
 
         static CheckSpawnProp(world:ut.World,block:Block, spawnPos:Vector3) : void {
-            let needSpawnGift = Math.random() < 0.02;
-            
-            if(!needSpawnGift)
+            let randomSeed = Math.random();
+
+            let propType = PropType.none;
+
+            if(randomSeed <= 0.01) {
+                propType = PropType.expand;
+            }
+            else if(randomSeed > 0.01 && randomSeed <= 0.03) {
+                propType = PropType.shoot3;
+            }
+  
+            if(propType == PropType.none)
                 return;
 
             let gameContex = world.getConfigData(GameContext);
 
-            GameService.CreateProp(world, gameContex,PropType.expand, spawnPos);
+            GameService.CreateProp(world, gameContex,propType, spawnPos);
         }
     }
 }

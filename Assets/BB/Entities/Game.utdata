@@ -69,9 +69,7 @@
     "Enabled": true,
     "Static": false,
     "Layer": 0,
-    "Components": [{
-        "Type": { "Id": "546e6efc1f4b4af39c6c5fa55a6911cf", "Name": "Block" }
-    }],
+    "Components": [],
     "Instance": {
         "Source": { "$TypeId": 9, "Id": "23c9b520e8124a81be848955083acc6e", "Name": "Block1" },
         "EntityModificationFlags": 0,
@@ -529,12 +527,6 @@
                     "height": 0.1599
                 }
             }
-        }
-    }, {
-        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
-        "Properties": {
-            "clip": { "$TypeId": 10, "Guid": "88f35f473c6194dbb82cdd1d1f5e5ef6", "FileId": 8300000, "Type": 3 },
-            "loop": false
         }
     }]
 }]
