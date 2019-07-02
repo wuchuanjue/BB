@@ -1,0 +1,46 @@
+﻿[{
+    "$TypeId": 4,
+    "Id": "3eff0b786cb74f5f925925860abe06b9",
+    "Name": "Main",
+    "ExportFlags": 0,
+    "SerializedVersion": 0,
+    "Entities": [
+        { "$TypeId": 9, "Id": "eba7092e6983409a98dba4eae6fb0127", "Name": "MainCamera" }
+    ]
+},
+{
+    "$TypeId": 5,
+    "Id": "eba7092e6983409a98dba4eae6fb0127",
+    "Name": "MainCamera",
+    "Enabled": true,
+    "Static": true,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
+        "Properties": {
+            "halfVerticalSize": 5,
+            "backgroundColor": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1
+                }
+            },
+            "clearFlags": {
+                "$TypeId": 8,
+                "Type": { "Id": "76a06ddd38e99125d930e77c6a287872", "Name": "CameraClearFlags" },
+                "Id": "9faedc246f34513076701ef66b5ad74f",
+                "Name": "SolidColor",
+                "Value": 1
+            },
+            "depth": -1,
+            "layerMask": 791
+        }
+    }, {
+        "Type": { "Id": "f317f8b9e7054e36a778154200fef9b6", "Name": "CameraFitScreen" }
+    }]
+}]

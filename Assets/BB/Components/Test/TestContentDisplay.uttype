@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "cb5641bc53f54a02a329d237f07e8496",
+    "Name": "TestContentDisplay",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "13d25b23d2714a269246494107125a0b",
+        "Name": "tag",
+        "FieldType": { "Id": "1bff5adddd7c41de98d3329c7c641208", "Name": "String" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "cb5641bc53f54a02a329d237f07e8496", "Name": "TestContentDisplay" }
+    }
+}]

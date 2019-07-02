@@ -1,0 +1,55 @@
+namespace BB {
+    export class DamageService {
+        static CalcBlockCollisionDirection(ballPos:Vector3, blockPos:Vector3) : number {
+            return 0;
+        }
+ 
+        static MarkBlock(world:ut.World, blockEntity: ut.Entity) : void {
+            let spriteRenderer = world.getComponentData(blockEntity, ut.Core2D.Sprite2DRenderer);
+
+            spriteRenderer.color = new ut.Core2D.Color(Math.random(),Math.random(),0,0.2);
+
+            world.setComponentData(blockEntity, spriteRenderer);
+        }
+
+        static AtkBlock(blockEntity: ut.Entity, blockPos: Vector3 , ball:BB.Ball, world:ut.World, gameContex:GameContext) : void {
+            let block = world.getComponentData(blockEntity, BB.Block);
+ 
+            if(block.blockConfig.isWall)   
+                return; 
+ 
+            block.life = block.life - 1; 
+  
+            world.setComponentData(blockEntity, block);
+ 
+            if(block.life <= 0) {
+                DamageService.CheckSpawnProp(world, block, blockPos);
+
+                world.destroyEntity(blockEntity); 
+
+                gameContex.blockAmount -= 1;
+            }
+            else {
+                let renderer = world.getComponentData(blockEntity, ut.Core2D.Sprite2DRenderer);
+                renderer.color =  new ut.Core2D.Color(Math.random(),Math.random(),1,1);
+
+                world.setComponentData(blockEntity, renderer); 
+            }
+        }
+
+        static BallLose(ballEnity: ut.Entity, world:ut.World) : void {
+            world.destroyEntity(ballEnity);
+        }
+
+        static CheckSpawnProp(world:ut.World,block:Block, spawnPos:Vector3) : void {
+            let needSpawnGift = Math.random() < 0.02;
+            
+            if(!needSpawnGift)
+                return;
+
+            let gameContex = world.getConfigData(GameContext);
+
+            GameService.CreateProp(world, gameContex,PropType.expand, spawnPos);
+        }
+    }
+}

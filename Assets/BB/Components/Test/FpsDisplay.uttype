@@ -1,0 +1,12 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "ef1c4485d5d3427583c468d646022103",
+    "Name": "FpsDisplay",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "DefaultValue": {
+        "Type": { "Id": "ef1c4485d5d3427583c468d646022103", "Name": "FpsDisplay" }
+    }
+}]

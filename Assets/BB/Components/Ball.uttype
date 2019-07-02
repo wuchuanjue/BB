@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "69d9355efb3b47beb16b186968b61ae8",
+    "Name": "Ball",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "a4427b21cb6c475fbf7039f0e4c3bdd6",
+        "Name": "preHitEntity",
+        "FieldType": { "Id": "2aa56ce081e14e8a93d276da72d813bc", "Name": "Int16" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "69d9355efb3b47beb16b186968b61ae8", "Name": "Ball" }
+    }
+}]

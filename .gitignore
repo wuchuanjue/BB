@@ -1,0 +1,13 @@
+Library
+Temp
+Logs
+ProjectSettings
+Assembly-CSharp.csproj
+TestTinyModeProject.sln
+tsconfig.json
+TinyExport
+Assets/TinyCache
+Assets/TinySamples
+Assets/TinyCache.meta
+Assets/TinySamples.meta
+lastUpdate.txt

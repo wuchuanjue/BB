@@ -1,0 +1,69 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "0d84d4b5bf0c4344b5ea8a59755249cd",
+    "Name": "TouchMovement",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "eee2d78d1d1a4e738d603425ac3979cf",
+        "Name": "startWPos",
+        "FieldType": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "f87cc6fc385a4ca28a8140a2ed275125",
+        "Name": "deltaWPos",
+        "FieldType": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "643f72a575cf4ca995706855ecdfb933",
+        "Name": "axisFilter",
+        "FieldType": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "a85c9aab511c4354b0b6726559e09d71",
+        "Name": "moveRange",
+        "FieldType": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "0695bd3f6faa463fbfca5fe229800933",
+        "Name": "size",
+        "FieldType": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "0d84d4b5bf0c4344b5ea8a59755249cd", "Name": "TouchMovement" },
+        "Properties": {
+            "axisFilter": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            },
+            "moveRange": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "width": 0,
+                    "height": 0
+                }
+            }
+        }
+    }
+}]

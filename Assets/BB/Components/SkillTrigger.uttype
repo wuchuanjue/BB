@@ -1,0 +1,24 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "d11f478bd8ac43de9b14d00bb0913088",
+    "Name": "SkillTrigger",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "Documentation": {
+        "Summary": "Will trigger"
+    },
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "60e4d70885934c64b122988688e01327",
+        "Name": "fromProp",
+        "FieldType": { "Id": "129708e8992f4dbc83cfe70cc9039c95", "Name": "PropType" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "d11f478bd8ac43de9b14d00bb0913088", "Name": "SkillTrigger" }
+    }
+}]

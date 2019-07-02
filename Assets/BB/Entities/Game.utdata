@@ -1,0 +1,540 @@
+﻿[{
+    "$TypeId": 4,
+    "Id": "1320010578f24f5c809aa0a7f59a0bfb",
+    "Name": "Game",
+    "ExportFlags": 0,
+    "SerializedVersion": 0,
+    "Entities": [
+        { "$TypeId": 9, "Id": "1ceae50de07c4e8085ec427e4c0f30b9", "Name": "BG" },
+        { "$TypeId": 9, "Id": "b57b0ed22a664ad39e0ec54e090da4cb", "Name": "Block" },
+        { "$TypeId": 9, "Id": "996aac8c0f314ce591ed09ab2c61cae8", "Name": "BorderL" },
+        { "$TypeId": 9, "Id": "fb57d32481b3412c86136f0e09ca6416", "Name": "BorderT" },
+        { "$TypeId": 9, "Id": "dd50b7b191884d6ba3e866c11d200600", "Name": "BorderR" },
+        { "$TypeId": 9, "Id": "f4bbfe5e53124e0f93e5b9420b22ee71", "Name": "BorderB" },
+        { "$TypeId": 9, "Id": "879707b3080b44eebbf8fcca2fa79595", "Name": "Platform" }
+    ],
+    "PrefabInstances": [
+        { "$TypeId": 13, "Id": "c01852a71a6d430baba63f81e6a0e7f6", "Name": "Block" }
+    ]
+},
+{
+    "$TypeId": 12,
+    "Id": "c01852a71a6d430baba63f81e6a0e7f6",
+    "Name": "Block",
+    "Source": { "Id": "c9c6de6d82684bda872dee3aafc44cdc", "Name": "Block" },
+    "Entities": [
+        { "$TypeId": 9, "Id": "b57b0ed22a664ad39e0ec54e090da4cb", "Name": "Block1" }
+    ]
+},
+{
+    "$TypeId": 5,
+    "Id": "1ceae50de07c4e8085ec427e4c0f30b9",
+    "Name": "BG",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "5d3bf51663d734c33ba09c5bc5c18e11", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0.2745098
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0.06,
+                    "y": 0.08
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "b57b0ed22a664ad39e0ec54e090da4cb",
+    "Name": "Block",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "546e6efc1f4b4af39c6c5fa55a6911cf", "Name": "Block" }
+    }],
+    "Instance": {
+        "Source": { "$TypeId": 9, "Id": "23c9b520e8124a81be848955083acc6e", "Name": "Block1" },
+        "EntityModificationFlags": 0,
+        "Modifications": [{
+            "Target": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+            "Path": "parent",
+            "TypeCode": -2,
+            "Value": {
+                "Id": "00000000000000000000000000000000"
+            }
+        }, {
+            "Target": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+            "Path": "position.x",
+            "TypeCode": 13,
+            "Value": -10.53
+        }, {
+            "Target": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+            "Path": "position.y",
+            "TypeCode": 13,
+            "Value": 12.61
+        }]
+    }
+},
+{
+    "$TypeId": 5,
+    "Id": "996aac8c0f314ce591ed09ab2c61cae8",
+    "Name": "BorderL",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -14.71,
+                    "y": 12.96,
+                    "z": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "734f39f474124bb0bb277287a600156a", "Name": "Border" },
+        "Properties": {
+            "Dir": 4
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.1640797,
+                    "y": 9.41
+                }
+            },
+            "drawMode": {
+                "$TypeId": 8,
+                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -0.43,
+                    "y": -6,
+                    "width": 0.5,
+                    "height": 12
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "fb57d32481b3412c86136f0e09ca6416",
+    "Name": "BorderT",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -13.492,
+                    "y": 16.13
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "734f39f474124bb0bb277287a600156a", "Name": "Border" },
+        "Properties": {
+            "Dir": 8
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 3,
+                    "y": 0.1722839
+                }
+            },
+            "drawMode": {
+                "$TypeId": 8,
+                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -6,
+                    "y": -0.09,
+                    "width": 12,
+                    "height": 0.5
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "dd50b7b191884d6ba3e866c11d200600",
+    "Name": "BorderR",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -12.71,
+                    "y": 12.96
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "734f39f474124bb0bb277287a600156a", "Name": "Border" },
+        "Properties": {
+            "Dir": 6
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.1640797,
+                    "y": 8.190318
+                }
+            },
+            "drawMode": {
+                "$TypeId": 8,
+                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -0.08,
+                    "y": -6,
+                    "width": 0.5,
+                    "height": 12
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "f4bbfe5e53124e0f93e5b9420b22ee71",
+    "Name": "BorderB",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -13.492,
+                    "y": 6.23
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "734f39f474124bb0bb277287a600156a", "Name": "Border" },
+        "Properties": {
+            "Dir": 2
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 4,
+                    "y": 0.1722839
+                }
+            },
+            "drawMode": {
+                "$TypeId": 8,
+                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -6,
+                    "y": -0.94,
+                    "width": 12,
+                    "height": 1
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "879707b3080b44eebbf8fcca2fa79595",
+    "Name": "Platform",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -17.961,
+                    "y": 12.3433
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "89e0f7f5a3f234a42ab8b2c15f8c90ee", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "61414ddbbf6046ccbcf2b6a7fce81948", "Name": "Platform" }
+    }, {
+        "Type": { "Id": "0d84d4b5bf0c4344b5ea8a59755249cd", "Name": "TouchMovement" },
+        "Properties": {
+            "axisFilter": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "y": 0
+                }
+            },
+            "moveRange": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "width": 3,
+                    "height": 3
+                }
+            },
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 1,
+                    "y": 0.1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 1.124873,
+                    "y": 0.1599655
+                }
+            },
+            "drawMode": {
+                "$TypeId": 8,
+                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -0.56,
+                    "y": -0.079,
+                    "width": 1.12,
+                    "height": 0.1599
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
+        "Properties": {
+            "clip": { "$TypeId": 10, "Guid": "88f35f473c6194dbb82cdd1d1f5e5ef6", "FileId": 8300000, "Type": 3 },
+            "loop": false
+        }
+    }]
+}]

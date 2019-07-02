@@ -1,0 +1,61 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "5ca816ac10b14f58914886915d99db66",
+    "Name": "LayoutInfo",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Configuration",
+    "Fields": [{
+        "Id": "d0f72f0a47d6456eb8c1bf09cd71e4cd",
+        "Name": "gameContentRect",
+        "FieldType": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "f5dfd3db4a47454591885c0c3815f2a9",
+        "Name": "blockContentRect",
+        "FieldType": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "b3b58b8e3cd94f61b622d3e4d1ebf7e4",
+        "Name": "halfVerticalSize",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "546df5f1ed5f40c79eb8a08e37f7b5b7",
+        "Name": "canvasSize",
+        "FieldType": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "e440591487ce4e30bd55ee4f388be531",
+        "Name": "blockSize",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "7b1daa4b40cd494c8627d83247292dd1",
+        "Name": "blockSpacing",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "5ca816ac10b14f58914886915d99db66", "Name": "LayoutInfo" }
+    }
+}]

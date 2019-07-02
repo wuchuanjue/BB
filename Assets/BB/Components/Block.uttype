@@ -1,0 +1,40 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "546e6efc1f4b4af39c6c5fa55a6911cf",
+    "Name": "Block",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "7880917702b240f6989fa8e3d5facd83",
+        "Name": "id",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "45ac5bc8ddeb4e34a9b606420269b8f3",
+        "Name": "blockConfig",
+        "FieldType": { "Id": "05cc5eb8a0a842c68e0fdeb081ff9378", "Name": "BlockConfig" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "4ccabd2ffa584157a0decafdbb674889",
+        "Name": "life",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "546e6efc1f4b4af39c6c5fa55a6911cf", "Name": "Block" },
+        "Properties": {
+            "life": 1
+        }
+    }
+}]

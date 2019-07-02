@@ -1,0 +1,22 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "263d1feda6014128afceaa7dcaf6a098",
+    "Name": "BlockType",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Enum",
+    "BaseType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+    "Fields": [{
+        "Id": "852ac50752074782a7bdbffe5c314fb9",
+        "Name": "UnDefine",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "263d1feda6014128afceaa7dcaf6a098", "Name": "BlockType" }
+    }
+}]

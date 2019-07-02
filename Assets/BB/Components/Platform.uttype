@@ -1,0 +1,12 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "61414ddbbf6046ccbcf2b6a7fce81948",
+    "Name": "Platform",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "DefaultValue": {
+        "Type": { "Id": "61414ddbbf6046ccbcf2b6a7fce81948", "Name": "Platform" }
+    }
+}]

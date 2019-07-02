@@ -1,0 +1,79 @@
+﻿[{
+    "$TypeId": 4,
+    "Id": "02c6ff35eb9346c79a61621ee19c5aff",
+    "Name": "Ball",
+    "ExportFlags": 0,
+    "SerializedVersion": 0,
+    "Entities": [
+        { "$TypeId": 9, "Id": "f4add37eb375440b986c47e1ae83c9d0", "Name": "Ball" }
+    ]
+},
+{
+    "$TypeId": 5,
+    "Id": "f4add37eb375440b986c47e1ae83c9d0",
+    "Name": "Ball",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 2,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "bd2155dd58869403dbee002d8b0b098d", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" },
+        "Properties": {
+            "dir": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" }
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -0.05,
+                    "y": -0.05,
+                    "width": 0.1,
+                    "height": 0.1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "69d9355efb3b47beb16b186968b61ae8", "Name": "Ball" }
+    }]
+}]

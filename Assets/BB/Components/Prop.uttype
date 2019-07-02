@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "c706421e1e5b416ea28a8ef4f7c36545",
+    "Name": "Prop",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "c414fc20aa60466c8eff033e8be6b087",
+        "Name": "type",
+        "FieldType": { "Id": "129708e8992f4dbc83cfe70cc9039c95", "Name": "PropType" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "c706421e1e5b416ea28a8ef4f7c36545", "Name": "Prop" }
+    }
+}]
