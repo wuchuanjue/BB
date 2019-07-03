@@ -49,7 +49,7 @@ namespace BB {
             if(randomSeed <= 0.01) {
                 propType = PropType.expand;
             }
-            else if(randomSeed > 0.01 && randomSeed <= 0.03) {
+            else if(randomSeed > 0.01 && randomSeed <= 0.04) {
                 propType = PropType.shoot3;
             }
   

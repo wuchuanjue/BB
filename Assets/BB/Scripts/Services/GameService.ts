@@ -5,7 +5,7 @@ namespace BB {
     export class GameService {
         static BLOCK_EG_NAME: string = 'BB.BlockEG';
         // static BALL_EG_NAME: string = "BB.Ball";
-        static Game_EG_NAME: string = "BB.GameTest";
+        static Game_EG_NAME: string = "BB.Game";
 
         static mainCameraEntity: ut.Entity;
 
@@ -98,71 +98,73 @@ namespace BB {
         static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext): void {
             let layoutInfo = world.getConfigData(LayoutInfo);
 
-            // let gameReferences = world.getConfigData(GameReferences);
+            let gameReferences = world.getConfigData(GameReferences);
  
-            // gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+
+            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
 
             ut.EntityGroup.instantiate(world, GameService.Game_EG_NAME);
 
-            // ut.EntityGroup.instantiate(world, "BB.UIMain");
+            ut.EntityGroup.instantiate(world, "BB.UIMain");
 
-            // let platformPos = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5);
+            let platformPos = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5);
 
-            // GameService.blockPrefabEntity = world.getEntityByName("Block");
+            GameService.blockPrefabEntity = world.getEntityByName("Block");
+
+            gameReferences.platformEntity = world.getEntityByName("Platform");
  
-            // console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
+            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
 
-            // {
-            //     //修改方块原型的尺寸
-            //     let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
+            {
+                //修改方块原型的尺寸
+                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
 
-            //     blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
+                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
 
-            //     world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
-            // }
+                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
+            }
 
-            // {
-            //     //border
-            //     world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions]
-            //         , (entity, border, transformPos, spriteOptions) => {
-            //             switch (border.Dir) {
-            //                 case 2:
-            //                     transformPos.position = new Vector3(0, -layoutInfo.canvasSize.y * 0.5 - spriteOptions.size.y * 0.5, 0);
-            //                     spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
-            //                     break;
-            //                 case 4:
-            //                     transformPos.position = new Vector3(-layoutInfo.canvasSize.x * 0.5 - spriteOptions.size.x * 0.5, 0, 0);
-            //                     spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
-            //                     break;
-            //                 case 6:
-            //                     transformPos.position = new Vector3(layoutInfo.canvasSize.x * 0.5 + spriteOptions.size.x * 0.5, 0, 0);
-            //                     spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
-            //                     break;
-            //                 case 8:
-            //                     transformPos.position = new Vector3(0, layoutInfo.canvasSize.y * 0.5 + spriteOptions.size.y * 0.5, 0);
-            //                     spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
-            //                     break;
-            //             }
-            //         });
-            // }
+            {
+                //border
+                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions]
+                    , (entity, border, transformPos, spriteOptions) => {
+                        switch (border.Dir) {
+                            case 2:
+                                transformPos.position = new Vector3(0, -layoutInfo.canvasSize.y * 0.5 - spriteOptions.size.y * 0.5, 0);
+                                spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+                                break;
+                            case 4:
+                                transformPos.position = new Vector3(-layoutInfo.canvasSize.x * 0.5 - spriteOptions.size.x * 0.5, 0, 0);
+                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+                                break;
+                            case 6:
+                                transformPos.position = new Vector3(layoutInfo.canvasSize.x * 0.5 + spriteOptions.size.x * 0.5, 0, 0);
+                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+                                break;
+                            case 8:
+                                transformPos.position = new Vector3(0, layoutInfo.canvasSize.y * 0.5 + spriteOptions.size.y * 0.45, 0);
+                                spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+                                break;
+                        }
+                    });
+            }
 
-            // {
-            //     //platform
-            //     world.forEach([ut.Entity, Platform, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale, ut.Core2D.Sprite2DRendererOptions, TouchMovement]
-            //         , (platformEntity, platform, transformPos, transformScale, spriteOptions, touchMovement) => {
-            //             transformPos.position = platformPos;
+            {
+                //platform
+                world.forEach([Platform, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale, ut.Core2D.Sprite2DRendererOptions, TouchMovement]
+                    , (platform, transformPos, transformScale, spriteOptions, touchMovement) => {
+                        transformPos.position = platformPos;
 
-            //             touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.canvasSize.x, 0);
+                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.canvasSize.x, 0);
 
-            //             touchMovement.size = new Vector2(spriteOptions.size.x, 0);
-
-            //             gameReferences.platformEntity = platformEntity;
-            //         });
-            // }
+                        touchMovement.size = new Vector2(spriteOptions.size.x, 0);
+                    });
+            }
  
             {
                 //ball
-                // GameService.SpawnIdleBall(world, gameContext,gameReferences.platformEntity);
+                GameService.SpawnIdleBall(world, gameContext,gameReferences.platformEntity);
             }
 
             {
@@ -182,74 +184,75 @@ namespace BB {
 
                 // gameContext.blockAmount = 2 * 36;
 
-                // {
-                //     let levels = world.getConfigData(Levels);
+                {
+                    let levels = world.getConfigData(Levels);
 
-                //     let json = JSON.parse(levels.level0);
+                    let json = JSON.parse(levels.level0);
 
-                //     let blocks = json.blocks;
+                    let blocks = json.blocks;
 
-                //     gameContext.blockAmount = 0;
+                    gameContext.blockAmount = 0;
 
-                //     let blockInfo = new BlockConfig();
+                    let blockInfo = new BlockConfig();
 
-                //     let collisionBorderInRow: [number, Array<number>];
+                    let collisionBorderInRow: [number, Array<number>];
 
-                //     for (var i = 0; i < 900; i++) {
-                //         let block = blocks[i];
+                    for (var i = 0; i < 900; i++) {
+                        let block = blocks[i];
 
-                //         // console.log(`row:${block.row} col:${block.col}`);
+                        // console.log(`row:${block.row} col:${block.col}`);
 
-                //         //TODO
-                //         // if(collisionBorderInRow[block.row] == null) {
-                //         //     console.log(`collisionBorderInRow[${block.row}] is null`);
+                        //TODO
+                        // if(collisionBorderInRow[block.row] == null) {
+                        //     console.log(`collisionBorderInRow[${block.row}] is null`);
 
-                //         //     collisionBorderInRow[block.row] = new Array<number>(2);
+                        //     collisionBorderInRow[block.row] = new Array<number>(2);
 
-                //         //     console.log(collisionBorderInRow[block.row][0] + "|" + collisionBorderInRow[block.row][1]);
-                //         // }
+                        //     console.log(collisionBorderInRow[block.row][0] + "|" + collisionBorderInRow[block.row][1]);
+                        // }
 
-                //         // if(collisionBorderInRow[block.row][0] > block.col) {
-                //         //     //left
-                //         //     collisionBorderInRow[block.row][0] = block.col;
-                //         // }
-                //         // else if(collisionBorderInRow[block.row][1] < block.col) {
-                //         //     //right
-                //         //     collisionBorderInRow[block.row][1] = block.col;
-                //         // }
+                        // if(collisionBorderInRow[block.row][0] > block.col) {
+                        //     //left
+                        //     collisionBorderInRow[block.row][0] = block.col;
+                        // }
+                        // else if(collisionBorderInRow[block.row][1] < block.col) {
+                        //     //right
+                        //     collisionBorderInRow[block.row][1] = block.col;
+                        // }
 
-                //         blockInfo.row = block.row + 2;
+                        blockInfo.row = block.row + 2;
 
-                //         blockInfo.col = block.col + 2;
+                        blockInfo.col = block.col + 2;
 
-                //         blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
+                        blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
 
-                //         blockInfo.isWall = false;
+                        blockInfo.isWall = false;
 
-                //         GameService.SpawnBlock(world, layoutInfo, blockInfo);
+                        GameService.SpawnBlock(world, layoutInfo, blockInfo);
 
-                //         gameContext.blockAmount += 1;
-                //     }
+                        gameContext.blockAmount += 1;
+                    }
 
-                //     for (var j = 0; j < 30; j++) {
-                //         // let blockInfo = new BlockConfig(); 
+                    for (var j = 0; j < 34; j++) {
+                        // let blockInfo = new BlockConfig(); 
 
-                //         blockInfo.row = 0;
+                        if(j > 13 && j < 20)
+                            continue;
 
-                //         blockInfo.col = j + 2;
+                        blockInfo.row = 0;
 
-                //         blockInfo.isWall = true;
+                        blockInfo.col = j;
 
-                //         blockInfo.color = new ut.Core2D.Color(0.3, 0.3, 0.3, 1);
+                        blockInfo.isWall = true;
 
-                //         GameService.SpawnBlock(world, layoutInfo, blockInfo);
-                //     }
-                // }
+                        blockInfo.color = new ut.Core2D.Color(0.3, 0.3, 0.3, 1);
+
+                        GameService.SpawnBlock(world, layoutInfo, blockInfo);
+                    }
+                }
             }
 
-            // world.setConfigData(gameReferences);
-
-            
+            world.setConfigData(gameReferences);
         }
 
         static SpawnIdleBall(world: ut.World, gameContext: GameContext, platformEntity: ut.Entity): ut.Entity {
@@ -391,5 +394,6 @@ namespace BB {
 
             world.destroyEntity(ballEntity);
         }
+ 
     }
 }

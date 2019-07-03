@@ -98,6 +98,9 @@ namespace BB {
                     if (!this.world.exists(target))
                         return;
 
+                    // console.log(`ball pre hit:${ball.preHitEntity}  cut hit:${target.index} 
+                    // cut hit name:${this.world.getEntityName(target)}`);
+
                     if (ball.preHitEntity == target.index) {
                         return;
                     }
@@ -128,7 +131,7 @@ namespace BB {
 
                         hitSound = "border";
 
-                        // console.log(`hit border. hit area:${hitArea}`);
+                        console.log(`hit border. hit area:${hitArea}`);
                     }
                     else if (this.world.hasComponent(target, Block)) {
                         hitSound = "block";

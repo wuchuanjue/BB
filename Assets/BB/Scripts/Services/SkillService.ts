@@ -29,6 +29,8 @@ namespace BB {
             rRange = new ut.Math.Range(-15, -5);
             
             GameService.SpawnBall(world, gameContex, targetPos, GameService.GenRandomDir(rRange));
+
+            GameService.SpawnBall(world, gameContex, targetPos, new Vector3(0,1,0));
         }
     }
 }

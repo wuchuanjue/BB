@@ -19,8 +19,7 @@ namespace BB {
                     break;
                 case GameState.Loading:
                     GameService.SetupGameEntitys(this.world, context); 
-
-                    this.scheduler.pause();
+ 
                     context.state = GameState.Play;   
                     break;
                 case GameState.Play:

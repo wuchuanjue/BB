@@ -34,8 +34,8 @@
             "scale": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 1,
-                    "y": 1
+                    "x": 0.5,
+                    "y": 0.5
                 }
             }
         }
@@ -54,12 +54,7 @@
             }
         }
     }, {
-        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" },
-        "Properties": {
-            "dir": {
-                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" }
-            }
-        }
+        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" }
     }, {
         "Type": { "Id": "c706421e1e5b416ea28a8ef4f7c36545", "Name": "Prop" }
     }, {
