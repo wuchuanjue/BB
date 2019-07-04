@@ -3,14 +3,6 @@ namespace BB {
         static CalcBlockCollisionDirection(ballPos:Vector3, blockPos:Vector3) : number {
             return 0;
         }
- 
-        static MarkBlock(world:ut.World, blockEntity: ut.Entity) : void {
-            let spriteRenderer = world.getComponentData(blockEntity, ut.Core2D.Sprite2DRenderer);
-
-            spriteRenderer.color = new ut.Core2D.Color(Math.random(),Math.random(),0,0.2);
-
-            world.setComponentData(blockEntity, spriteRenderer);
-        }
 
         static AtkBlock(blockEntity: ut.Entity, blockPos: Vector3 , ball:BB.Ball, world:ut.World, gameContex:GameContext) : void {
             let block = world.getComponentData(blockEntity, BB.Block);
@@ -24,6 +16,8 @@ namespace BB {
  
             if(block.life <= 0) {
                 DamageService.CheckSpawnProp(world, block, blockPos);
+
+                BlockService.OpenBlockCollisionAroundBlock(world, block);
 
                 world.destroyEntity(blockEntity); 
 
@@ -58,7 +52,7 @@ namespace BB {
 
             let gameContex = world.getConfigData(GameContext);
 
-            GameService.CreateProp(world, gameContex,propType, spawnPos);
+            GameService.SpawnProp(world, gameContex,propType, spawnPos);
         }
     }
 }

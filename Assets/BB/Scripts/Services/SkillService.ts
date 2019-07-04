@@ -14,16 +14,14 @@ namespace BB {
         }
 
         static ShootThreeBall(world:ut.World, gameContex:GameContext) : void {
-            let targetPos:Vector3;
+            let platform =  world.getConfigData(GameReferences).platformEntity;
 
-            world.forEach([ut.Core2D.TransformLocalPosition, Platform],(transformPos, platform)=>{
-                targetPos = transformPos.position;
-            });           
+            let targetPos:Vector3 = world.getComponentData(platform, ut.Core2D.TransformLocalPosition).position;
 
             targetPos.add(new Vector3(0,0.2,0));
 
             let rRange = new ut.Math.Range(5, 15);
-
+ 
             GameService.SpawnBall(world, gameContex, targetPos, GameService.GenRandomDir(rRange));
 
             rRange = new ut.Math.Range(-15, -5);

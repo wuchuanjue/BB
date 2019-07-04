@@ -22,13 +22,9 @@ namespace BB {
 
                 let move = movement.dir.multiplyScalar(movement.speed * dt);
                 
-                let pos = localPos.position; 
+                localPos.position = localPos.position.add(move);
 
-                pos.add(move);
-
-                movement.prePos = localPos.position;
-
-                localPos.position = pos;
+                CoreUtils.DrawDebugPoint(this.world, localPos.position, new ut.Core2D.Color(1,1,0,1));
             });
         }
     }

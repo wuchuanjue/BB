@@ -22,14 +22,6 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
-    }, {
-        "Id": "cb981bf490814de4acf0cb2d2ebda382",
-        "Name": "prePos",
-        "FieldType": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" },

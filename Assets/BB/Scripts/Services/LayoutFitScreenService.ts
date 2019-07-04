@@ -13,10 +13,10 @@ namespace BB {
             let blocksResolution = new Vector2(800, 800);
 
             //方块分辨率
-            let blockResolution = 20;
+            let blockResolution = 25;       //待同步
 
             //方块间隔
-            let blockSpacingResolution = 4;     
+            let blockSpacingResolution = 2;     //待同步     
 
             let canvasRatio = canvasResolution.x / canvasResolution.y;
           

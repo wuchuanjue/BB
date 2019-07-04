@@ -3,6 +3,7 @@ namespace BB {
 
     @ut.executeAfter(ut.Shared.UserCodeStart)
     @ut.executeAfter(ut.HitBox2D.HitBox2DSystem)
+    @ut.executeBefore(CheckStateSystem)
     @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class HitSystem extends ut.ComponentSystem {
 
@@ -10,14 +11,23 @@ namespace BB {
         //     if (!GameService.IsGameState(this.world, GameState.Play))
         //         return;
 
+        //     let gameContex = this.world.getConfigData(GameContext);
+
+        //     if (gameContex.state != GameState.Play)
+        //         return;
+
+        //     let cameraEntity = GameService.GetMainCameraEntity();
+
         //     this.world.forEach([ut.Entity, Ball, ut.Core2D.TransformLocalPosition], (ballEntity, ball, transformPos) => {
-        //         let prePos = ball.prePos;
 
-        //         let cutPos = transformPos.position;
+        //         if(this.world.hasComponent(ballEntity, ut.HitBox2D.RectHitBox2D))
+        //             this.world.removeComponent(ballEntity, ut.HitBox2D.RectHitBox2D);
 
-        //         ball.prePos = transformPos.position;
+        //         let movement = this.world.getComponentData(ballEntity, BB.Movement);
 
-        //         let hitRayCast = ut.HitBox2D.HitBox2DService.rayCast(this.world, prePos, cutPos, GameService.GetMainCameraEntity());
+        //         ut.HitBox2D.HitBox2DService.rayCast(this.world, movement.prePos, transformPos.position, cameraEntity);
+
+        //         let hitRayCast = ut.HitBox2D.HitBox2DService.rayCast(this.world, movement.prePos, transformPos.position, cameraEntity);
 
         //         if (hitRayCast.entityHit == null || hitRayCast.entityHit.isNone()) {
 
@@ -27,44 +37,37 @@ namespace BB {
         //         if (!this.world.exists(hitRayCast.entityHit))
         //             return;
 
-        //         let targetEntityName = this.world.getEntityName(hitRayCast.entityHit);
+        //         let targetEntity = hitRayCast.entityHit;
 
-        //         // console.log(`hit entity 0: ${targetEntityName}`);
-
-        //         if (ball.preHitEntity == targetEntityName) {
+        //         // console.log(`hit entity 1 name: ${this.world.getEntityName(targetEntity)}  index:${targetEntity.index}`);
+ 
+        //         if (ball.preHitEntity == targetEntity.index) {
         //             //碰撞到同一个物体
         //             return;
         //         }
 
         //         // console.log(`hit entity 1: ${targetEntityName}`);
 
-        //         ball.preHitEntity = targetEntityName;
+        //         ball.preHitEntity = targetEntity.index;
 
         //         let hitArea = 5;
 
         //         let hitPos = new Vector3();
 
-        //         hitPos.subVectors(cutPos, prePos).multiplyScalar(hitRayCast.t).add(prePos);
-
-        //         let movement = this.world.getComponentData(ballEntity, BB.Movement);
-
+        //         hitPos.subVectors(transformPos.position, movement.prePos).multiplyScalar(hitRayCast.t).add(movement.prePos);
+ 
         //         if (this.world.hasComponent(hitRayCast.entityHit, BB.Block)) {
         //             let block = this.world.getComponentData(hitRayCast.entityHit, BB.Block);
 
-        //             DamageService.AtkBlock(hitRayCast.entityHit, ball, this.world);
+        //             // DamageService.AtkBlock(hitRayCast.entityHit, ball, this.world);
         //         }
         //         else if (this.world.hasComponent(hitRayCast.entityHit, BB.Border)) {
         //             let border = this.world.getComponentData(hitRayCast.entityHit, BB.Border);
 
         //             hitArea = border.Dir;
-
-        //             if (hitArea == 5) {
-        //                 //Ball dead
-
-        //             }
         //         }
 
-        //         ball.prePos = transformPos.position = hitPos;
+        //         movement.prePos = transformPos.position = hitPos;
 
         //         if (hitArea == 4 || hitArea == 6)
         //             movement.dir.x = -movement.dir.x;
@@ -110,22 +113,16 @@ namespace BB {
                     let hitArea = 5;
 
                     let movement = this.world.getComponentData(ballEntity, BB.Movement);
-
-                    // let cutToPre = new Vector3().subVectors(movement.prePos,ballTrans.position);
-
-                    // let teleportPos = new Vector3().addVectors(ballTrans.position, cutToPre.multiplyScalar(3));
-
-                    GameService.MovementTeleport(ballTrans, movement, movement.prePos);        //
-
+ 
                     if (this.world.hasComponent(target, BB.Border)) {
                         let border = this.world.getComponentData(target, BB.Border);
+ 
+                        // if (border.Dir == 2) {
+                        //     //lose ball; 
+                        //     GameService.LoseBall(this.world, ballEntity, gameContex);
 
-                        if (border.Dir == 2) {
-                            //lose ball;
-                            GameService.LoseBall(this.world, ballEntity, gameContex);
-
-                            return;
-                        }
+                        //     return;
+                        // }
 
                         hitArea = border.Dir;
 
@@ -137,20 +134,28 @@ namespace BB {
                         hitSound = "block";
 
                         let blockTransformPos = this.world.getComponentData(target, ut.Core2D.TransformLocalPosition);
+                        let blockTransScale = this.world.getComponentData(target, ut.Core2D.TransformLocalScale);
 
-                        hitArea = this.CalcRectHitInfo(blockTransformPos.position.clone(), ballTrans.position.clone(), movement.dir.clone());
+                        hitArea = this.CalcBlockHitInfo(blockTransformPos.position.clone(), ballTrans.position.clone(), movement.dir.clone());
 
                         // console.log(`hit block. hit area:${hitArea}`);
 
-                        // // if(hitArea == 4 || hitArea == 6) {
-                        //     DamageService.MarkBlock(this.world,target);
-                        //     this.scheduler.pause();
-                        // // }
-                        // // else {
-                        // //     DamageService.AtkBlock(target, blockTransformPos.position, ball, this.world, gameContex);
-                        // // }
+                        //TODO debug go on.
+                        if(hitArea == 4 || hitArea == 6) {
+                            let ballPos = ballTrans.position;
+ 
+                            let testPoint = this.AjduestHitPos(ballPos, movement.dir
+                                ,new ut.Math.Rect(blockTransformPos.position.x, blockTransformPos.position.y,blockTransScale.scale.x + 0.01,blockTransScale.scale.y + 0.01));
 
-                        DamageService.AtkBlock(target, blockTransformPos.position, ball, this.world, gameContex);
+                            ballTrans.position = ballPos;  
+
+                            BlockService.TestMarkBlock(this.world,target, true);
+                            
+                            this.scheduler.pause();
+                        }
+                        else {
+                            DamageService.AtkBlock(target, blockTransformPos.position, ball, this.world, gameContex);
+                        }
                     }
                     else if (this.world.hasComponent(target, Platform)) {
                         let upDir = new Vector3(0, 1, 0);
@@ -159,7 +164,7 @@ namespace BB {
 
                         let platformSpriteOptions = this.world.getComponentData(target, ut.Core2D.Sprite2DRendererOptions);
 
-                        let hitOffset = movement.prePos.x - platformTransformPos.position.x;
+                        let hitOffset = ballTrans.position.x - platformTransformPos.position.x;
 
                         //角度范围140  
                         let angle = hitOffset / (platformSpriteOptions.size.x * 0.5) * 60;
@@ -184,6 +189,12 @@ namespace BB {
                 SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
             }
 
+            this.ForeachPropHit(gameContex);
+
+            this.world.setConfigData(gameContex);
+        }
+
+        private ForeachPropHit(gameContex: GameContext) : void {
             this.world.forEach([ut.Entity, Prop, ut.HitBox2D.HitBoxOverlapResults], (propEntity, prop, overlapResults) => {
                 let overlaps = overlapResults.overlaps;
 
@@ -194,13 +205,16 @@ namespace BB {
 
                 if (!this.world.exists(target))
                     return;
-
+                
                 if (this.world.hasComponent(target, Platform)) {
+
+                    this.world.addComponent(propEntity, Dying);
+
                     GameService.ReceiveProp(this.world, prop, gameContex);
+                    
+                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
 
                     this.world.destroyEntity(propEntity);
-
-                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
                 }
                 else if (this.world.hasComponent(target, Border)) {
                     let border = this.world.getComponentData(target, Border);
@@ -210,9 +224,6 @@ namespace BB {
                     }
                 }
             });
-
-            this.world.setConfigData(gameContex);
-
         }
 
         /**
@@ -221,7 +232,7 @@ namespace BB {
          * @param ballPos 
          * @param ballDirection 
          */
-        private CalcRectHitInfo(blockPos: Vector3, ballPos: Vector3, ballDirection: Vector3): number {
+        private CalcBlockHitInfo(blockPos: Vector3, ballPos: Vector3, ballDirection: Vector3): number {
             // let res = new Vector3();
             //ballPos.sub(ballDirection.multiplyScalar(5));
 
@@ -246,6 +257,54 @@ namespace BB {
                 hitArea = 6;
 
             return hitArea;
+        }
+
+        private AjduestHitPos(ballPos:Vector3, hitDIr: Vector3 , rect:ut.Math.Rect) : Vector3 {
+            //ball size 0.3 * 0.5
+            let halfBallSize = 0.075;
+            let checkPoints = new Array<Vector3>();
+            checkPoints.push(new Vector3(ballPos.x - halfBallSize, ballPos.y - halfBallSize));
+
+            checkPoints.push(new Vector3(ballPos.x - halfBallSize, ballPos.y + halfBallSize));       
+ 
+            checkPoints.push(new Vector3(ballPos.x + halfBallSize, ballPos.y + halfBallSize));    
+            
+            checkPoints.push(new Vector3(ballPos.x + halfBallSize, ballPos.y - halfBallSize));
+            
+            let stepOffset = hitDIr.clone().multiplyScalar(-0.01);
+
+            let resCheckPoint = new Vector3();
+
+            let stepAmount = -2;
+
+            CoreUtils.DrawDebugPoint(this.world, ballPos, new ut.Core2D.Color(0,0,0,1));
+ 
+            while(checkPoints.length > 0) {
+                for(let i = checkPoints.length - 1; i >= 0; i--) {
+                    let point = checkPoints[i];
+
+                    if(!CoreUtils.isPointInRect(point, rect)) {
+                        checkPoints.splice(i,1);
+                        
+                        continue;
+                    }
+    
+                    resCheckPoint.x = point.x;
+
+                    resCheckPoint.y = point.y;
+ 
+                    point.add(stepOffset);
+                }
+
+                //默认一定会有一个point在范围内
+                stepAmount ++;  
+            }
+
+            ballPos.addScaledVector(stepOffset, stepAmount);
+            
+            CoreUtils.DrawDebugPoint(this.world, resCheckPoint, new ut.Core2D.Color(1,0,0,1));
+
+            return resCheckPoint;
         }
     }
 }
