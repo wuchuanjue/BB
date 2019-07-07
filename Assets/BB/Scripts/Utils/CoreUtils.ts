@@ -53,5 +53,9 @@ namespace BB {
                     sprite2DRenderer.color = color;
             });
         }
+
+        public static ClearDebugPoints(world: ut.World) {
+            ut.EntityGroup.destroyAll(world, "BB.DebugQuad");
+        }
     }
 }

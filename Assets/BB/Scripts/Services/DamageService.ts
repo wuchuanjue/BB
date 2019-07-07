@@ -17,7 +17,7 @@ namespace BB {
             if(block.life <= 0) {
                 DamageService.CheckSpawnProp(world, block, blockPos);
 
-                BlockService.OpenBlockCollisionAroundBlock(world, block);
+                BlockService.AddAroundBlockCollision(world, block);
 
                 world.destroyEntity(blockEntity); 
 

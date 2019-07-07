@@ -54,13 +54,22 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "1e3fbe2d20e84a4eb60f3f756cfea657",
+        "Name": "life",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },
         "Properties": {
             "ballSpeed": 3,
             "giftSpeed": 1,
-            "ballMaxAmount": 80
+            "ballMaxAmount": 80,
+            "life": 3
         }
     }
 }]

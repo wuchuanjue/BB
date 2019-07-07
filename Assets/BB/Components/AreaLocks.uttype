@@ -1,0 +1,51 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "fcabc0cf2f8c4e58b1773508103cb4e8",
+    "Name": "AreaLocks",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "847bb94d3a6d47189a451899fed11410",
+        "Name": "lock2",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "55a850bcc124425781e625a436b4d93b",
+        "Name": "lock4",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "8087dea95b0f4706bc1842a1f4fcbd97",
+        "Name": "lock8",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "14406d0c554241b696f234984ce4a6e7",
+        "Name": "lock6",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "fcabc0cf2f8c4e58b1773508103cb4e8", "Name": "AreaLocks" },
+        "Properties": {
+            "lock2": true,
+            "lock4": true,
+            "lock8": true,
+            "lock6": true
+        }
+    }
+}]

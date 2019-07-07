@@ -2,10 +2,11 @@
 namespace BB {
 
     export class FpsFilter extends ut.EntityFilter {
-        fps: Fps;
+        fps: FpsDisplay;
         textRenderer: ut.Text.Text2DRenderer
+        // entity:ut.Entity
     }
-
+ 
     export class Fps extends ut.ComponentBehaviour {
 
         data: FpsFilter;

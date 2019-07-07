@@ -12,41 +12,45 @@ namespace BB {
             if (gameContex.state != GameState.Play) {
                 return;
             }
+            
+            this.world.forEach([TestMsgDisplay, ut.Text.Text2DRenderer],(msgDisplay, textRenderer)=>{
+                if(msgDisplay.key == "amount") {
+                    textRenderer.text = `ball:${gameContex.ballCutAmount}   block:${gameContex.blockAmount}`;
+                    
+                    //console.log(`gameContex.ballCutAmount:${gameContex.ballCutAmount}  gameContex.blockAmount:${gameContex.blockAmount}`);
+                }
+            });
 
-            // if (gameContex.blockAmount <= 0) {
-            //     console.log("finish");
-            //     this.scheduler.pause();
-
-            //     return;
-            // }
-
-            // if (gameContex.ballCutAmount <= 0) {
-            //     console.log("lose");
+            if (gameContex.blockAmount <= 0) {
+                console.log("finish");
                 
-            //     //test restart
-            //     GameService.SpawnIdleBall(this.world, gameContex, this.world.getConfigData(GameReferences).platformEntity);
-            //     return;
-            // }
+                // gameContex.state = GameState.PassLevel;
+
+                return;
+            } 
+
+            if (gameContex.ballCutAmount <= 0) {
+                gameContex.life -= 1;
+
+                if(gameContex.life > 0) {
+                    GameService.SpawnIdleBall(this.world, gameContex, this.world.getConfigData(GameReferences).platformEntity);
+                    
+                    GameService.DestroyAllProps(this.world);
+                }
+                else {
+                    gameContex.state = GameState.GameOver;
+
+                    console.log("game over");
+                }
+
+                this.world.setConfigData(gameContex);
+
+                return;
+            }
 
             if (ut.Runtime.Input.getMouseButtonUp(0)) {
                 this.world.forEach([ut.Entity, IdleBall], (entity, idleBall) => {
-                    let wPos = ut.Core2D.TransformService.computeWorldPosition(this.world, entity);
-
-                    let transformNode = new ut.Core2D.TransformNode();
-
-                    let transofrmPos = this.world.getComponentData(entity, ut.Core2D.TransformLocalPosition);
-
-                    let movement = this.world.getComponentData(entity, Movement);
-
-                    this.world.setComponentData(entity, transformNode);
-
-                    transofrmPos.position = wPos;
-
-                    this.world.setComponentData(entity, transofrmPos);
-
-                    movement.dir = new Vector3(0, 1, 0);
-
-                    this.world.setComponentData(entity, movement);
+                    GameService.ShootBall(this.world, entity);
 
                     this.world.removeComponent(entity, IdleBall);
                 });

@@ -1,8 +1,6 @@
 
 namespace BB {
 
-    @ut.executeAfter(ut.Shared.UserCodeStart)
-    @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class GameSystem extends ut.ComponentSystem {
 
         OnUpdate(): void {
@@ -11,7 +9,7 @@ namespace BB {
             switch (context.state) {
                 case GameState.Init:        
                     // GameService.TestInitLayout(this.world, context);
-                    GameService.InitGame(this.world, context);
+                    GameService.Init(this.world, context);
                     // this.Test(context);
                     break;
                 case GameState.Menu:
@@ -24,6 +22,12 @@ namespace BB {
                     break;
                 case GameState.Play:
                     
+                    break;
+                case GameState.GameOver:
+                    break;
+
+                case GameState.PassLevel:
+
                     break;
                 case GameState.Test:
  
@@ -41,6 +45,8 @@ namespace BB {
         private Test(gameContext : GameContext) : void {
             gameContext.state = GameState.Test;
 
+            ut.EntityGroup.instantiate(this.world, "BB.UIMain");
+
             // // GameService.TestInitLayout(this.world, context);
             // let levels = this.world.getConfigData(BB.Levels);
 
@@ -54,8 +60,6 @@ namespace BB {
             // let path = `assets/sprites/Default/Prop_${type}`;
             // let testEn = this.world.getEntityByName(path);
             // console.log("en:" + testEn.isNone());
-            
-  
         }
  
         

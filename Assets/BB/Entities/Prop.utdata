@@ -49,7 +49,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.08235294
+                    "a": 1
                 }
             }
         }
@@ -67,7 +67,7 @@
     }, {
         "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
         "Properties": {
-            "order": 1
+            "order": 99
         }
     }]
 }]

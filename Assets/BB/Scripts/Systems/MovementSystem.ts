@@ -2,10 +2,8 @@
 namespace BB {
 
     /** MovementSystem */
-    @ut.executeAfter(ut.Shared.UserCodeStart)
+    @ut.executeBefore(ut.HitBox2D.HitBox2DSystem)
     @ut.executeAfter(GameSystem)
-    @ut.executeBefore(HitSystem)
-    @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class MovementSystem extends ut.ComponentSystem {
         
         OnUpdate():void {
@@ -16,7 +14,7 @@ namespace BB {
 
             dt = Math.min(0.02, dt);
  
-            this.world.forEach([BB.Movement, ut.Core2D.TransformLocalPosition] , (movement, localPos)=>{
+            this.world.forEach([ut.Entity, BB.Movement, ut.Core2D.TransformLocalPosition] , (entity, movement, localPos)=>{
                 if(movement.speed == 0)
                     return;
 
@@ -24,7 +22,9 @@ namespace BB {
                 
                 localPos.position = localPos.position.add(move);
 
-                CoreUtils.DrawDebugPoint(this.world, localPos.position, new ut.Core2D.Color(1,1,0,1));
+                // if(this.world.hasComponent(entity, Ball)) {
+                //     CoreUtils.DrawDebugPoint(this.world, localPos.position, new ut.Core2D.Color(1,1,0,1));
+                // }
             });
         }
     }

@@ -30,24 +30,10 @@
     "$TypeId": 5,
     "Id": "1ceae50de07c4e8085ec427e4c0f30b9",
     "Name": "BG",
-    "Enabled": false,
+    "Enabled": true,
     "Static": false,
     "Layer": 0,
     "Components": [{
-        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
-        "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "5d3bf51663d734c33ba09c5bc5c18e11", "FileId": 21300000, "Type": 3 },
-            "color": {
-                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
-                "Properties": {
-                    "r": 0.7264151,
-                    "g": 0.7229886,
-                    "b": 0.7229886,
-                    "a": 0.2117647
-                }
-            }
-        }
-    }, {
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
     }, {
         "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
@@ -59,6 +45,27 @@
                     "y": 10
                 }
             }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0.02352941,
+                    "g": 0.0627451,
+                    "b": 0.1529412,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": -1
         }
     }]
 },
@@ -110,7 +117,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.1254902
+                    "a": 1
                 }
             }
         }
@@ -196,7 +203,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.1254902
+                    "a": 0.007843138
                 }
             }
         }
@@ -279,7 +286,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.1254902
+                    "a": 1
                 }
             }
         }
@@ -362,7 +369,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.1254902
+                    "a": 0.007843138
                 }
             }
         }
@@ -373,7 +380,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": -13.492,
-                    "y": 6.23
+                    "y": 7.22
                 }
             }
         }
@@ -394,33 +401,26 @@
             "Dir": 2
         }
     }, {
-        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
-        "Properties": {
-            "size": {
-                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
-                "Properties": {
-                    "x": 4,
-                    "y": 0.1722839
-                }
-            },
-            "drawMode": {
-                "$TypeId": 8,
-                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
-            }
-        }
-    }, {
         "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
         "Properties": {
             "box": {
                 "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
                 "Properties": {
                     "x": -6,
-                    "y": -0.94,
+                    "y": -0.9,
                     "width": 12,
                     "height": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.16,
+                    "y": 0.16
                 }
             }
         }
@@ -467,7 +467,7 @@
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.1529412
+                    "a": 1
                 }
             }
         }
