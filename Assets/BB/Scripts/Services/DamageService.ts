@@ -40,19 +40,22 @@ namespace BB {
 
             let propType = PropType.none;
 
-            if(randomSeed <= 0.01) {
-                propType = PropType.expand;
+            if(randomSeed <= 0.005) {
+                propType = PropType.split;  
             }
-            else if(randomSeed > 0.01 && randomSeed <= 0.04) {
+            else if(randomSeed > 0.005 && randomSeed <= 0.02) {
                 propType = PropType.shoot3;
             }
+            // else if(randomSeed > 0.04 && randomSeed < 1.045) {
+            //     propType = PropType.expand;
+            // }
   
             if(propType == PropType.none)
                 return;
 
             let gameContex = world.getConfigData(GameContext);
 
-            GameService.SpawnProp(world, gameContex,propType, spawnPos);
+            EntityManagerService.SpawnProp(world, gameContex,propType, spawnPos);
         }
     }
 }

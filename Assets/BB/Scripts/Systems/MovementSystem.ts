@@ -3,7 +3,7 @@ namespace BB {
 
     /** MovementSystem */
     @ut.executeBefore(ut.HitBox2D.HitBox2DSystem)
-    @ut.executeAfter(GameSystem)
+    @ut.executeAfter(GameSystem)  
     export class MovementSystem extends ut.ComponentSystem {
         
         OnUpdate():void {

@@ -1,0 +1,22 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "b93715d40459438bafed48304952e51c",
+    "Name": "UIPlane",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "e0d5349f38d84c8b8c88859e9db865df",
+        "Name": "name",
+        "FieldType": { "Id": "1bff5adddd7c41de98d3329c7c641208", "Name": "String" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "b93715d40459438bafed48304952e51c", "Name": "UIPlane" },
+        "Properties": {}
+    }
+}]

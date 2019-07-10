@@ -1,7 +1,6 @@
 
 namespace BB {
-
-    @ut.executeAfter(BB.GameSystem)
+ 
     @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class TestSystem extends ut.ComponentSystem {
         OnUpdate(): void {

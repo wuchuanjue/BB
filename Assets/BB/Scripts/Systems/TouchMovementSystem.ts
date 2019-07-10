@@ -39,12 +39,12 @@ namespace BB {
         }
  
         private MoveStart(touchMovement:BB.TouchMovement) : void {
-            touchMovement.startWPos = this.GetPointerWorldPosition(this.world, GameService.GetMainCameraEntity());
+            touchMovement.startWPos = this.GetPointerWorldPosition(this.world, this.world.getConfigData(GameReferences).mainCamera);
             touchMovement.deltaWPos = touchMovement.startWPos;
         }
 
         private Moving(touchMovement:BB.TouchMovement, transform:ut.Core2D.TransformLocalPosition) : void {
-            let pointerPos = this.GetPointerWorldPosition(this.world, GameService.GetMainCameraEntity());
+            let pointerPos = this.GetPointerWorldPosition(this.world, this.world.getConfigData(GameReferences).mainCamera);
 
             let offsetPos = pointerPos.clone().sub(touchMovement.deltaWPos);
    

@@ -62,11 +62,19 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "c9ef6f938c7946ffa881ca50de8eb4ab",
+        "Name": "cutLvl",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },
         "Properties": {
-            "ballSpeed": 3,
+            "ballSpeed": 4,
             "giftSpeed": 1,
             "ballMaxAmount": 80,
             "life": 3

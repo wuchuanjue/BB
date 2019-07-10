@@ -26,9 +26,9 @@
             "backgroundColor": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
+                    "r": 0.05098039,
+                    "g": 0.1019608,
+                    "b": 0.2352941,
                     "a": 1
                 }
             },

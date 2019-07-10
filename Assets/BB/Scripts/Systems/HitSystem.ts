@@ -3,87 +3,13 @@ namespace BB {
     @ut.executeAfter(ut.HitBox2D.HitBox2DSystem)
     @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class HitSystem extends ut.ComponentSystem {
-
-        // OnUpdate(): void {
-        //     if (!GameService.IsGameState(this.world, GameState.Play))
-        //         return;
-
-        //     let gameContex = this.world.getConfigData(GameContext);
-
-        //     if (gameContex.state != GameState.Play)
-        //         return;
-
-        //     let cameraEntity = GameService.GetMainCameraEntity();
-
-        //     this.world.forEach([ut.Entity, Ball, ut.Core2D.TransformLocalPosition], (ballEntity, ball, transformPos) => {
-
-        //         if(this.world.hasComponent(ballEntity, ut.HitBox2D.RectHitBox2D))
-        //             this.world.removeComponent(ballEntity, ut.HitBox2D.RectHitBox2D);
-
-        //         let movement = this.world.getComponentData(ballEntity, BB.Movement);
-
-        //         ut.HitBox2D.HitBox2DService.rayCast(this.world, movement.prePos, transformPos.position, cameraEntity);
-
-        //         let hitRayCast = ut.HitBox2D.HitBox2DService.rayCast(this.world, movement.prePos, transformPos.position, cameraEntity);
-
-        //         if (hitRayCast.entityHit == null || hitRayCast.entityHit.isNone()) {
-
-        //             return;
-        //         }
-
-        //         if (!this.world.exists(hitRayCast.entityHit))
-        //             return;
-
-        //         let targetEntity = hitRayCast.entityHit;
-
-        //         // console.log(`hit entity 1 name: ${this.world.getEntityName(targetEntity)}  index:${targetEntity.index}`);
-
-        //         if (ball.preHitEntity == targetEntity.index) {
-        //             //碰撞到同一个物体
-        //             return;
-        //         }
-
-        //         // console.log(`hit entity 1: ${targetEntityName}`);
-
-        //         ball.preHitEntity = targetEntity.index;
-
-        //         let hitArea = 5;
-
-        //         let hitPos = new Vector3();
-
-        //         hitPos.subVectors(transformPos.position, movement.prePos).multiplyScalar(hitRayCast.t).add(movement.prePos);
-
-        //         if (this.world.hasComponent(hitRayCast.entityHit, BB.Block)) {
-        //             let block = this.world.getComponentData(hitRayCast.entityHit, BB.Block);
-
-        //             // DamageService.AtkBlock(hitRayCast.entityHit, ball, this.world);
-        //         }
-        //         else if (this.world.hasComponent(hitRayCast.entityHit, BB.Border)) {
-        //             let border = this.world.getComponentData(hitRayCast.entityHit, BB.Border);
-
-        //             hitArea = border.Dir;
-        //         }
-
-        //         movement.prePos = transformPos.position = hitPos;
-
-        //         if (hitArea == 4 || hitArea == 6)
-        //             movement.dir.x = -movement.dir.x;
-        //         else
-        //             movement.dir.y = -movement.dir.y;
-
-        //         this.world.setComponentData(ballEntity, movement);
-
-        //         // this.scheduler.pause();
-        //     });
-        // }
-
         OnUpdate(): void {
             let gameContex = this.world.getConfigData(GameContext);
 
             if (gameContex.state != GameState.Play)
                 return;
 
-            let hitSound = "none";
+            let hitSound = false;
 
             this.world.forEach([ut.Entity, ut.HitBox2D.HitBoxOverlapResults, ut.Core2D.TransformLocalPosition, Ball]
                 , (ballEntity, overlapResults, ballTrans, ball) => {
@@ -121,7 +47,7 @@ namespace BB {
                                 return;
                             }
 
-                            hitSound = "border";
+                            hitSound = true;
 
                             if (border.Dir == 4 || border.Dir == 6)
                                 movement.dir.x = -movement.dir.x;
@@ -134,7 +60,7 @@ namespace BB {
                             let blockTransformPos = this.world.getComponentData(target, ut.Core2D.TransformLocalPosition);
 
                             if(i == 0) {
-                                hitSound = "block";
+                                hitSound = true;
     
                                 let blockTransScale = this.world.getComponentData(target, ut.Core2D.TransformLocalScale);
     
@@ -165,14 +91,14 @@ namespace BB {
 
                             let hitOffset = ballTrans.position.x - platformTransformPos.position.x;
 
-                            //角度范围140  
-                            let angle = hitOffset / (platformSpriteOptions.size.x * 0.5) * 60;
+                            //角度范围正负x
+                            let angle = hitOffset / (platformSpriteOptions.size.x * 0.5) * 50;
 
                             angle = -angle;
 
                             movement.dir = upDir.applyAxisAngle(new Vector3(0, 0, 1), Math.PI / 180 * angle).normalize();
 
-                            hitSound = "platform";
+                            hitSound = true;
                         }
 
                         BallService.UpdateHitRectByMoment(ballHitBox, movement);
@@ -183,8 +109,7 @@ namespace BB {
                     }
                 });
 
-
-            if (hitSound != "none") {
+            if (hitSound) {
                 SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
             }
 
@@ -206,10 +131,7 @@ namespace BB {
                     return;
 
                 if (this.world.hasComponent(target, Platform)) {
-
-                    this.world.addComponent(propEntity, Dying);
-
-                    GameService.ReceiveProp(this.world, prop, gameContex);
+                    SkillServices.TriggerSkillFromProp(this.world, prop, gameContex);  
 
                     SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
 

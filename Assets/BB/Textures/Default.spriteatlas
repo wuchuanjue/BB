@@ -42,7 +42,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2ffe441de9d7a419696cc8b41f06b23b, type: 3}
   m_PackedSpriteNamesToIndex:
   - Prop_1
-  - item_wide_racket
+  - Prop_3
   - Prop_2
   m_Tag: Default
   m_IsVariant: 0

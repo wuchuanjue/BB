@@ -1,48 +1,37 @@
 
 namespace BB {
 
+    @ut.executeBefore(ut.HitBox2D.HitBox2DSystem)
     export class GameSystem extends ut.ComponentSystem {
 
         OnUpdate(): void {
             let context = this.world.getConfigData(GameContext);
 
-            switch (context.state) {
-                case GameState.Init:        
-                    // GameService.TestInitLayout(this.world, context);
-                    GameService.Init(this.world, context);
-                    // this.Test(context);
+            switch(context.state)
+            {
+                case GameState.None:
+                    GameService.EnterState(this.world, context, GameState.Init);
+                    break;
+                case GameState.Init:
+                    GameService.EnterState(this.world,context, GameState.Menu);
                     break;
                 case GameState.Menu:
-                    context.state = GameState.Loading;
+                    if(context.cutLvl > 0) {
+                        GameService.EnterState(this.world, context, GameState.Play);
+                    } 
                     break;
-                case GameState.Loading:
-                    GameService.SetupGameEntitys(this.world, context); 
- 
-                    context.state = GameState.Play;   
-                    break;
-                case GameState.Play:
-                    
-                    break;
-                case GameState.GameOver:
-                    break;
-
-                case GameState.PassLevel:
+                case GameState.LevelFinish:
+                    if(context.cutLvl == 0) {
+                        GameService.EnterState(this.world, context, GameState.Menu);
+                    }
 
                     break;
-                case GameState.Test:
- 
-                    break;
-                default:
-                    console.warn('No match state:' + context.state);
             }
 
             this.world.setConfigData(context);
+        }
 
-
-            
-        } 
-  
-        private Test(gameContext : GameContext) : void {
+        private Test(gameContext: GameContext): void {
             gameContext.state = GameState.Test;
 
             ut.EntityGroup.instantiate(this.world, "BB.UIMain");
@@ -53,16 +42,16 @@ namespace BB {
             // let o = JSON.parse(levels.level0);
 
             // console.log(o);
+ 
 
-            
-            
+
             // let type = PropType.expand;
             // let path = `assets/sprites/Default/Prop_${type}`;
             // let testEn = this.world.getEntityByName(path);
             // console.log("en:" + testEn.isNone());
         }
- 
-        
+
+
     }
 }
 

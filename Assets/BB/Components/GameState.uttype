@@ -8,6 +8,14 @@
     "TypeCode": "Enum",
     "BaseType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
     "Fields": [{
+        "Id": "838c3e8381e84b1d852f1fbab0d92d06",
+        "Name": "None",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
         "Id": "8056f352c8634d539957e7ff13528387",
         "Name": "Init",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
@@ -41,15 +49,7 @@
         "Versioned": true
     }, {
         "Id": "e17612a5be7b479f8183a72038316740",
-        "Name": "GameOver",
-        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
-        "Id": "cad368a8c4e5476d8aaa2f64e9b1f3d1",
-        "Name": "PassLevel",
+        "Name": "LevelFinish",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
         "Array": false,
         "Visibility": 0,
@@ -67,11 +67,12 @@
     "DefaultValue": {
         "Type": { "Id": "a0b7195c0bd9402d8cf23068868ac08b", "Name": "GameState" },
         "Properties": {
-            "Loading": 1,
-            "Menu": 2,
-            "Play": 3,
-            "GameOver": 4,
-            "PassLevel": 5,
+            "None": 0,
+            "Init": 1,
+            "Loading": 2,
+            "Menu": 3,
+            "Play": 4,
+            "LevelFinish": 5,
             "Test": 99
         }
     }

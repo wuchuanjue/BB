@@ -17,7 +17,7 @@
         "Versioned": true
     }, {
         "Id": "91ad78b072c6439c990638df562783f6",
-        "Name": "expand",
+        "Name": "split",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
         "Array": false,
         "Visibility": 0,
@@ -31,13 +31,22 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "297311a762a44e9284ed7d3333e34854",
+        "Name": "expand",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "129708e8992f4dbc83cfe70cc9039c95", "Name": "PropType" },
         "Properties": {
             "none": 0,
-            "expand": 1,
-            "shoot3": 2
+            "split": 1,
+            "shoot3": 2,
+            "expand": 3
         }
     }
 }]
