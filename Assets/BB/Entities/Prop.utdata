@@ -36,8 +36,8 @@
             "scale": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 1,
-                    "y": 1
+                    "x": 0.5,
+                    "y": 0.5
                 }
             }
         }

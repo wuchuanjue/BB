@@ -168,28 +168,30 @@ namespace BB {
 
             {
                 //border
-                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition] //ut.Core2D.Sprite2DRendererOptions
-                    , (entity, border, transformPos) => {           //spriteOptions
+                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition]  
+                    , (entity, border, transformPos) => {         
                         let spriteOptions = world.getComponentData(entity, ut.Core2D.Sprite2DRendererOptions);
 
                         switch (border.Dir) {
                             case 2:
                                 transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5, 0);
-                                spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+                                spriteOptions.size = new Vector2(layoutInfo.gameContentRect.width, spriteOptions.size.y);
                                 break;
                             case 4:
                                 transformPos.position = new Vector3(layoutInfo.gameContentRect.x - layoutInfo.gameContentRect.width * 0.5 - spriteOptions.size.x * 0.5, 0, 0);
-                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.gameContentRect.height);
                                 break;
                             case 6:
                                 transformPos.position = new Vector3(layoutInfo.gameContentRect.x + layoutInfo.gameContentRect.width * 0.5 + spriteOptions.size.x * 0.5, 0, 0);
-                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.canvasSize.y);
+                                spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.gameContentRect.height);
                                 break;
                             case 8:
                                 transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5, 0);
-                                // spriteOptions.size = new Vector2(layoutInfo.canvasSize.x, spriteOptions.size.y);
+                                spriteOptions.size = new Vector2(layoutInfo.gameContentRect.width, spriteOptions.size.y);
                                 break;
                         }
+
+                        world.setComponentData(entity, spriteOptions);
                     });
             }
 

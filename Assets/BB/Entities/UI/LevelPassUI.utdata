@@ -6,6 +6,7 @@
     "SerializedVersion": 0,
     "Entities": [
         { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "LevelPassUI" },
+        { "$TypeId": 9, "Id": "db2a2afe559d4383907af4763c0a1f80", "Name": "Cover" },
         { "$TypeId": 9, "Id": "532e7808440940b499005e1e795820a2", "Name": "BG" },
         { "$TypeId": 9, "Id": "29d0faa90bd249209b22789f68a6b679", "Name": "Text" },
         { "$TypeId": 9, "Id": "94065b50e33140749291692ab79152b6", "Name": "NextBtn" },
@@ -59,6 +60,82 @@
             "nextButton": { "$TypeId": 9, "Id": "94065b50e33140749291692ab79152b6", "Name": "ContinueBtn" },
             "replayButton": { "$TypeId": 9, "Id": "5c44f1d65de34411aa4954a044570af1", "Name": "ReplayBtn" },
             "homeButton": { "$TypeId": 9, "Id": "ffb1ba6c27d847da803cd0eee7b59351", "Name": "HomeBtn" }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "db2a2afe559d4383907af4763c0a1f80",
+    "Name": "Cover",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 5,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "LevelPassUI" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
+        "Properties": {
+            "anchorMin": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "anchorMax": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            },
+            "sizeDelta": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "anchoredPosition": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 0.2
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 900,
+                    "y": 1705.594
+                }
+            }
         }
     }]
 },
