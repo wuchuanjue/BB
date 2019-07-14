@@ -23,6 +23,14 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
+        "Id": "3fcd36de5cb34e33a5493dfcae82888a",
+        "Name": "uiClickAudio",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
         "Id": "86f4733c240c4d40b1e1558bc3be5f49",
         "Name": "platformEntity",
         "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },

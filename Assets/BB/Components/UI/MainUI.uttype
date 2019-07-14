@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "e5ac2a05693842c98539563e39fa6df3",
+    "Name": "MainUI",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "aed8a94e51c940219cc3b7e8842e88b4",
+        "Name": "textEntity",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "e5ac2a05693842c98539563e39fa6df3", "Name": "MainUI" }
+    }
+}]

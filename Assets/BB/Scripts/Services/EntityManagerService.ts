@@ -16,7 +16,7 @@ namespace BB {
         }
 
         /**
-         * 数据结构待优化. TODO
+         * 
          * @param world 
          * @param layoutInfo 
          * @param blockInfo 
@@ -130,19 +130,19 @@ namespace BB {
         static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext): void {
             let layoutInfo = world.getConfigData(LayoutInfo);
 
-            let gameReferences = world.getConfigData(GameReferences);
-
-            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
- 
-            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
-
             ut.EntityGroup.instantiate(world, "BB.Game");
-
+            
             GameService.blockPrefabEntity = world.getEntityByName("Block");
-
-            gameReferences.platformEntity = world.getEntityByName("Platform");
-
+            
             let bgEntity = world.getEntityByName("BG");
+            
+            let gameReferences = world.getConfigData(GameReferences);
+            
+            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+            
+            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
+            
+            gameReferences.platformEntity = world.getEntityByName("Platform");
 
             console.assert(!bgEntity.isNone(), "Can not find bg entity.");
 
@@ -194,26 +194,19 @@ namespace BB {
             }
 
             {
-                //platform
-                world.forEach([Platform, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement]
-                    , (platform, transformPos, spriteOptions, touchMovement) => {
+                world.usingComponentData(gameReferences.platformEntity, [ut.Core2D.TransformLocalPosition,ut.Core2D.Sprite2DRendererOptions, TouchMovement],
+                    (transformPos, spriteOptions, touchMovement)=>{
                         transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1);
 
-                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.canvasSize.x, 0);
+                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
 
                         touchMovement.size = new Vector2(spriteOptions.size.x, 0);
-                    });
+                });
             }
 
             {
                 //ball
                 EntityManagerService.SpawnIdleBall(world, gameContext, gameReferences.platformEntity);
-
-                // for(let i = 0; i < 30; i++) {
-                // GameService.SpawnBall(world, gameContext, 
-                //     new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 2), GameService.GenRandomDir(new ut.Math.Range(-20,20))
-                // );
-                // }
             }
 
             {
@@ -290,35 +283,6 @@ namespace BB {
                 }
             }
 
-            // for (var i = 0; i < 900; i++) {
-            //     let block = blocks[i];
-
-            //     blockInfo.row = block.row + 4;
-
-            //     blockInfo.col = block.col + 2;
-
-            //     blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
-
-            //     blockInfo.isWall = false;
-
-            //     testBlockCache[`${blockInfo.col}_${blockInfo.row}`] = GameService.SpawnBlock(world, layoutInfo, blockInfo);
-
-            //     gameContext.blockAmount += 1;
-            // }
-
-            // for (var j = 0; j < 23; j++) {
-
-            //     blockInfo.row = 0;
-
-            //     blockInfo.col = j + 5;
-
-            //     blockInfo.isWall = true;
-
-            //     blockInfo.color = new ut.Core2D.Color(0.3, 0.3, 0.3, 1);
-
-            //     testBlockCache[`${blockInfo.col}_${blockInfo.row}`] = GameService.SpawnBlock(world, layoutInfo, blockInfo);
-            // }
-
             BlockService.UpdateBlocksCollision(world, testBlockCache);
         }
 
@@ -343,6 +307,13 @@ namespace BB {
             }
 
             BlockService.UpdateBlocksCollision(world, testBlockCache);
+        }
+
+        static ClearGameEntitys(world: ut.World): void {
+            EntityManagerService.ClearProps(world);
+
+            ut.EntityGroup.destroyAll(world, "BB.Game");
+            ut.EntityGroup.destroyAll(world, "BB.Ball")
         }
     }
 }

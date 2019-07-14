@@ -56,7 +56,15 @@
         "Versioned": true
     }, {
         "Id": "1e3fbe2d20e84a4eb60f3f756cfea657",
-        "Name": "life",
+        "Name": "cutLife",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "ba472a554e1642648de1b6646338a73c",
+        "Name": "defaultLife",
         "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
         "Array": false,
         "Visibility": 0,
@@ -70,14 +78,23 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "827456afe3c7456c8f056b0c8dbbfe39",
+        "Name": "uiTouchOver",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },
         "Properties": {
             "ballSpeed": 4,
             "giftSpeed": 1,
-            "ballMaxAmount": 80,
-            "life": 3
+            "ballMaxAmount": 90,
+            "cutLife": 0,
+            "defaultLife": 3
         }
     }
 }]

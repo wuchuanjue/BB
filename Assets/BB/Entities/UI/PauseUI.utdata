@@ -1,23 +1,26 @@
 ﻿[{
     "$TypeId": 4,
-    "Id": "42171381606d4a8e826a5e9d7bade074",
-    "Name": "PassLevelUI",
+    "Id": "ea99efd26d32419ca74933390af8a2bd",
+    "Name": "PauseUI",
     "ExportFlags": 0,
     "SerializedVersion": 0,
     "Entities": [
-        { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "PassLevelUI" },
-        { "$TypeId": 9, "Id": "a2ecfa8fe149428f84e947cc0bf101a2", "Name": "BG" },
-        { "$TypeId": 9, "Id": "8034c36b28ec4872bb172753c542ba71", "Name": "NextButton" },
-        { "$TypeId": 9, "Id": "989edba4c0814dc2a55846bd3ddf9282", "Name": "Text" },
-        { "$TypeId": 9, "Id": "7ce92c8222aa4054924058f7552493c3", "Name": "HomeButton" },
-        { "$TypeId": 9, "Id": "586dde1086144b85ad98263e7839863b", "Name": "Text" },
-        { "$TypeId": 9, "Id": "acd297a183a44ae8b56132020fad2786", "Name": "CanvasCamera" }
+        { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "PauseUI" },
+        { "$TypeId": 9, "Id": "bc6763b461054cfd9e8c8952797b528b", "Name": "Cover" },
+        { "$TypeId": 9, "Id": "f1baa18d808b497eaf7ea2472497026b", "Name": "BG" },
+        { "$TypeId": 9, "Id": "36721a75398448488eda1263b4ce7cb2", "Name": "ContinueBtn" },
+        { "$TypeId": 9, "Id": "6a4c69cc9e1744d8b24cc46e2577db18", "Name": "Text" },
+        { "$TypeId": 9, "Id": "39031825373943e98fcb4acff647a74e", "Name": "ReplayBtn" },
+        { "$TypeId": 9, "Id": "50171622ffbf424d97e400f0cea0f4b2", "Name": "Text" },
+        { "$TypeId": 9, "Id": "a9746cb4c3db4581a96d9bfa5d4a43dd", "Name": "HomeBtn" },
+        { "$TypeId": 9, "Id": "2e78d24037bb4e9cbe0ad93c52dfbe23", "Name": "Text" },
+        { "$TypeId": 9, "Id": "c3b382b9ab0b4d44b5ae5948e67ef9f9", "Name": "PauseUICamera" }
     ]
 },
 {
     "$TypeId": 5,
-    "Id": "81ed43acb8ea4795902bc270fc3e9c0c",
-    "Name": "PassLevelUI",
+    "Id": "540abe43e3054b94a1d7562aea97e228",
+    "Name": "PauseUI",
     "Enabled": true,
     "Static": false,
     "Layer": 5,
@@ -34,7 +37,7 @@
     }, {
         "Type": { "Id": "757a06c4ae1ec5fccccd28eb89a6dc54", "Name": "UICanvas" },
         "Properties": {
-            "camera": { "$TypeId": 9, "Id": "acd297a183a44ae8b56132020fad2786", "Name": "CanvasCamera" },
+            "camera": { "$TypeId": 9, "Id": "c3b382b9ab0b4d44b5ae5948e67ef9f9", "Name": "CanvasCamera" },
             "uiScaleMode": {
                 "$TypeId": 8,
                 "Type": { "Id": "0accc10de1131b44701da611a92a0f65", "Name": "UIScaleMode" },
@@ -51,35 +54,28 @@
             }
         }
     }, {
-        "Type": { "Id": "b946d837618041b0b649d06f79b81706", "Name": "PassLevelUI" },
+        "Type": { "Id": "a38490e0ab144038ad0edac63442c3c5", "Name": "PauseUI" },
         "Properties": {
-            "nextButton": { "$TypeId": 9, "Id": "8034c36b28ec4872bb172753c542ba71", "Name": "NextButton" },
-            "homeButton": { "$TypeId": 9, "Id": "7ce92c8222aa4054924058f7552493c3", "Name": "HomeButton" }
+            "continueBtn": { "$TypeId": 9, "Id": "36721a75398448488eda1263b4ce7cb2", "Name": "NextBtn" },
+            "replayBtn": { "$TypeId": 9, "Id": "39031825373943e98fcb4acff647a74e", "Name": "ReplayBtn" },
+            "homeBtn": { "$TypeId": 9, "Id": "a9746cb4c3db4581a96d9bfa5d4a43dd", "Name": "HomeBtn" }
         }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "a2ecfa8fe149428f84e947cc0bf101a2",
-    "Name": "BG",
-    "Enabled": true,
+    "Id": "bc6763b461054cfd9e8c8952797b528b",
+    "Name": "Cover",
+    "Enabled": false,
     "Static": false,
     "Layer": 5,
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "PauseUI" }
         }
     }, {
-        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
-        "Properties": {
-            "position": {
-                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
-                "Properties": {
-                    "y": 0
-                }
-            }
-        }
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" }
     }, {
         "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
     }, {
@@ -126,7 +122,7 @@
                     "r": 0,
                     "g": 0,
                     "b": 0,
-                    "a": 0.2
+                    "a": 0.03137255
                 }
             }
         }
@@ -136,31 +132,108 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 899.9999,
-                    "y": 1195.588
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "f1baa18d808b497eaf7ea2472497026b",
+    "Name": "BG",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 5,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "Canvas" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
+        "Properties": {
+            "anchorMin": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "anchorMax": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "sizeDelta": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 464.6,
+                    "y": 611
+                }
+            },
+            "anchoredPosition": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "4fc8803721c4e4347b448a4aace91ce5", "FileId": 21300000, "Type": 3 }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 464.6,
+                    "y": 611
                 }
             },
             "drawMode": {
                 "$TypeId": 8,
                 "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "b5e836cf58569b764113a97c4cf32af6",
-                "Name": "Stretch",
-                "Value": 2
+                "Id": "0334e5a91225cf998b678224025cf40c",
+                "Name": "ContinuousTiling",
+                "Value": 0
             }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 1
         }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "8034c36b28ec4872bb172753c542ba71",
-    "Name": "NextButton",
+    "Id": "36721a75398448488eda1263b4ce7cb2",
+    "Name": "ContinueBtn",
     "Enabled": true,
     "Static": false,
     "Layer": 5,
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "Canvas" }
         }
     }, {
         "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
@@ -169,7 +242,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": 112
+                    "y": 141
                 }
             }
         }
@@ -197,22 +270,22 @@
             "sizeDelta": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 308.9,
-                    "y": 94.5
+                    "x": 250,
+                    "y": 94.46002
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": 112
+                    "y": 141
                 }
             }
         }
     }, {
         "Type": { "Id": "95ff57ed0598446933927bc634433a47", "Name": "Button" },
         "Properties": {
-            "sprite2DRenderer": { "$TypeId": 9, "Id": "8034c36b28ec4872bb172753c542ba71", "Name": "Entity" },
+            "sprite2DRenderer": { "$TypeId": 9, "Id": "36721a75398448488eda1263b4ce7cb2", "Name": "Entity" },
             "transition": {
                 "Type": { "Id": "65e6144818520fd56fba1f04bf8fb271", "Name": "TransitionEntity" },
                 "Properties": {
@@ -253,18 +326,23 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 308.9,
-                    "y": 94.5
+                    "x": 250,
+                    "y": 94.46002
                 }
             }
         }
     }, {
         "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 2
+        }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "989edba4c0814dc2a55846bd3ddf9282",
+    "Id": "6a4c69cc9e1744d8b24cc46e2577db18",
     "Name": "Text",
     "Enabled": true,
     "Static": false,
@@ -272,7 +350,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "8034c36b28ec4872bb172753c542ba71", "Name": "Entity" }
+            "parent": { "$TypeId": 9, "Id": "36721a75398448488eda1263b4ce7cb2", "Name": "Entity" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -324,8 +402,8 @@
     }, {
         "Type": { "Id": "617fd26299c944d58b61164e0c9c9353", "Name": "Text2DRenderer" },
         "Properties": {
-            "style": { "$TypeId": 9, "Id": "989edba4c0814dc2a55846bd3ddf9282", "Name": "FpsText" },
-            "text": "next",
+            "style": { "$TypeId": 9, "Id": "6a4c69cc9e1744d8b24cc46e2577db18", "Name": "FpsText" },
+            "text": "Continue",
             "pivot": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
@@ -355,19 +433,24 @@
         "Properties": {
             "font": { "$TypeId": 10, "Guid": "bd7592f8409a54165ae5dc96da923262", "FileId": 11400000, "Type": 2 }
         }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 3
+        }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "7ce92c8222aa4054924058f7552493c3",
-    "Name": "HomeButton",
+    "Id": "39031825373943e98fcb4acff647a74e",
+    "Name": "ReplayBtn",
     "Enabled": true,
     "Static": false,
     "Layer": 5,
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "81ed43acb8ea4795902bc270fc3e9c0c", "Name": "PassLevelUI" }
+            "parent": { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "LevelUI" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -389,15 +472,15 @@
             "sizeDelta": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 308.9,
-                    "y": 94.5
+                    "x": 250,
+                    "y": 94.46002
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -113
+                    "y": 0.210022
                 }
             }
         }
@@ -408,7 +491,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -113
+                    "y": 0.210022
                 }
             }
         }
@@ -419,7 +502,7 @@
     }, {
         "Type": { "Id": "95ff57ed0598446933927bc634433a47", "Name": "Button" },
         "Properties": {
-            "sprite2DRenderer": { "$TypeId": 9, "Id": "7ce92c8222aa4054924058f7552493c3", "Name": "NextButton" },
+            "sprite2DRenderer": { "$TypeId": 9, "Id": "39031825373943e98fcb4acff647a74e", "Name": "TestBtn" },
             "transition": {
                 "Type": { "Id": "65e6144818520fd56fba1f04bf8fb271", "Name": "TransitionEntity" },
                 "Properties": {
@@ -460,18 +543,23 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 308.9,
-                    "y": 94.5
+                    "x": 250,
+                    "y": 94.46002
                 }
             }
         }
     }, {
         "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 2
+        }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "586dde1086144b85ad98263e7839863b",
+    "Id": "50171622ffbf424d97e400f0cea0f4b2",
     "Name": "Text",
     "Enabled": true,
     "Static": false,
@@ -479,7 +567,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "7ce92c8222aa4054924058f7552493c3", "Name": "NextButton" }
+            "parent": { "$TypeId": 9, "Id": "39031825373943e98fcb4acff647a74e", "Name": "TestBtn" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -531,8 +619,8 @@
     }, {
         "Type": { "Id": "617fd26299c944d58b61164e0c9c9353", "Name": "Text2DRenderer" },
         "Properties": {
-            "style": { "$TypeId": 9, "Id": "586dde1086144b85ad98263e7839863b", "Name": "Text" },
-            "text": "home",
+            "style": { "$TypeId": 9, "Id": "50171622ffbf424d97e400f0cea0f4b2", "Name": "Text" },
+            "text": "Replay",
             "pivot": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
@@ -562,12 +650,234 @@
         "Properties": {
             "font": { "$TypeId": 10, "Guid": "bd7592f8409a54165ae5dc96da923262", "FileId": 11400000, "Type": 2 }
         }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 3
+        }
     }]
 },
 {
     "$TypeId": 5,
-    "Id": "acd297a183a44ae8b56132020fad2786",
-    "Name": "CanvasCamera",
+    "Id": "a9746cb4c3db4581a96d9bfa5d4a43dd",
+    "Name": "HomeBtn",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 5,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "540abe43e3054b94a1d7562aea97e228", "Name": "LevelUI" }
+        }
+    }, {
+        "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
+        "Properties": {
+            "anchorMin": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "anchorMax": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "sizeDelta": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 250,
+                    "y": 94.46002
+                }
+            },
+            "anchoredPosition": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": -142
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0,
+                    "y": -142
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "95ff57ed0598446933927bc634433a47", "Name": "Button" },
+        "Properties": {
+            "sprite2DRenderer": { "$TypeId": 9, "Id": "a9746cb4c3db4581a96d9bfa5d4a43dd", "Name": "Replay" },
+            "transition": {
+                "Type": { "Id": "65e6144818520fd56fba1f04bf8fb271", "Name": "TransitionEntity" },
+                "Properties": {
+                    "colorTint": {
+                        "Type": { "Id": "7fb267354eaa3938a25c3a9513db8724", "Name": "ColorTint" },
+                        "Properties": {
+                            "disabled": {
+                                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                                "Properties": {
+                                    "r": 0.7843137,
+                                    "g": 0.7843137,
+                                    "b": 0.7843137,
+                                    "a": 1
+                                }
+                            }
+                        }
+                    },
+                    "spriteSwap": {
+                        "Type": { "Id": "632be16e8661e612dee9666b277d45fd", "Name": "SpriteSwap" },
+                        "Properties": {
+                            "normal": { "$TypeId": 10, "Guid": "0dacfeda4b0f2431a828641bb30e76ae", "FileId": 21300000, "Type": 3 },
+                            "hover": { "$TypeId": 10, "Guid": "0dacfeda4b0f2431a828641bb30e76ae", "FileId": 21300000, "Type": 3 },
+                            "pressed": { "$TypeId": 10, "Guid": "9a8815bba0aba4292997c50d4d173792", "FileId": 21300000, "Type": 3 },
+                            "disabled": { "$TypeId": 10, "Guid": "358a1afcc45934912bd30c3e2fce07d1", "FileId": 21300000, "Type": 3 }
+                        }
+                    }
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "0dacfeda4b0f2431a828641bb30e76ae", "FileId": 21300000, "Type": 3 }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 250,
+                    "y": 94.46002
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 2
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "2e78d24037bb4e9cbe0ad93c52dfbe23",
+    "Name": "Text",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 5,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "a9746cb4c3db4581a96d9bfa5d4a43dd", "Name": "Replay" }
+        }
+    }, {
+        "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
+        "Properties": {
+            "anchorMin": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "anchorMax": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 1,
+                    "y": 1
+                }
+            },
+            "sizeDelta": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": -13.5
+                }
+            },
+            "anchoredPosition": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": -6.8
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0,
+                    "y": -6.800004
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "617fd26299c944d58b61164e0c9c9353", "Name": "Text2DRenderer" },
+        "Properties": {
+            "style": { "$TypeId": 9, "Id": "2e78d24037bb4e9cbe0ad93c52dfbe23", "Name": "Text" },
+            "text": "Home",
+            "pivot": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "ced0260f12f72499bae7fea4e1df92b7", "Name": "Text2DStyle" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            },
+            "size": 60
+        }
+    }, {
+        "Type": { "Id": "00d6bc791188d69186aa19bf8f6652a8", "Name": "RectTransformFinalSize" }
+    }, {
+        "Type": { "Id": "0481d22c456081a992e7c7ee42da6c19", "Name": "Text2DStyleBitmapFont" },
+        "Properties": {
+            "font": { "$TypeId": 10, "Guid": "bd7592f8409a54165ae5dc96da923262", "FileId": 11400000, "Type": 2 }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 3
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "c3b382b9ab0b4d44b5ae5948e67ef9f9",
+    "Name": "PauseUICamera",
     "Enabled": true,
     "Static": false,
     "Layer": 5,
@@ -582,7 +892,7 @@
     }, {
         "Type": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
         "Properties": {
-            "depth": 1,
+            "depth": 2,
             "layerMask": 32
         }
     }]

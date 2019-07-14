@@ -1,0 +1,37 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "d0220710d3cd46aea623986a5ffd7c0b",
+    "Name": "GameUI",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "729119a95c9f4e33a2280efd36faa3e8",
+        "Name": "pauseBtn",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "7b2ed048d20a4563af332ef60a0ee423",
+        "Name": "lifeIcons",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "270436431cfe44cf9b2ee5e2ae10e445",
+        "Name": "testMsg",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "d0220710d3cd46aea623986a5ffd7c0b", "Name": "GameUI" }
+    }
+}]

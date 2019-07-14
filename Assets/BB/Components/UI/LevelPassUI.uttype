@@ -1,7 +1,7 @@
 ﻿[{
     "$TypeId": 3,
     "Id": "b946d837618041b0b649d06f79b81706",
-    "Name": "PassLevelUI",
+    "Name": "LevelPassUI",
     "ExportFlags": 0,
     "Unlisted": false,
     "Visibility": 0,
@@ -9,6 +9,14 @@
     "Fields": [{
         "Id": "79ce50e72e024adda675e89aab2fc2ac",
         "Name": "nextButton",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "ae28d70bb157492eaad0d30d6cfcd1e9",
+        "Name": "replayButton",
         "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
         "Array": false,
         "Visibility": 0,
@@ -24,6 +32,6 @@
         "Versioned": true
     }],
     "DefaultValue": {
-        "Type": { "Id": "b946d837618041b0b649d06f79b81706", "Name": "PassLevelUI" }
+        "Type": { "Id": "b946d837618041b0b649d06f79b81706", "Name": "LevelPassUI" }
     }
 }]

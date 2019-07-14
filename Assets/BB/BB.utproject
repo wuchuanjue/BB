@@ -27,11 +27,11 @@
         },
         "LocalWSServerPort": 17700,
         "LocalHTTPServerPort": 19050,
-        "SingleFileHtml": true,
+        "SingleFileHtml": false,
         "MemorySize": 64,
         "IncludeWebPDecompressor": false,
         "RunBabel": true,
-        "MinifyJavaScript": true,
+        "MinifyJavaScript": false,
         "LinkToSource": true,
         "SymbolsInReleaseBuild": false
     },
@@ -60,11 +60,11 @@
         { "Id": "ce3f1bd7050540b70d450a606e226ea2", "Name": "UTiny.Shared" },
         { "Id": "17d44bb09aeb482c91585933102a1cae", "Name": "Main" },
         { "Id": "36f73ad23c8a63c53fa510f0621474f5", "Name": "UTiny.HitBox2D" },
-        { "Id": "259902b84b3ed0f7213a1b5e37040709", "Name": "UTiny.Physics2D" },
         { "Id": "e46c24fb4d9a01e79b109bbcf6d24260", "Name": "UTiny.UILayout" },
         { "Id": "60feebda86c36292119505b0bd2ac3e9", "Name": "UTiny.UIControls" },
         { "Id": "0b0e260844fa6632977aa15579b42291", "Name": "UTiny.Text" },
-        { "Id": "251df5ef6819533f94e1cbf3181f722e", "Name": "UTiny.Audio" }
+        { "Id": "251df5ef6819533f94e1cbf3181f722e", "Name": "UTiny.Audio" },
+        { "Id": "4ae56f767bc87e1c32e79caa0f3b736a", "Name": "UTiny.UIControlsExtensions" }
     ],
     "StartupEntityGroup": { "Id": "3eff0b786cb74f5f925925860abe06b9", "Name": "Main" }
 },

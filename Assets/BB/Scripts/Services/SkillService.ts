@@ -28,6 +28,8 @@ namespace BB {
 
             world.forEach([ut.Core2D.TransformLocalPosition, Ball],(transformPos, ball)=>{
                 EntityManagerService.SpawnBall(world, gameContex, transformPos.position, EntityManagerService.GenRandomDir(rRange));
+
+                EntityManagerService.SpawnBall(world, gameContex, transformPos.position, EntityManagerService.GenRandomDir(rRange));
                 
                 EntityManagerService.SpawnBall(world, gameContex, transformPos.position, EntityManagerService.GenRandomDir(rRange));
             });

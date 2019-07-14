@@ -6,51 +6,51 @@ namespace BB {
     @ut.executeBefore(HitSystem)
     @ut.executeBefore(ut.Shared.UserCodeEnd)
     export class TouchMovementSystem extends ut.ComponentSystem {
-        
-        OnUpdate():void {
+
+        OnUpdate(): void {
             this.simulateTouchSystem();
-            
-            // let touchEnable = ut.Core2D.Input.isTouchSupported();
-
-            // if(touchEnable) {
-            //     this.touchSystem();
-            // }
-            // else {
-            //     this.simulateTouchSystem();
-            // }
-        } 
-  
-        private simulateTouchSystem() : void {
-            this.world.forEach([BB.TouchMovement, ut.Core2D.TransformLocalPosition]
-                , (touchMovement, transform)=>{
-
-                if(ut.Core2D.Input.getMouseButtonDown(0)) {
-                    this.MoveStart(touchMovement);
-
-                    return;
-                }
-
-                if(ut.Core2D.Input.getMouseButton(0)) {
-                    this.Moving(touchMovement, transform);
-
-                    this.AdjuestPostion(touchMovement, transform);
-                }
-            }); 
         }
- 
-        private MoveStart(touchMovement:BB.TouchMovement) : void {
+
+        private simulateTouchSystem(): void {
+            let gameContex = this.world.getConfigData(GameContext);
+
+            if(gameContex.state != GameState.Play)
+                return;
+
+            this.world.forEach([BB.TouchMovement, ut.Core2D.TransformLocalPosition]
+                , (touchMovement, transform) => {
+
+                    if(gameContex.uiTouchOver) {
+                        return;
+                    }
+
+                    if (ut.Core2D.Input.getMouseButtonDown(0)) {
+                        this.MoveStart(touchMovement);
+
+                        return;
+                    }
+
+                    if (ut.Core2D.Input.getMouseButton(0)) {
+                        this.Moving(touchMovement, transform);
+
+                        this.AdjuestPostion(touchMovement, transform);
+                    }
+                });
+        }
+
+        private MoveStart(touchMovement: BB.TouchMovement): void {
             touchMovement.startWPos = this.GetPointerWorldPosition(this.world, this.world.getConfigData(GameReferences).mainCamera);
             touchMovement.deltaWPos = touchMovement.startWPos;
         }
 
-        private Moving(touchMovement:BB.TouchMovement, transform:ut.Core2D.TransformLocalPosition) : void {
+        private Moving(touchMovement: BB.TouchMovement, transform: ut.Core2D.TransformLocalPosition): void {
             let pointerPos = this.GetPointerWorldPosition(this.world, this.world.getConfigData(GameReferences).mainCamera);
 
             let offsetPos = pointerPos.clone().sub(touchMovement.deltaWPos);
-   
+
             offsetPos.x = BB.CoreUtils.Lerp(0, offsetPos.x, touchMovement.axisFilter.x);
-            offsetPos.y = BB.CoreUtils.Lerp(0 , offsetPos.y, touchMovement.axisFilter.y);
-             
+            offsetPos.y = BB.CoreUtils.Lerp(0, offsetPos.y, touchMovement.axisFilter.y);
+
             transform.position = transform.position.add(offsetPos);
 
             touchMovement.deltaWPos = pointerPos;
@@ -64,22 +64,22 @@ namespace BB {
             return ut.Core2D.TransformService.windowToWorld(world, cameraEntity, inputPosition, displaySize);
         }
 
-        private AdjuestPostion(touchMovement:BB.TouchMovement, transform:ut.Core2D.TransformLocalPosition) : void {
-               //暂时未计算Y方向范围
-               let moveRange = touchMovement.moveRange;
-               let minPosX = moveRange.x - moveRange.width * 0.5 + touchMovement.size.x * 0.5;
-               let maxPosX = moveRange.x + moveRange.width * 0.5 - touchMovement.size.x * 0.5; 
-               let adjuestPos = transform.position;
+        private AdjuestPostion(touchMovement: BB.TouchMovement, transform: ut.Core2D.TransformLocalPosition): void {
+            //暂时未计算Y方向范围
+            let moveRange = touchMovement.moveRange;
+            let minPosX = moveRange.x - moveRange.width * 0.5 + touchMovement.size.x * 0.5;
+            let maxPosX = moveRange.x + moveRange.width * 0.5 - touchMovement.size.x * 0.5;
+            let adjuestPos = transform.position;
 
-               adjuestPos.x = Math.max(adjuestPos.x, minPosX);
-               adjuestPos.x = Math.min(adjuestPos.x, maxPosX);
+            adjuestPos.x = Math.max(adjuestPos.x, minPosX);
+            adjuestPos.x = Math.min(adjuestPos.x, maxPosX);
 
-               transform.position = adjuestPos; 
+            transform.position = adjuestPos;
         }
     }
 }
 
- 
+
         // let pointerWorldPosition = InputService.getPointerWorldPosition(this.world, this.world.getEntityByName("GridCamera"));
         // let pointerDown = ut.Runtime.Input.getMouseButtonDown(0) || (ut.Runtime.Input.touchCount() == 1 && ut.Runtime.Input.getTouch(0).phase == ut.Core2D.TouchState.Began);
         // let pointerPressed = ut.Runtime.Input.getMouseButton(0) || (ut.Runtime.Input.touchCount() == 1 &&

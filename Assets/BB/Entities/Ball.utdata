@@ -43,12 +43,7 @@
             }
         }
     }, {
-        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" },
-        "Properties": {
-            "dir": {
-                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" }
-            }
-        }
+        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" }
     }, {
         "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
         "Properties": {

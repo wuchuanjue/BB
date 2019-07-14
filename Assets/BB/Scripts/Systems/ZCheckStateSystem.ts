@@ -12,40 +12,49 @@ namespace BB {
             if (gameContex.state != GameState.Play) {
                 return;
             }
- 
-            this.world.forEach([TestMsgDisplay, ut.Text.Text2DRenderer],(msgDisplay, textRenderer)=>{
-                if(msgDisplay.key == "amount") {
-                    textRenderer.text = `ball:${gameContex.ballCutAmount}   block:${gameContex.blockAmount}`;
-                }
-            });
 
             if (gameContex.blockAmount <= 0) {
-                 
-                gameContex.state = GameState.PassLevel;
+                let result = new GameResult();
 
-                this.world.setConfigData(gameContex);
+                result.passLevel = true;
+
+                let platform = this.world.getConfigData(GameReferences).platformEntity;
+
+                this.world.setOrAddComponentData(platform, result);
+
+                GameService.SendStateCmd(this.world, GameState.LevelFinish);
 
                 return; 
             } 
 
             if (gameContex.ballCutAmount <= 0) {
-                gameContex.life -= 1;
 
-                if(gameContex.life > 0) {
+                gameContex.cutLife -= 1;
+
+                if(gameContex.cutLife > 0) {
                     EntityManagerService.SpawnIdleBall(this.world, gameContex, this.world.getConfigData(GameReferences).platformEntity);
                     
                     EntityManagerService.ClearProps(this.world);
                 }
                 else {
-                    gameContex.state = GameState.GameOver;
+                    //lose
+                    let result = new GameResult();
+
+                    result.passLevel = false;
+
+                    let configEntity = this.world.getConfigData(GameReferences).platformEntity;     //this.world.getConfigEntity();
+
+                    this.world.setOrAddComponentData(configEntity, result);
+
+                    GameService.SendStateCmd(this.world, GameState.LevelFinish);
                 }
 
                 this.world.setConfigData(gameContex);
-
+ 
                 return;
             }
 
-            if (ut.Runtime.Input.getMouseButtonUp(0)) {
+            if (!gameContex.uiTouchOver && ut.Runtime.Input.getMouseButtonUp(0)) {
                 this.world.forEach([ut.Entity, IdleBall], (entity, idleBall) => {
                     GameService.ShootBall(this.world, entity);
 

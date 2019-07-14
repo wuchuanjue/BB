@@ -72,6 +72,8 @@ namespace BB {
     
                                 let hitArea = this.CalcBlockHitArea(blockTransformPos.position, blockTransScale.scale, hitPoint, areaLocks);
      
+                                // console.log(`hit block area:${hitArea}`);
+
                                 if (hitArea == 4 || hitArea == 6)
                                     movement.dir.x = -movement.dir.x;
                                 else if (hitArea == 2 || hitArea == 8)
@@ -86,13 +88,15 @@ namespace BB {
                             let upDir = new Vector3(0, 1, 0);
 
                             let platformTransformPos = this.world.getComponentData(target, ut.Core2D.TransformLocalPosition);
-
-                            let platformSpriteOptions = this.world.getComponentData(target, ut.Core2D.Sprite2DRendererOptions);
-
+ 
                             let hitOffset = ballTrans.position.x - platformTransformPos.position.x;
 
+                            let platformWidth = this.world.hasComponent(target, ut.Core2D.Sprite2DRendererOptions) 
+                                ? this.world.getComponentData(target, ut.Core2D.Sprite2DRendererOptions).size.x
+                                : this.world.getComponentData(target, ut.Core2D.TransformLocalScale).scale.x;
+ 
                             //角度范围正负x
-                            let angle = hitOffset / (platformSpriteOptions.size.x * 0.5) * 50;
+                            let angle = hitOffset / (platformWidth * 0.5) * 50;
 
                             angle = -angle;
 

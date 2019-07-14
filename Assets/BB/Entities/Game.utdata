@@ -5,6 +5,8 @@
     "ExportFlags": 0,
     "SerializedVersion": 0,
     "Entities": [
+        { "$TypeId": 9, "Id": "a7bc378e6b974a64965715711fef6b04", "Name": "HitBlockAudio" },
+        { "$TypeId": 9, "Id": "9ab84e49e9bf4f448d47e217b9ef8e26", "Name": "ReceivePropAudio" },
         { "$TypeId": 9, "Id": "1ceae50de07c4e8085ec427e4c0f30b9", "Name": "BG" },
         { "$TypeId": 9, "Id": "b57b0ed22a664ad39e0ec54e090da4cb", "Name": "Block" },
         { "$TypeId": 9, "Id": "996aac8c0f314ce591ed09ab2c61cae8", "Name": "BorderL" },
@@ -25,6 +27,39 @@
     "Entities": [
         { "$TypeId": 9, "Id": "b57b0ed22a664ad39e0ec54e090da4cb", "Name": "Block1" }
     ]
+},
+{
+    "$TypeId": 5,
+    "Id": "a7bc378e6b974a64965715711fef6b04",
+    "Name": "HitBlockAudio",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
+        "Properties": {
+            "clip": { "$TypeId": 10, "Guid": "950d4f796cb1a456b887433cb060805b", "FileId": 8300000, "Type": 3 },
+            "volume": 0.7
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "9ab84e49e9bf4f448d47e217b9ef8e26",
+    "Name": "ReceivePropAudio",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
+        "Properties": {
+            "clip": { "$TypeId": 10, "Guid": "c8e82f6affb8d45c797ba369fd6928e3", "FileId": 8300000, "Type": 3 }
+        }
+    }]
 },
 {
     "$TypeId": 5,
@@ -110,14 +145,14 @@
     "Components": [{
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.007843138
+                    "a": 1
                 }
             }
         }
@@ -160,13 +195,6 @@
                     "x": 0.1640797,
                     "y": 9.41
                 }
-            },
-            "drawMode": {
-                "$TypeId": 8,
-                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
             }
         }
     }, {
@@ -196,14 +224,14 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.007843138
+                    "a": 1
                 }
             }
         }
@@ -243,13 +271,6 @@
                     "x": 3,
                     "y": 0.1722839
                 }
-            },
-            "drawMode": {
-                "$TypeId": 8,
-                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
             }
         }
     }, {
@@ -279,14 +300,14 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.01176471
+                    "a": 1
                 }
             }
         }
@@ -326,13 +347,6 @@
                     "x": 0.1640797,
                     "y": 8.190318
                 }
-            },
-            "drawMode": {
-                "$TypeId": 8,
-                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
             }
         }
     }, {
@@ -362,14 +376,14 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "ea7950fb308fe4ae39ab311be877ae9f", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
                     "r": 1,
                     "g": 1,
                     "b": 1,
-                    "a": 0.007843138
+                    "a": 1
                 }
             }
         }
@@ -419,7 +433,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0.16,
+                    "x": 10.55,
                     "y": 0.16
                 }
             }
@@ -441,8 +455,8 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": -17.49,
-                    "y": 11.86
+                    "x": -17.4827,
+                    "y": 11.8594
                 }
             }
         }
@@ -460,7 +474,7 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "89e0f7f5a3f234a42ab8b2c15f8c90ee", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "77cd4c9cea01e42db9d834b73031db9c", "FileId": 21300000, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
@@ -503,16 +517,9 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 1.124873,
-                    "y": 0.1599655
+                    "x": 1.139377,
+                    "y": 0.16115
                 }
-            },
-            "drawMode": {
-                "$TypeId": 8,
-                "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
             }
         }
     }, {

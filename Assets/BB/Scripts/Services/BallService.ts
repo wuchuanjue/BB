@@ -9,7 +9,7 @@ namespace BB {
 
             boxRect.y = frontPos.y - boxRect.height * 0.5;
 
-            refHitBoxRect.box = boxRect;
+            refHitBoxRect.box = boxRect; 
         }
     }
 }

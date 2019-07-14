@@ -13,5 +13,14 @@ namespace BB {
 
             ut.EntityGroup.destroyAll(world,"BB." + ui);
         }
+ 
+        /**
+         * UIControl 监听按钮事件在发布版下有bug。 临时解决，在update中监听click。
+         * @param world 
+         * @param entity 
+         */
+        static DetectMouseInteraction(world:ut.World, entity:ut.Entity) : ut.UIControls.MouseInteraction {
+            return world.getComponentData(entity, ut.UIControls.MouseInteraction);
+        }
     }
 }

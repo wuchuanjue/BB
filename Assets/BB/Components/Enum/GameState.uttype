@@ -40,8 +40,24 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
+        "Id": "a3144f31d27044b89e87fedabbd1fea6",
+        "Name": "Setup",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
         "Id": "d49d231d67fa4a2c8146e5696336c325",
         "Name": "Play",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "eb7f1f6dfda0438dbb28088d3ff55157",
+        "Name": "Pause",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
         "Array": false,
         "Visibility": 0,
@@ -71,8 +87,10 @@
             "Init": 1,
             "Loading": 2,
             "Menu": 3,
-            "Play": 4,
-            "LevelFinish": 5,
+            "Setup": 4,
+            "Play": 5,
+            "Pause": 6,
+            "LevelFinish": 7,
             "Test": 99
         }
     }

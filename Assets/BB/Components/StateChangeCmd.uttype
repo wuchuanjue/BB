@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "c3f03fd314c841daa63c2bd6f1d128d7",
+    "Name": "StateChangeCmd",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "3753e1a4672443bebb89534083eb5436",
+        "Name": "stateWhat",
+        "FieldType": { "Id": "a0b7195c0bd9402d8cf23068868ac08b", "Name": "GameState" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "c3f03fd314c841daa63c2bd6f1d128d7", "Name": "StateChangeCmd" }
+    }
+}]

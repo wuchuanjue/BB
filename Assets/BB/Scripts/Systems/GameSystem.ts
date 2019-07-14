@@ -5,53 +5,22 @@ namespace BB {
     export class GameSystem extends ut.ComponentSystem {
 
         OnUpdate(): void {
-            let context = this.world.getConfigData(GameContext);
+            let state = GameState.None;
 
-            switch(context.state)
-            {
-                case GameState.None:
-                    GameService.EnterState(this.world, context, GameState.Init);
-                    break;
-                case GameState.Init:
-                    GameService.EnterState(this.world,context, GameState.Menu);
-                    break;
-                case GameState.Menu:
-                    if(context.cutLvl > 0) {
-                        GameService.EnterState(this.world, context, GameState.Play);
-                    } 
-                    break;
-                case GameState.LevelFinish:
-                    if(context.cutLvl == 0) {
-                        GameService.EnterState(this.world, context, GameState.Menu);
-                    }
+            this.world.forEach([ut.Entity, StateChangeCmd],(entity, cmd)=>{
+                state = cmd.stateWhat;
+                
+                this.world.removeComponent(entity, StateChangeCmd);
+            });
 
-                    break;
+            if(state != GameState.None) {
+                let context = this.world.getConfigData(GameContext);
+
+                GameService.EnterState(this.world, context, state);
+
+                this.world.setConfigData(context);
             }
-
-            this.world.setConfigData(context);
         }
-
-        private Test(gameContext: GameContext): void {
-            gameContext.state = GameState.Test;
-
-            ut.EntityGroup.instantiate(this.world, "BB.UIMain");
-
-            // // GameService.TestInitLayout(this.world, context);
-            // let levels = this.world.getConfigData(BB.Levels);
-
-            // let o = JSON.parse(levels.level0);
-
-            // console.log(o);
- 
-
-
-            // let type = PropType.expand;
-            // let path = `assets/sprites/Default/Prop_${type}`;
-            // let testEn = this.world.getEntityByName(path);
-            // console.log("en:" + testEn.isNone());
-        }
-
-
     }
 }
 

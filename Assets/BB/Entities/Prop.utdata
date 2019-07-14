@@ -5,13 +5,13 @@
     "ExportFlags": 0,
     "SerializedVersion": 0,
     "Entities": [
-        { "$TypeId": 9, "Id": "4678f1cff34d4a1aaeed9b3328131a02", "Name": "Prop" }
+        { "$TypeId": 9, "Id": "ced9edd4e5d5451c9801df0461a73baa", "Name": "PropEntity" }
     ]
 },
 {
     "$TypeId": 5,
-    "Id": "4678f1cff34d4a1aaeed9b3328131a02",
-    "Name": "Prop",
+    "Id": "ced9edd4e5d5451c9801df0461a73baa",
+    "Name": "PropEntity",
     "Enabled": true,
     "Static": false,
     "Layer": 0,
@@ -23,47 +23,33 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": -0.728,
-                    "y": -0.711
+                    "x": 0,
+                    "y": 0
                 }
             }
         }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
     }, {
         "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
         "Properties": {
             "scale": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 1,
+                    "y": 1
                 }
             }
         }
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "2ffe441de9d7a419696cc8b41f06b23b", "FileId": 21300000, "Type": 3 },
-            "color": {
-                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
-                "Properties": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1,
-                    "a": 1
-                }
-            }
+            "sprite": { "$TypeId": 10, "Guid": "9b4aa32624b744bfda0d84bbf9ec651e", "FileId": 21300000, "Type": 3 }
         }
-    }, {
-        "Type": { "Id": "6e6a8da51445460a999fc1287451bf73", "Name": "Movement" },
-        "Properties": {
-            "dir": {
-                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" }
-            }
-        }
-    }, {
-        "Type": { "Id": "c706421e1e5b416ea28a8ef4f7c36545", "Name": "Prop" }
     }, {
         "Type": { "Id": "5a68c59783d93e60c704f63111bcb0ad", "Name": "Sprite2DRendererHitBox2D" }
+    }, {
+        "Type": { "Id": "c706421e1e5b416ea28a8ef4f7c36545", "Name": "Prop" }
     }, {
         "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
         "Properties": {

@@ -1,0 +1,29 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "023c3d3051f04309b24eae3faa74df3d",
+    "Name": "LevelFailedUI",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "7911b29c00cb461f883820508e439660",
+        "Name": "replayBtn",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "05ea3f69035048879bfcbf20ca8eb074",
+        "Name": "homeBtn",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "023c3d3051f04309b24eae3faa74df3d", "Name": "LevelFailedUI" }
+    }
+}]
