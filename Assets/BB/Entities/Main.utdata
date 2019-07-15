@@ -68,7 +68,8 @@
     }, {
         "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
         "Properties": {
-            "clip": { "$TypeId": 10, "Guid": "1275c580b4732408ba7992d8ace4e3c3", "FileId": 8300000, "Type": 3 }
+            "clip": { "$TypeId": 10, "Guid": "1275c580b4732408ba7992d8ace4e3c3", "FileId": 8300000, "Type": 3 },
+            "volume": 5
         }
     }]
 }]

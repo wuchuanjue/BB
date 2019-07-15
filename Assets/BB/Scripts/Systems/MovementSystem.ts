@@ -22,6 +22,8 @@ namespace BB {
                 
                 localPos.position = localPos.position.add(move);
 
+                
+
                 // if(this.world.hasComponent(entity, Ball)) {
                 //     CoreUtils.DrawDebugPoint(this.world, localPos.position, new ut.Core2D.Color(1,1,0,1));
                 // }

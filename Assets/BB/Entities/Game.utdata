@@ -41,7 +41,7 @@
         "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
         "Properties": {
             "clip": { "$TypeId": 10, "Guid": "950d4f796cb1a456b887433cb060805b", "FileId": 8300000, "Type": 3 },
-            "volume": 0.2
+            "volume": 0.05
         }
     }]
 },
@@ -57,7 +57,8 @@
     }, {
         "Type": { "Id": "a60aa1b9ad84a83eefb0d5382a4d5967", "Name": "AudioSource" },
         "Properties": {
-            "clip": { "$TypeId": 10, "Guid": "c8e82f6affb8d45c797ba369fd6928e3", "FileId": 8300000, "Type": 3 }
+            "clip": { "$TypeId": 10, "Guid": "c8e82f6affb8d45c797ba369fd6928e3", "FileId": 8300000, "Type": 3 },
+            "volume": 0.2
         }
     }]
 },
@@ -517,7 +518,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 1.13,
+                    "x": 1,
                     "y": 0.12
                 }
             }
@@ -528,9 +529,9 @@
             "box": {
                 "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
                 "Properties": {
-                    "x": -0.5624365,
+                    "x": -0.5,
                     "y": -0.06,
-                    "width": 1.124873,
+                    "width": 1,
                     "height": 0.12
                 }
             }

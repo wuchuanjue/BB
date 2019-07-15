@@ -9,6 +9,43 @@ namespace BB {
             if (gameContex.state != GameState.Play)
                 return;
 
+            this.ForeachBallHit(gameContex);
+
+            this.ForeachPropHit(gameContex);
+
+            this.world.setConfigData(gameContex);
+        }
+
+        private ForeachPropHit(gameContex: GameContext): void {
+            this.world.forEach([ut.Entity, Prop, ut.HitBox2D.HitBoxOverlapResults], (propEntity, prop, overlapResults) => {
+                let overlaps = overlapResults.overlaps;
+
+                if (overlaps.length == 0)
+                    return;
+
+                let target = overlaps[0].otherEntity;
+
+                if (!this.world.exists(target))
+                    return;
+
+                if (this.world.hasComponent(target, Platform)) {
+                    SkillServices.TriggerSkillFromProp(this.world, prop, gameContex);  
+
+                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
+
+                    this.world.destroyEntity(propEntity);
+                }
+                else if (this.world.hasComponent(target, Border)) {
+                    let border = this.world.getComponentData(target, Border);
+
+                    if (border.Dir == 2) {
+                        this.world.destroyEntity(propEntity);
+                    }
+                }
+            });
+        }
+
+        private ForeachBallHit(gameContex: GameContext) : void {
             let hitSound = false;
 
             this.world.forEach([ut.Entity, ut.HitBox2D.HitBoxOverlapResults, ut.Core2D.TransformLocalPosition, Ball]
@@ -74,8 +111,11 @@ namespace BB {
      
                                 // console.log(`hit block area:${hitArea}`);
 
-                                if (hitArea == 4 || hitArea == 6)
+                                // CoreUtils.DrawDebugPoint(this.world, hitPoint, new ut.Core2D.Color(1,0,0,1));
+
+                                if (hitArea == 4 || hitArea == 6) {
                                     movement.dir.x = -movement.dir.x;
+                                }
                                 else if (hitArea == 2 || hitArea == 8)
                                     movement.dir.y = -movement.dir.y;
                                 else 
@@ -85,6 +125,8 @@ namespace BB {
                             DamageService.AtkBlock(target, blockTransformPos.position, ball, this.world, gameContex);
                         }
                         else if (this.world.hasComponent(target, Platform)) {
+                            //Hit platform
+
                             let upDir = new Vector3(0, 1, 0);
 
                             let platformTransformPos = this.world.getComponentData(target, ut.Core2D.TransformLocalPosition);
@@ -116,69 +158,54 @@ namespace BB {
             if (hitSound) {
                 SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
             }
-
-            this.ForeachPropHit(gameContex);
-
-            this.world.setConfigData(gameContex);
         }
 
-        private ForeachPropHit(gameContex: GameContext): void {
-            this.world.forEach([ut.Entity, Prop, ut.HitBox2D.HitBoxOverlapResults], (propEntity, prop, overlapResults) => {
-                let overlaps = overlapResults.overlaps;
-
-                if (overlaps.length == 0)
-                    return;
-
-                let target = overlaps[0].otherEntity;
-
-                if (!this.world.exists(target))
-                    return;
-
-                if (this.world.hasComponent(target, Platform)) {
-                    SkillServices.TriggerSkillFromProp(this.world, prop, gameContex);  
-
-                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
-
-                    this.world.destroyEntity(propEntity);
-                }
-                else if (this.world.hasComponent(target, Border)) {
-                    let border = this.world.getComponentData(target, Border);
-
-                    if (border.Dir == 2) {
-                        this.world.destroyEntity(propEntity);
-                    }
-                }
-            });
-        }
- 
         private CalcBlockHitArea(blockPos: Vector3, blockSize: Vector3, checkPos: Vector3, areaLocks: AreaLocks): number {
+            let checkDir = new Vector3().subVectors(checkPos, blockPos).normalize();
+
             let isLeft = checkPos.x <= blockPos.x;
 
             let isBottom = checkPos.y <= blockPos.y;
 
-            if (isLeft && isBottom) {
-                //lb
-                if (areaLocks.lock2)
-                    return 4;
-                else
-                    return 2;
+            let bottomDot = checkDir.dot(new Vector3(0,-1,0));
+
+            let leftDot = checkDir.dot(new Vector3(-1,0,0));
+
+            let dots:Array<number> = new Array();
+
+            let hitAreas:Array<number> = new Array();
+
+            if(!areaLocks.lock2 && isBottom) {
+                dots.push(bottomDot);
+
+                hitAreas.push(2);
             }
 
-            if (isLeft && !isBottom) {
-                //lt
-                if (areaLocks.lock4)
-                    return 8;
-                else
-                    return 4;
+            if(!areaLocks.lock4 && isLeft) {
+                dots.push(leftDot);
+
+                hitAreas.push(4);
             }
 
-            if (!isLeft && !isBottom) {
-                //rt
-                return areaLocks.lock8 ? 6 : 8;
+            if(!areaLocks.lock8 && !isBottom) {
+                dots.push(-bottomDot);
+
+                hitAreas.push(8);
             }
 
-            //rb
-            return areaLocks.lock6 ? 2 : 6;
+            if(!areaLocks.lock6 && !isLeft) {
+                dots.push(-leftDot);
+
+                hitAreas.push(6);
+            }
+
+            if(hitAreas.length == 1)
+                return hitAreas[0];
+
+            if(hitAreas.length == 2)
+                return dots[0] > dots[1] ? hitAreas[0] : hitAreas[1];
+
+            return 5;
         }
 
         private AjduestHitPos(ballPos: Vector3, ballHitBoxRect: ut.Math.Rect, hitDIr: Vector3, blockRect: ut.Math.Rect): Vector3 {
@@ -225,21 +252,17 @@ namespace BB {
                     point.add(stepOffset);
 
                     resCheckPoint.x = point.x;
-
+                    
                     resCheckPoint.y = point.y;
                 }
 
                 //默认一定会有一个point在范围内
                 stepAmount++;
             }
-
-            // console.log(`-----stepAmount:${stepAmount}`);
-
+ 
             //球位置调整逻辑待整理
             // ballPos.addScaledVector(stepOffset, stepAmount);
-
-            // CoreUtils.DrawDebugPoint(this.world, resCheckPoint, new ut.Core2D.Color(1,0,0,1));
-
+ 
             return resCheckPoint;
         }
     }

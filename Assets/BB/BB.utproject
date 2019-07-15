@@ -7,19 +7,19 @@
     "Settings": {
         "CanvasWidth": 1920,
         "CanvasHeight": 1080,
-        "EmbedAssets": false,
+        "EmbedAssets": true,
         "CanvasAutoResize": true,
         "RenderMode": 2,
         "DefaultTextureSettings": {
             "$TypeId": 2,
-            "Embedded": false,
+            "Embedded": true,
             "FormatType": 2,
             "JpgCompressionQuality": 100,
             "WebPCompressionQuality": 60
         },
         "DefaultAudioClipSettings": {
             "$TypeId": 3,
-            "Embedded": false
+            "Embedded": true
         },
         "DefaultAnimationClipSettings": {
             "$TypeId": 4,
@@ -27,11 +27,11 @@
         },
         "LocalWSServerPort": 17700,
         "LocalHTTPServerPort": 19050,
-        "SingleFileHtml": false,
+        "SingleFileHtml": true,
         "MemorySize": 64,
         "IncludeWebPDecompressor": false,
         "RunBabel": true,
-        "MinifyJavaScript": false,
+        "MinifyJavaScript": true,
         "LinkToSource": true,
         "SymbolsInReleaseBuild": false
     },

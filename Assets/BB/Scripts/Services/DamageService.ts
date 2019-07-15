@@ -40,14 +40,14 @@ namespace BB {
 
             let propType = PropType.none;
 
-            if(randomSeed <= 0.005) {
+            if(randomSeed <= 0.01) {
                 propType = PropType.split;  
             }
-            else if(randomSeed <= 0.03) {
+            else if(randomSeed <= 0.04) {
                 propType = PropType.shoot3;
             }
-            else if(false && randomSeed > 0.04 && randomSeed < 1.045) {
-                propType = PropType.expand;
+            else if(false && randomSeed > 0.04) {
+                propType = PropType.expand;         //TODO
             }
   
             if(propType == PropType.none)
