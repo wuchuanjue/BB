@@ -5,6 +5,8 @@ namespace BB {
     export class TestSystem extends ut.ComponentSystem {
         OnUpdate(): void {
 
+            // console.log()
+
         //     let layoutInfo = this.world.getConfigData(LayoutInfo);
 
         //     //Fit screen test. 

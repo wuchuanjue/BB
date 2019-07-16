@@ -6,15 +6,13 @@ namespace BB {
         public static CalcLayoutInfos(displayInfo : ut.Core2D.DisplayInfo, layoutInfo:LayoutInfo) : void {
             let canvasResolution = new Vector2(displayInfo.width, displayInfo.height);
             
+            //TODO 待提出到config
             let designResolution = new Vector2(900, 1600);
             
             let gameResolutionRect = new ut.Math.Rect(0,-45, 880, 1480);
             
             let blocksResolution = new Vector2(880, 985);
-
-            //方块分辨率
-            let blockResolution = 22;       //待同步
-
+ 
             //方块间隔
             let blockSpacingResolution = 4;     
 
@@ -29,8 +27,8 @@ namespace BB {
 
             designSize.x = designSize.y * designRatio;
 
-            let resolutionToSize = designSize.x / designResolution.x;
-
+            layoutInfo.resolutionToSize = designSize.x / designResolution.x; 
+ 
             if(canvasRatio < designRatio) {
                 //更窄
                 layoutInfo.halfVerticalSize = designCameraOFov / (canvasRatio / designRatio);
@@ -47,22 +45,30 @@ namespace BB {
 
             //game contect
             layoutInfo.gameContentRect = new ut.Math.Rect(
-                gameResolutionRect.x * resolutionToSize,
-                gameResolutionRect.y * resolutionToSize, 
-                gameResolutionRect.width * resolutionToSize, 
-                gameResolutionRect.height * resolutionToSize
+                gameResolutionRect.x * layoutInfo.resolutionToSize,
+                gameResolutionRect.y * layoutInfo.resolutionToSize, 
+                gameResolutionRect.width * layoutInfo.resolutionToSize, 
+                gameResolutionRect.height * layoutInfo.resolutionToSize
             );
             
             //block靠上
-            let blockContentRect = new ut.Math.Rect(0,0, blocksResolution.x * resolutionToSize, blocksResolution.y * resolutionToSize);
+            let blockContentRect = new ut.Math.Rect(0,0, blocksResolution.x * layoutInfo.resolutionToSize, blocksResolution.y * layoutInfo.resolutionToSize);
             
             blockContentRect.y = (layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 - blockContentRect.height * 0.5);
             
             layoutInfo.blockContentRect = blockContentRect;
 
-            layoutInfo.blockSize = blockResolution * resolutionToSize;
+            //改为动态更新
+            //layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
 
-            layoutInfo.blockSpacing = blockSpacingResolution * resolutionToSize;
+            layoutInfo.blockSpacing = blockSpacingResolution * layoutInfo.resolutionToSize;
+        }
+
+        /**
+         * 方块尺寸允许动态改变，不同的关卡可以指定不一样的block size
+         */
+        public static UpdateBlockSizeConfig(blockResolution:number, layoutInfo:LayoutInfo) : void {
+            layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
         }
     }
 }

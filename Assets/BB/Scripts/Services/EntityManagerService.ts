@@ -107,12 +107,14 @@ namespace BB {
         }
 
         static SpawnProp(world: ut.World, gameContext: GameContext, propType: PropType, pos: Vector3): void {
+            gameContext.propAmount += 1;
+
             let propEntity = ut.EntityGroup.instantiate(world, "BB.Prop")[0];
 
             world.usingComponentData(propEntity, [Prop, Movement, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRenderer]
                 , (prop, moment, tranformPos, spriteRenderer) => {
                     moment.speed = gameContext.giftSpeed;
-
+ 
                     moment.dir = new Vector3(0, -1, 0);
 
                     tranformPos.position = pos;
@@ -127,9 +129,7 @@ namespace BB {
             ut.EntityGroup.destroyAll(world, "BB.Prop");
         }
 
-        static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext): void {
-            let layoutInfo = world.getConfigData(LayoutInfo);
-
+        static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo:LayoutInfo): void {
             ut.EntityGroup.instantiate(world, "BB.Game");
             
             GameService.blockPrefabEntity = world.getEntityByName("Block");
@@ -216,19 +216,22 @@ namespace BB {
                 // GameService.SetupTestBlocks(world, layoutInfo, gameContext);
 
                 {
+                    //todo 改成数组或者动态加载
                     let levels = world.getConfigData(Levels);
 
                     let json : any;
 
                     switch(gameContext.cutLvl) {
                         case 1:
-                            json = JSON.parse(levels.level0);
-                            break;
-                        case 2:
                             json = JSON.parse(levels.level1);
                             break;
+                        case 2:
+                            json = JSON.parse(levels.level2);
+                            break;
+                        case 3:
+                            json = JSON.parse(levels.level3);
+                            break;
                     }
-                    
 
                     EntityManagerService.SetupBlocksFromJson(world, layoutInfo, gameContext, json);
                 }

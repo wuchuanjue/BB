@@ -7,7 +7,7 @@ namespace BB {
     export class MovementSystem extends ut.ComponentSystem {
         
         OnUpdate():void {
-            if(!GameService.IsGameState(this.world, GameState.Play))
+            if(!GameService.IsGameState(this.world, GameState.Play) && !GameService.IsGameState(this.world, GameState.LevelFinish))
                 return;
 
             let dt = this.scheduler.deltaTime();

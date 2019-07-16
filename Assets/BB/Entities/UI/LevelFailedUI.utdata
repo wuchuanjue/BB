@@ -140,6 +140,8 @@
         "Properties": {
             "order": -1
         }
+    }, {
+        "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
     }]
 },
 {

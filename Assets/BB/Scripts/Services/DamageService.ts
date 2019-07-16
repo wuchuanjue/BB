@@ -15,7 +15,7 @@ namespace BB {
             world.setComponentData(blockEntity, block);
  
             if(block.life <= 0) {
-                DamageService.CheckSpawnProp(world, block, blockPos);
+                DamageService.CheckSpawnProp(world, block, blockPos,gameContex);
 
                 BlockService.AddAroundBlockCollision(world, block);
 
@@ -35,25 +35,30 @@ namespace BB {
             world.destroyEntity(ballEnity);
         }
 
-        static CheckSpawnProp(world:ut.World,block:Block, spawnPos:Vector3) : void {
+        static CheckSpawnProp(world:ut.World,block:Block, spawnPos:Vector3, gameContex:GameContext) : void {
+            if(gameContex.propAmount > 6) 
+                return;
+
             let randomSeed = Math.random();
 
             let propType = PropType.none;
 
-            if(randomSeed <= 0.01) {
+            let weightOfPropAmount = (3 - gameContex.propAmount) / 3 * 0.6;
+ 
+            randomSeed *= (1 - weightOfPropAmount);
+ 
+            if(randomSeed <= 0.02) {
                 propType = PropType.split;  
             }
-            else if(randomSeed <= 0.04) {
+            else if(randomSeed <= 0.05) {
                 propType = PropType.shoot3;
             }
-            else if(false && randomSeed > 0.04) {
+            else if(false && randomSeed < 0.07) {
                 propType = PropType.expand;         //TODO
             }
   
             if(propType == PropType.none)
                 return;
-
-            let gameContex = world.getConfigData(GameContext);
 
             EntityManagerService.SpawnProp(world, gameContex,propType, spawnPos);
         }

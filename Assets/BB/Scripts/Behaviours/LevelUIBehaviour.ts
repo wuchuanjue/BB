@@ -9,7 +9,7 @@ namespace BB {
 
         data: LevelUIBehaviourFilter;
 
-        ChoiseLevelButton(lvl:number, entity?:ut.Entity) : void {
+        ChoiseLevelButton(lvl:number) : void {
             let context = this.world.getConfigData(GameContext);
  
             context.cutLvl = lvl;
@@ -20,14 +20,15 @@ namespace BB {
         }
   
         OnEntityUpdate(): void {
-            let mouseInteraction0 = this.world.getComponentData(this.data.ui.testButton0Entity, ut.UIControls.MouseInteraction);
-            let MouseInteraction1 = this.world.getComponentData(this.data.ui.testButton1Entity, ut.UIControls.MouseInteraction);
-
-            if(mouseInteraction0.clicked) {
-                this.ChoiseLevelButton(1, this.data.ui.testButton0Entity);
+        
+            if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton1Entity).clicked) {
+                this.ChoiseLevelButton(1);
             }
-            else if(MouseInteraction1.clicked) {
-                this.ChoiseLevelButton(2, this.data.ui.testButton1Entity);
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton2Entity).clicked) {
+                this.ChoiseLevelButton(2);
+            }
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton3Entity).clicked) {
+                this.ChoiseLevelButton(3);
             }
         }
     }

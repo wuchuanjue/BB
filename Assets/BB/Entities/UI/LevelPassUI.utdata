@@ -137,6 +137,8 @@
                 }
             }
         }
+    }, {
+        "Type": { "Id": "0efd2ae60c7796b3a911cb3247c89bd9", "Name": "MouseInteraction" }
     }]
 },
 {
@@ -499,7 +501,7 @@
         "Type": { "Id": "617fd26299c944d58b61164e0c9c9353", "Name": "Text2DRenderer" },
         "Properties": {
             "style": { "$TypeId": 9, "Id": "4fde6e1ed7ca4860a35d4e4a19ff5332", "Name": "Text" },
-            "text": "Nexts",
+            "text": "Next",
             "pivot": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {

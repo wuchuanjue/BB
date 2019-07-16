@@ -54,6 +54,14 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "e87311f269f4413c9fbad991943d599b",
+        "Name": "resolutionToSize",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "5ca816ac10b14f58914886915d99db66", "Name": "LayoutInfo" }

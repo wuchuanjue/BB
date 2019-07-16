@@ -6,7 +6,7 @@ namespace BB {
         OnUpdate(): void {
             let gameContex = this.world.getConfigData(GameContext);
 
-            if (gameContex.state != GameState.Play)
+            if (gameContex.state != GameState.Play && gameContex.state != GameState.LevelFinish)
                 return;
 
             this.ForeachBallHit(gameContex);
@@ -17,6 +17,8 @@ namespace BB {
         }
 
         private ForeachPropHit(gameContex: GameContext): void {
+            // let propNeedRemove : Array<Entity>
+
             this.world.forEach([ut.Entity, Prop, ut.HitBox2D.HitBoxOverlapResults], (propEntity, prop, overlapResults) => {
                 let overlaps = overlapResults.overlaps;
 
@@ -28,19 +30,28 @@ namespace BB {
                 if (!this.world.exists(target))
                     return;
 
+                let removeProp = false;
+
                 if (this.world.hasComponent(target, Platform)) {
                     SkillServices.TriggerSkillFromProp(this.world, prop, gameContex);  
 
                     SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
-
-                    this.world.destroyEntity(propEntity);
+ 
+                    removeProp = true;
                 }
                 else if (this.world.hasComponent(target, Border)) {
                     let border = this.world.getComponentData(target, Border);
 
                     if (border.Dir == 2) {
-                        this.world.destroyEntity(propEntity);
+                        removeProp = true;
                     }
+                }
+
+                if(removeProp && this.world.exists(propEntity)) {
+                    this.world.destroyEntity(propEntity);
+
+                    if(gameContex.propAmount > 0)
+                        gameContex.propAmount -= 1;
                 }
             });
         }
@@ -66,15 +77,14 @@ namespace BB {
                         if (ball.preHitEntity == target.index) {
                             return;
                         }
-
-                        if(i == 0)
-                            ball.preHitEntity = target.index;
  
                         let movement = this.world.getComponentData(ballEntity, BB.Movement);
 
                         let ballHitBox = this.world.getComponentData(ballEntity, ut.HitBox2D.RectHitBox2D);
 
                         if (i == 0 && this.world.hasComponent(target, BB.Border)) {
+                            ball.preHitEntity = target.index;
+
                             let border = this.world.getComponentData(target, BB.Border);
 
                             if (border.Dir == 2) {
@@ -97,6 +107,8 @@ namespace BB {
                             let blockTransformPos = this.world.getComponentData(target, ut.Core2D.TransformLocalPosition);
 
                             if(i == 0) {
+                                ball.preHitEntity = target.index;
+
                                 hitSound = true;
     
                                 let blockTransScale = this.world.getComponentData(target, ut.Core2D.TransformLocalScale);
@@ -126,6 +138,7 @@ namespace BB {
                         }
                         else if (this.world.hasComponent(target, Platform)) {
                             //Hit platform
+                            ball.preHitEntity = target.index;
 
                             let upDir = new Vector3(0, 1, 0);
 
@@ -155,7 +168,7 @@ namespace BB {
                     }
                 });
 
-            if (hitSound) {
+            if (hitSound && gameContex.state == GameState.Play) {
                 SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
             }
         }

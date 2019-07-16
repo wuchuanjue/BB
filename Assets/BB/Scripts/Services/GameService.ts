@@ -104,7 +104,7 @@ namespace BB {
 
                     transofrmPos.position = wPos;
 
-                    movement.dir = new Vector3(0, 1, 0);
+                    movement.dir = EntityManagerService.GenRandomDir(new ut.Math.Range(-5,5));
 
                     BallService.UpdateHitRectByMoment(hitBox2D, movement);
                 });
@@ -148,11 +148,17 @@ namespace BB {
  
             context.cutLife = context.defaultLife;
 
-            context.ballCutAmount = 0;
- 
+            context.propAmount = context.ballCutAmount = 0;
+
+            let layoutInfo = world.getConfigData(LayoutInfo);
+
+            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 3 ? 12 : 22, layoutInfo);
+
+            world.setConfigData(layoutInfo);
+
             UIService.Show(world, "GameUI");
 
-            EntityManagerService.SetupGameEntitys(world, context);
+            EntityManagerService.SetupGameEntitys(world, context, layoutInfo);
 
             GameService.SendStateCmd(world, GameState.Play);
         }
@@ -198,6 +204,8 @@ namespace BB {
 
         private static EnterState_LevelFinish(world: ut.World, context: GameContext, preState: GameState) {
             let gameRes = world.getComponentData(world.getConfigData(GameReferences).platformEntity, GameResult);
+
+            EntityManagerService.ClearProps(world);
 
             if(gameRes.passLevel) {
                 //win

@@ -196,7 +196,7 @@
         "Type": { "Id": "617fd26299c944d58b61164e0c9c9353", "Name": "Text2DRenderer" },
         "Properties": {
             "style": { "$TypeId": 9, "Id": "5563538b4a1547958ae37b75419a00fb", "Name": "Text" },
-            "text": "Start",
+            "text": "Tap start",
             "pivot": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
