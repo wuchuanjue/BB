@@ -119,10 +119,6 @@ namespace BB {
         }
  
         private static EnterState_Setup(world: ut.World, context: GameContext, preState: GameState) : void {
-            //进入游戏前需要指定关卡
-            console.assert(context.cutLvl > 0); 
-            console.assert(context.cutLvl <= world.getConfigData(Levels).levelAmount);
-
             console.info(`Setup game. cutLvl:${context.cutLvl}   cutLife:${context.cutLife}`);
 
             switch(preState) {

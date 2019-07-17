@@ -12,8 +12,8 @@ namespace BB {
         // this method is called for each entity matching the PassLevelUIBehaviourFilter signature, every frame it's enabled
         OnEntityUpdate():void { 
             if(UIService.DetectMouseInteraction(this.world, this.data.ui.nextButton).clicked) {
-                let lvlAmount = this.world.getConfigData(Levels).levelAmount;
-
+                let lvlAmount = this.world.getConfigData(LevelConfig).levels.length;
+ 
                 let context = this.world.getConfigData(GameContext);
 
                 context.cutLvl += 1;
