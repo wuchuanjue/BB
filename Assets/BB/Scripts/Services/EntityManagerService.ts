@@ -129,7 +129,7 @@ namespace BB {
             ut.EntityGroup.destroyAll(world, "BB.Prop");
         }
 
-        static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo) : void {
+        static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             world.usingComponentData(world.getConfigData(GameReferences).platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
                 (transformPos, spriteOptions, touchMovement) => {
                     transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 2);
@@ -140,24 +140,8 @@ namespace BB {
                 });
         }
 
-        static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
-            ut.EntityGroup.instantiate(world, "BB.Game");
-
-            GameService.blockPrefabEntity = world.getEntityByName("Block");
-
+        static SetupGamePlayEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             let bgEntity = world.getEntityByName("BG");
-
-            let gameReferences = world.getConfigData(GameReferences);
-
-            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
-
-            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
-
-            gameReferences.platformEntity = world.getEntityByName("Platform");
-
-            console.assert(!bgEntity.isNone(), "Can not find bg entity.");
-
-            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
 
             //gamecontent背景
             world.usingComponentData(bgEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale]
@@ -167,15 +151,6 @@ namespace BB {
 
                     transScale.scale = new Vector3(layoutInfo.gameContentRect.width, layoutInfo.gameContentRect.height);
                 });
-
-            {
-                //修改方块原型的尺寸
-                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
-
-                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
-
-                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
-            }
 
             {
                 //border
@@ -206,6 +181,35 @@ namespace BB {
                     });
             }
  
+            EntityManagerService.ResetPlatform(world,gameContext,layoutInfo);
+
+            EntityManagerService.SpawnIdleBall(world, gameContext);
+        }
+
+        static SetupBlockEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
+            ut.EntityGroup.instantiate(world, "BB.Game");
+
+            GameService.blockPrefabEntity = world.getEntityByName("Block");
+
+            let gameReferences = world.getConfigData(GameReferences);
+
+            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+
+            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
+
+            gameReferences.platformEntity = world.getEntityByName("Platform");
+
+            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
+
+            {
+                //修改方块原型的尺寸
+                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
+
+                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
+
+                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
+            }
+
             {
                 //todo 改成动态加载
                 let levelConfig = world.getConfigData(LevelConfig);
@@ -219,11 +223,10 @@ namespace BB {
                 EntityManagerService.SetupBlocksFromJson(world, layoutInfo, gameContext, json);
             }
 
-
             world.setConfigData(gameReferences);
         }
 
-        static SetupBlocksFromJson(world: ut.World, layoutInfo: LayoutInfo, gameContext: GameContext, json: any) {
+        private static SetupBlocksFromJson(world: ut.World, layoutInfo: LayoutInfo, gameContext: GameContext, json: any) {
             gameContext.blockAmount = 0;
 
             let palettes = json.palette;

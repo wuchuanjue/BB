@@ -129,19 +129,18 @@ namespace BB {
 
             world.setConfigData(layoutInfo);
 
-            EntityManagerService.SetupGameEntitys(world, context, layoutInfo);
+            EntityManagerService.SetupBlockEntitys(world, context, layoutInfo);
         }
  
         private static EnterState_Setup(world: ut.World, context: GameContext, preState: GameState) : void {
             console.info(`Setup game. cutLvl:${context.cutLvl}   cutLife:${context.cutLife}`);
-
-            GameService.ResetState_Setup(world, context);
 
             switch(preState) {
                 case GameState.Menu:
                     UIService.Show(world, "LevelUI"); 
 
                     UIService.Hide(world, "MainUI");
+
                     break;
                 case GameState.LevelFinish:
                 case GameState.Pause:
@@ -155,11 +154,14 @@ namespace BB {
                         UIService.Hide(world, "GameUI");
         
                         GameService.SendStateCmd(world, GameState.Play);
+
                     break;
                 default:
                     console.warn(`preState error. preState:${preState}`);
                     break;
             }
+
+            GameService.ResetState_Setup(world, context);
         }
 
         private static EnterState_Play(world: ut.World, context: GameContext, preState: GameState): void {
@@ -169,9 +171,7 @@ namespace BB {
                     
                     context.propAmount = context.ballCutAmount = 0;
 
-                    EntityManagerService.ResetPlatform(world,context,world.getConfigData(LayoutInfo));
-
-                    EntityManagerService.SpawnIdleBall(world, context);
+                    EntityManagerService.SetupGamePlayEntitys(world, context, world.getConfigData(LayoutInfo));
 
                     UIService.Hide(world, "LevelUI"); 
                     
@@ -188,30 +188,33 @@ namespace BB {
             }
         }
 
-        // private static EnterState_Menu(world: ut.World, context: GameContext, preState: GameState) {
-        //     context.cutLvl = 0;
+        private static EnterState_Menu(world: ut.World, context: GameContext, preState: GameState) {
+            UIService.Show(world, "MainUI");
+
+            context.cutLvl = 1;
             
-        //     switch (preState) {
-        //         case GameState.Pause:
-        //         case GameState.LevelFinish:
-        //             // UIService.Hide(world, "PauseUI");
+            switch (preState) {
+                case GameState.Pause:
+                case GameState.LevelFinish:
+                    EntityManagerService.ClearGameEntitys(world);
 
-        //             // UIService.Hide(world, "GameUI");
+                    UIService.Hide(world, "PauseUI");
 
-        //             // UIService.Hide(world,"LevelPassUI"); 
-                    
-        //             // UIService.Hide(world,"LevelFailedUI"); 
+                    UIService.Hide(world,"LevelPassUI");
 
-        //             EntityManagerService.ClearGameEntitys(world);
-        //             break;
-        //         case GameState.Init:
-        //                 UIService.Hide(world, "MainUI");
-        //             break;
-        //     }
+                    UIService.Hide(world,"LevelFailedUI"); 
 
-        //     UIService.Show(world, "MainUI");
-        //     // UIService.Show(world, "LevelUI");
-        // }
+                    UIService.Hide(world, "GameUI");
+
+                    break;
+                case GameState.Init:
+                    UIService.Hide(world, "MainUI");
+
+                    break;
+            }
+
+            UIService.Show(world, "MainUI");
+        }
 
         private static EnterState_LevelFinish(world: ut.World, context: GameContext, preState: GameState) {
             let gameRes = world.getComponentData(world.getConfigData(GameReferences).platformEntity, GameResult);
@@ -255,9 +258,7 @@ namespace BB {
                     break;
 
                 case GameState.Menu: 
-                    // GameService.EnterState_Menu(world, context, preState);
-                    UIService.Show(world, "MainUI");
-                    context.cutLvl = 1;
+                    GameService.EnterState_Menu(world, context, preState);
                     break;
 
                 case GameState.Loading:
