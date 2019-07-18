@@ -132,7 +132,7 @@ namespace BB {
         static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             world.usingComponentData(world.getConfigData(GameReferences).platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
                 (transformPos, spriteOptions, touchMovement) => {
-                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1.2);
+                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1.5);
 
                     touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
 
