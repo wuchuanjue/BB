@@ -132,7 +132,7 @@ namespace BB {
         static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             world.usingComponentData(world.getConfigData(GameReferences).platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
                 (transformPos, spriteOptions, touchMovement) => {
-                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 2);
+                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1.2);
 
                     touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
 
@@ -244,11 +244,15 @@ namespace BB {
                     if (blockList.hasOwnProperty(key)) {
                         const block = blockList[key];
 
-                        blockInfo.row = block.row;
+                        console.assert(block.hasOwnProperty("p"));
 
-                        blockInfo.col = block.col;
+                        let param = block.p;
 
-                        const blockColor = palettes[block.palette];
+                        blockInfo.row = param[0];
+
+                        blockInfo.col = param[1];
+                        
+                        const blockColor = palettes[param[2]];
 
                         blockInfo.color = new ut.Core2D.Color(blockColor.r / 255, blockColor.g / 255, blockColor.b / 255, 1);
 

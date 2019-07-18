@@ -11,7 +11,7 @@ namespace BB {
             
             let gameResolutionRect = new ut.Math.Rect(0,-45, 880, 1480);
             
-            let blocksResolution = new Vector2(880, 985);
+            let blocksResolution = new Vector2(880, 980);
  
             //方块间隔
             let blockSpacingResolution = 4;     
@@ -59,7 +59,7 @@ namespace BB {
             layoutInfo.blockContentRect = blockContentRect;
 
             //改为动态更新
-            //layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
+            // layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
 
             layoutInfo.blockSpacing = blockSpacingResolution * layoutInfo.resolutionToSize;
         }

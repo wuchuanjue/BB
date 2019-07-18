@@ -119,13 +119,11 @@ namespace BB {
         }
 
         private static ResetState_Setup(world: ut.World, context: GameContext) : void {
-            console.log(`reset setup state. ${context.cutLvl}`);
-
             EntityManagerService.ClearGameEntitys(world);
 
             let layoutInfo = world.getConfigData(LayoutInfo);
 
-            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 3 ? 12 : 22, layoutInfo);
+            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 3 ? 12 : 21.2, layoutInfo);
 
             world.setConfigData(layoutInfo);
 
