@@ -33,7 +33,7 @@ namespace BB {
 
             GameService.FitScreenCamera(world, layoutInfo);
 
-            UIService.Show(world, "MainUI");
+            GameService.SendStateCmd(world, GameState.Menu);
         }
 
         /**
@@ -195,7 +195,8 @@ namespace BB {
                     break;
             }
 
-            UIService.Show(world, "LevelUI");
+            UIService.Show(world, "MainUI");
+            // UIService.Show(world, "LevelUI");
         }
 
         private static EnterState_LevelFinish(world: ut.World, context: GameContext, preState: GameState) {

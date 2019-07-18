@@ -21,14 +21,14 @@ namespace BB {
   
         OnEntityUpdate(): void {
         
-            if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton1Entity).clicked) {
-                this.ChoiseLevelButton(1);
+            if(UIService.DetectMouseInteraction(this.world,this.data.ui.leftButton).clicked) {
+                
             }
-            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton2Entity).clicked) {
-                this.ChoiseLevelButton(2);
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.rightButton).clicked) {
+                 
             }
-            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton3Entity).clicked) {
-                this.ChoiseLevelButton(3);
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.playButton).clicked) {
+                
             }
         }
     }

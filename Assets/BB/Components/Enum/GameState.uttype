@@ -32,16 +32,16 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
-        "Id": "c1e36a1bbe3749e2b6609885c0ba2d9c",
-        "Name": "Menu",
+        "Id": "a3144f31d27044b89e87fedabbd1fea6",
+        "Name": "Setup",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
         "Array": false,
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
     }, {
-        "Id": "a3144f31d27044b89e87fedabbd1fea6",
-        "Name": "Setup",
+        "Id": "ce33ad9b922a45b6bc45ff3cf57b7bc1",
+        "Name": "Menu",
         "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
         "Array": false,
         "Visibility": 0,
@@ -86,8 +86,8 @@
             "None": 0,
             "Init": 1,
             "Loading": 2,
-            "Menu": 3,
             "Setup": 4,
+            "Menu": 3,
             "Play": 5,
             "Pause": 6,
             "LevelFinish": 7,
