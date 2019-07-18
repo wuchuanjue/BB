@@ -1,6 +1,6 @@
 namespace BB {
     export class EntityManagerService {
-        static SpawnIdleBall(world: ut.World, gameContext: GameContext, platformEntity: ut.Entity): ut.Entity {
+        static SpawnIdleBall(world: ut.World, gameContext: GameContext): ut.Entity {
             let entity = EntityManagerService.SpawnBall(
                 //停住 platform下的局部位置
                 world, gameContext, new Vector3(0, 0.2, 0), new Vector3(0, 0, 0)
@@ -8,7 +8,7 @@ namespace BB {
 
             world.addComponent(entity, IdleBall);
 
-            let transformNode = new ut.Core2D.TransformNode(platformEntity);
+            let transformNode = new ut.Core2D.TransformNode(world.getConfigData(GameReferences).platformEntity);
 
             world.setComponentData(entity, transformNode);
 
@@ -129,6 +129,17 @@ namespace BB {
             ut.EntityGroup.destroyAll(world, "BB.Prop");
         }
 
+        static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo) : void {
+            world.usingComponentData(world.getConfigData(GameReferences).platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
+                (transformPos, spriteOptions, touchMovement) => {
+                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 2);
+
+                    touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
+
+                    touchMovement.size = new Vector2(spriteOptions.size.x, 0);
+                });
+        }
+
         static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             ut.EntityGroup.instantiate(world, "BB.Game");
 
@@ -194,23 +205,7 @@ namespace BB {
                         world.setComponentData(entity, spriteOptions);
                     });
             }
-
-            {
-                world.usingComponentData(gameReferences.platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
-                    (transformPos, spriteOptions, touchMovement) => {
-                        transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1);
-
-                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
-
-                        touchMovement.size = new Vector2(spriteOptions.size.x, 0);
-                    });
-            }
-
-            {
-                //ball
-                EntityManagerService.SpawnIdleBall(world, gameContext, gameReferences.platformEntity);
-            }
-
+ 
             {
                 //todo 改成动态加载
                 let levelConfig = world.getConfigData(LevelConfig);

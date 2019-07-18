@@ -15,7 +15,7 @@ namespace BB {
                     style.color = mouseInteraction.down ? new ut.Core2D.Color(0.3,0.3,0.3,1) : new ut.Core2D.Color(1,1,1,1);
  
                     if(ut.Core2D.Input.getMouseButtonUp(0)) {
-                        GameService.SendStateCmd(this.world, GameState.Menu);
+                        GameService.SendStateCmd(this.world, GameState.Setup);
                     }
             })
         }
