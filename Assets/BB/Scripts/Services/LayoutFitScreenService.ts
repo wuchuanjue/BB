@@ -11,7 +11,7 @@ namespace BB {
             
             let gameResolutionRect = new ut.Math.Rect(0,-45, 880, 1480);
             
-            let blocksResolution = new Vector2(880, 985);
+            let blocksResolutionRect = new ut.Math.Rect(0, 205, 880,980);       
  
             //方块间隔
             let blockSpacingResolution = 4;     
@@ -50,16 +50,23 @@ namespace BB {
                 gameResolutionRect.width * layoutInfo.resolutionToSize, 
                 gameResolutionRect.height * layoutInfo.resolutionToSize
             );
+ 
+            layoutInfo.blockContentRect = new ut.Math.Rect(
+                blocksResolutionRect.x * layoutInfo.resolutionToSize,
+                blocksResolutionRect.y * layoutInfo.resolutionToSize, 
+                blocksResolutionRect.width * layoutInfo.resolutionToSize, 
+                blocksResolutionRect.height * layoutInfo.resolutionToSize                
+            );
             
             //block靠上
-            let blockContentRect = new ut.Math.Rect(0,0, blocksResolution.x * layoutInfo.resolutionToSize, blocksResolution.y * layoutInfo.resolutionToSize);
+            //let blockContentRect = new ut.Math.Rect(0,0, blocksResolution.x * layoutInfo.resolutionToSize, blocksResolution.y * layoutInfo.resolutionToSize);
             
-            blockContentRect.y = (layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 - blockContentRect.height * 0.5);
-            
-            layoutInfo.blockContentRect = blockContentRect;
+            //blockContentRect.y = (layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 - blockContentRect.height * 0.5);
+
+            // layoutInfo.blockContentRect = blockContentRect;
 
             //改为动态更新
-            //layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
+            // layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
 
             layoutInfo.blockSpacing = blockSpacingResolution * layoutInfo.resolutionToSize;
         }

@@ -21,9 +21,6 @@ namespace BB {
         }
 
         static SplitBall(world:ut.World, gameContex:GameContext) : void {
-            if(gameContex.ballCutAmount >= gameContex.ballMaxAmount)
-                return;
-
             let rRange = new ut.Math.Range(1, 359);
 
             world.forEach([ut.Core2D.TransformLocalPosition, Ball],(transformPos, ball)=>{

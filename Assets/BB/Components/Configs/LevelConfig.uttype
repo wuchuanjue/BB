@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "e1d37b6c33c94986aa7c9dc6bd190f0f",
+    "Name": "LevelConfig",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Configuration",
+    "Fields": [{
+        "Id": "8a2948a81a694afebfb033a27ce761ad",
+        "Name": "levels",
+        "FieldType": { "Id": "1bff5adddd7c41de98d3329c7c641208", "Name": "String" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "e1d37b6c33c94986aa7c9dc6bd190f0f", "Name": "LevelConfig" }
+    }
+}]

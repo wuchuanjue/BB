@@ -1,6 +1,6 @@
 namespace BB {
     export class EntityManagerService {
-        static SpawnIdleBall(world: ut.World, gameContext: GameContext, platformEntity: ut.Entity): ut.Entity {
+        static SpawnIdleBall(world: ut.World, gameContext: GameContext): ut.Entity {
             let entity = EntityManagerService.SpawnBall(
                 //停住 platform下的局部位置
                 world, gameContext, new Vector3(0, 0.2, 0), new Vector3(0, 0, 0)
@@ -8,7 +8,7 @@ namespace BB {
 
             world.addComponent(entity, IdleBall);
 
-            let transformNode = new ut.Core2D.TransformNode(platformEntity);
+            let transformNode = new ut.Core2D.TransformNode(world.getConfigData(GameReferences).platformEntity);
 
             world.setComponentData(entity, transformNode);
 
@@ -87,7 +87,7 @@ namespace BB {
 
                     BallService.UpdateHitRectByMoment(hitBox2D, movement);
                 });
- 
+
             gameContext.ballCutAmount += 1;
 
             return ballEntity;
@@ -96,7 +96,7 @@ namespace BB {
         static GenRandomDir(rRange: ut.Math.Range): Vector3 {
             let randomEular = rRange.start + Math.random() * (rRange.end - rRange.start);
 
-            if(Math.abs(randomEular) == 90 || Math.abs(randomEular) == 180 || Math.abs(randomEular) == 0) {
+            if (Math.abs(randomEular) == 90 || Math.abs(randomEular) == 180 || Math.abs(randomEular) == 0) {
                 console.warn("test GenRandomDir  randomEular:" + randomEular);
                 randomEular += 1;
             }
@@ -114,7 +114,7 @@ namespace BB {
             world.usingComponentData(propEntity, [Prop, Movement, ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRenderer]
                 , (prop, moment, tranformPos, spriteRenderer) => {
                     moment.speed = gameContext.giftSpeed;
- 
+
                     moment.dir = new Vector3(0, -1, 0);
 
                     tranformPos.position = pos;
@@ -129,24 +129,19 @@ namespace BB {
             ut.EntityGroup.destroyAll(world, "BB.Prop");
         }
 
-        static SetupGameEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo:LayoutInfo): void {
-            ut.EntityGroup.instantiate(world, "BB.Game");
-            
-            GameService.blockPrefabEntity = world.getEntityByName("Block");
-            
+        static ResetPlatform(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
+            world.usingComponentData(world.getConfigData(GameReferences).platformEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRendererOptions, TouchMovement],
+                (transformPos, spriteOptions, touchMovement) => {
+                    transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1.5);
+
+                    touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
+
+                    touchMovement.size = new Vector2(spriteOptions.size.x, 0);
+                });
+        }
+
+        static SetupGamePlayEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
             let bgEntity = world.getEntityByName("BG");
-            
-            let gameReferences = world.getConfigData(GameReferences);
-            
-            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
-            
-            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
-            
-            gameReferences.platformEntity = world.getEntityByName("Platform");
-
-            console.assert(!bgEntity.isNone(), "Can not find bg entity.");
-
-            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
 
             //gamecontent背景
             world.usingComponentData(bgEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale]
@@ -158,18 +153,9 @@ namespace BB {
                 });
 
             {
-                //修改方块原型的尺寸
-                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
-
-                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
-
-                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
-            }
-
-            {
                 //border
-                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition]  
-                    , (entity, border, transformPos) => {         
+                world.forEach([ut.Entity, Border, ut.Core2D.TransformLocalPosition]
+                    , (entity, border, transformPos) => {
                         let spriteOptions = world.getComponentData(entity, ut.Core2D.Sprite2DRendererOptions);
 
                         switch (border.Dir) {
@@ -186,7 +172,7 @@ namespace BB {
                                 spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.gameContentRect.height);
                                 break;
                             case 8:
-                                transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5, 0);
+                                transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 + spriteOptions.size.y * 0.5, 0);
                                 spriteOptions.size = new Vector2(layoutInfo.gameContentRect.width, spriteOptions.size.y);
                                 break;
                         }
@@ -194,124 +180,97 @@ namespace BB {
                         world.setComponentData(entity, spriteOptions);
                     });
             }
+ 
+            EntityManagerService.ResetPlatform(world,gameContext,layoutInfo);
+
+            EntityManagerService.SpawnIdleBall(world, gameContext);
+        }
+
+        static SetupBlockEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
+            ut.EntityGroup.instantiate(world, "BB.Game");
+
+            GameService.blockPrefabEntity = world.getEntityByName("Block");
+
+            let gameReferences = world.getConfigData(GameReferences);
+
+            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
+
+            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
+
+            gameReferences.platformEntity = world.getEntityByName("Platform");
+
+            console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
 
             {
-                world.usingComponentData(gameReferences.platformEntity, [ut.Core2D.TransformLocalPosition,ut.Core2D.Sprite2DRendererOptions, TouchMovement],
-                    (transformPos, spriteOptions, touchMovement)=>{
-                        transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y - layoutInfo.gameContentRect.height * 0.5 + 1);
+                //修改方块原型的尺寸
+                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
 
-                        touchMovement.moveRange = new ut.Math.Rect(0, 0, layoutInfo.gameContentRect.width, 0);
+                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
 
-                        touchMovement.size = new Vector2(spriteOptions.size.x, 0);
-                });
+                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
             }
 
             {
-                //ball
-                EntityManagerService.SpawnIdleBall(world, gameContext, gameReferences.platformEntity);
-            }
+                //todo 改成动态加载
+                let levelConfig = world.getConfigData(LevelConfig);
 
-            {
+                let json: any;
 
-                // GameService.SetupTestBlocks(world, layoutInfo, gameContext);
+                console.assert(gameContext.cutLvl > 0 && gameContext.cutLvl <= levelConfig.levels.length);
 
-                {
-                    //todo 改成数组或者动态加载
-                    let levels = world.getConfigData(Levels);
+                json = JSON.parse(levelConfig.levels[gameContext.cutLvl - 1]);
 
-                    let json : any;
-
-                    switch(gameContext.cutLvl) {
-                        case 1:
-                            json = JSON.parse(levels.level1);
-                            break;
-                        case 2:
-                            json = JSON.parse(levels.level2);
-                            break;
-                        case 3:
-                            json = JSON.parse(levels.level3);
-                            break;
-                    }
-
-                    EntityManagerService.SetupBlocksFromJson(world, layoutInfo, gameContext, json);
-                }
+                EntityManagerService.SetupBlocksFromJson(world, layoutInfo, gameContext, json);
             }
 
             world.setConfigData(gameReferences);
         }
 
-        static SetupBlocksFromJson(world: ut.World, layoutInfo: LayoutInfo, gameContext: GameContext, json: any) {
+        private static SetupBlocksFromJson(world: ut.World, layoutInfo: LayoutInfo, gameContext: GameContext, json: any) {
             gameContext.blockAmount = 0;
 
-            let blockInfo = new BlockConfig();
-
-            let blocks = json.blocks;
+            let palettes = json.palette;
 
             //是否开启碰撞考虑放到配置文件中 TODO
-            let testBlockCache = {};
+            let blockCache = {};
 
-            for (const key in blocks) {
-                if (blocks.hasOwnProperty(key)) {
-                    const block = blocks[key];
+            let doSetupBlocks = (blockList: any, isWall: boolean, ) => {
+                if (blockList == undefined || blockList == null)
+                    return;
 
-                    blockInfo.row = block.row;
+                let blockInfo = new BlockConfig();
 
-                    blockInfo.col = block.col;
+                for (const key in blockList) {
+                    if (blockList.hasOwnProperty(key)) {
+                        const block = blockList[key];
 
-                    blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
+                        console.assert(block.hasOwnProperty("p"));
 
-                    blockInfo.isWall = false;
+                        let param = block.p;
 
-                    testBlockCache[`${blockInfo.col}_${blockInfo.row}`] = EntityManagerService.SpawnBlock(world, layoutInfo, blockInfo);
+                        blockInfo.row = param[0];
 
-                    gameContext.blockAmount += 1;
-                }
-            }
+                        blockInfo.col = param[1];
+                        
+                        const blockColor = palettes[param[2]];
 
-            let borders = json.borders;
+                        blockInfo.color = new ut.Core2D.Color(blockColor.r / 255, blockColor.g / 255, blockColor.b / 255, 1);
 
-            if (borders != undefined) {
-                for (const key in borders) {
-                    if (borders.hasOwnProperty(key)) {
-                        const block = borders[key];
+                        blockInfo.isWall = isWall;
 
-                        blockInfo.row = block.row;
+                        blockCache[`${blockInfo.col}_${blockInfo.row}`] = EntityManagerService.SpawnBlock(world, layoutInfo, blockInfo);
 
-                        blockInfo.col = block.col;
-
-                        blockInfo.color = new ut.Core2D.Color(block.color.r / 255, block.color.g / 255, block.color.b / 255, 1);
-
-                        blockInfo.isWall = true;
-
-                        testBlockCache[`${blockInfo.col}_${blockInfo.row}`] = EntityManagerService.SpawnBlock(world, layoutInfo, blockInfo);
+                        if (!isWall)
+                            gameContext.blockAmount += 1;
                     }
                 }
-            }
+            };
 
-            BlockService.UpdateBlocksCollision(world, testBlockCache);
-        }
+            doSetupBlocks(json.blocks, false);
 
-        static SetupTestBlocks(world: ut.World, layoutInfo: LayoutInfo, gameContext: GameContext) {
-            let blockInfo = new BlockConfig();
+            doSetupBlocks(json.borders, true);
 
-            let testBlockCache = {};
-
-            for (var row: number = 0; row < 3; row++) {
-                for (var col: number = 0; col < 3; col++) {
-
-                    blockInfo.col = col;
-                    blockInfo.row = row;
-
-                    blockInfo.color = new ut.Core2D.Color(1, 1, 1, 1);
-                    blockInfo.isWall = true;
-
-                    testBlockCache[`${col}_${row}`] = EntityManagerService.SpawnBlock(world, layoutInfo, blockInfo);
-
-                    gameContext.blockAmount += 1;
-                }
-            }
-
-            BlockService.UpdateBlocksCollision(world, testBlockCache);
+            BlockService.UpdateBlocksCollision(world, blockCache);
         }
 
         static ClearGameEntitys(world: ut.World): void {

@@ -94,6 +94,14 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "66872e48805d4e5ea2763d4102b0a903",
+        "Name": "propTimeFlagSec",
+        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },

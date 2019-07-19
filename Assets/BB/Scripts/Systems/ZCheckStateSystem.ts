@@ -32,7 +32,7 @@ namespace BB {
                 gameContex.cutLife -= 1;
 
                 if(gameContex.cutLife > 0) {
-                    EntityManagerService.SpawnIdleBall(this.world, gameContex, this.world.getConfigData(GameReferences).platformEntity);
+                    EntityManagerService.SpawnIdleBall(this.world, gameContex);
                     
                     EntityManagerService.ClearProps(this.world);
                 }

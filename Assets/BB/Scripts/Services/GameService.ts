@@ -33,7 +33,7 @@ namespace BB {
 
             GameService.FitScreenCamera(world, layoutInfo);
 
-            UIService.Show(world, "MainUI");
+            GameService.SendStateCmd(world, GameState.Menu);
         }
 
         /**
@@ -117,17 +117,32 @@ namespace BB {
 
             world.setOrAddComponentData(world.getConfigEntity(), cmd);
         }
+
+        private static ResetState_Setup(world: ut.World, context: GameContext) : void {
+            EntityManagerService.ClearGameEntitys(world);
+
+            let layoutInfo = world.getConfigData(LayoutInfo);
+
+            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 5 ? 12 : 21.2, layoutInfo);
+
+            world.setConfigData(layoutInfo);
+
+            EntityManagerService.SetupBlockEntitys(world, context, layoutInfo);
+        }
  
         private static EnterState_Setup(world: ut.World, context: GameContext, preState: GameState) : void {
-            //进入游戏前需要指定关卡
-            console.assert(context.cutLvl > 0); 
-            console.assert(context.cutLvl <= world.getConfigData(Levels).levelAmount);
-
             console.info(`Setup game. cutLvl:${context.cutLvl}   cutLife:${context.cutLife}`);
 
             switch(preState) {
+                case GameState.Menu:
+                    UIService.Show(world, "LevelUI"); 
+
+                    UIService.Hide(world, "MainUI");
+
+                    break;
                 case GameState.LevelFinish:
                 case GameState.Pause:
+                        //Replay or Next level.
                         UIService.Hide(world, "PauseUI");
 
                         UIService.Hide(world,"LevelPassUI");
@@ -136,36 +151,29 @@ namespace BB {
 
                         UIService.Hide(world, "GameUI");
         
-                        EntityManagerService.ClearGameEntitys(world);
-                    break;
-                case GameState.Menu:
-                    UIService.Hide(world, "LevelUI");
+                        GameService.SendStateCmd(world, GameState.Play);
+
                     break;
                 default:
                     console.warn(`preState error. preState:${preState}`);
                     break;
             }
- 
-            context.cutLife = context.defaultLife;
 
-            context.propAmount = context.ballCutAmount = 0;
-
-            let layoutInfo = world.getConfigData(LayoutInfo);
-
-            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 3 ? 12 : 22, layoutInfo);
-
-            world.setConfigData(layoutInfo);
-
-            UIService.Show(world, "GameUI");
-
-            EntityManagerService.SetupGameEntitys(world, context, layoutInfo);
-
-            GameService.SendStateCmd(world, GameState.Play);
+            GameService.ResetState_Setup(world, context);
         }
 
         private static EnterState_Play(world: ut.World, context: GameContext, preState: GameState): void {
             switch (preState) {
-                case GameState.Menu:
+                case GameState.Setup:
+                    context.cutLife = context.defaultLife;
+                    
+                    context.propTimeFlagSec = context.propAmount = context.ballCutAmount = 0;
+
+                    EntityManagerService.SetupGamePlayEntitys(world, context, world.getConfigData(LayoutInfo));
+
+                    UIService.Hide(world, "LevelUI"); 
+                    
+                    UIService.Show(world, "GameUI");
 
                     break;
                 case GameState.Pause:
@@ -173,33 +181,37 @@ namespace BB {
                     
                     break;
                 default:
-
+                    console.warn(`preState error. preState:${preState}`);
                     break;
             }
         }
 
         private static EnterState_Menu(world: ut.World, context: GameContext, preState: GameState) {
-            context.cutLvl = 0;
+            UIService.Show(world, "MainUI");
+
+            context.cutLvl = 1;
             
             switch (preState) {
                 case GameState.Pause:
                 case GameState.LevelFinish:
+                    EntityManagerService.ClearGameEntitys(world);
+
                     UIService.Hide(world, "PauseUI");
+
+                    UIService.Hide(world,"LevelPassUI");
+
+                    UIService.Hide(world,"LevelFailedUI"); 
 
                     UIService.Hide(world, "GameUI");
 
-                    UIService.Hide(world,"LevelPassUI"); 
-                    
-                    UIService.Hide(world,"LevelFailedUI"); 
-
-                    EntityManagerService.ClearGameEntitys(world);
                     break;
                 case GameState.Init:
-                        UIService.Hide(world, "MainUI");
+                    UIService.Hide(world, "MainUI");
+
                     break;
             }
 
-            UIService.Show(world, "LevelUI");
+            UIService.Show(world, "MainUI");
         }
 
         private static EnterState_LevelFinish(world: ut.World, context: GameContext, preState: GameState) {
@@ -218,11 +230,21 @@ namespace BB {
             world.removeComponent(world.getConfigData(GameReferences).platformEntity, GameResult);
         }
 
+        static ResetState(world: ut.World, context: GameContext) : void {
+            switch(context.state) {
+                case GameState.Setup:
+                    GameService.ResetState_Setup(world, context);
+                    break;
+            }
+        }
+
         static EnterState(world: ut.World, context: GameContext, nextState: GameState): void {
             console.info(`Enter state:${context.state} - ${nextState}`);
 
-            if (nextState == context.state)
+            if (nextState == context.state) {
+                GameService.ResetState(world, context);
                 return;
+            }
 
             let preState = context.state;
 

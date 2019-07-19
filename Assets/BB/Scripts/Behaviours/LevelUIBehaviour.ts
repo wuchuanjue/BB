@@ -9,26 +9,42 @@ namespace BB {
 
         data: LevelUIBehaviourFilter;
 
-        ChoiseLevelButton(lvl:number) : void {
-            let context = this.world.getConfigData(GameContext);
+        // ChoiseLevelButton(lvl:number) : void {
+        //     let context = this.world.getConfigData(GameContext);
  
-            context.cutLvl = lvl;
+        //     context.cutLvl = lvl;
+
+        //     this.world.setConfigData(context);
+
+        //     GameService.SendStateCmd(this.world, GameState.Setup);
+        // }
+
+        UpdateLevel(lvlOffset:number):void {
+            let context = this.world.getConfigData(GameContext);
+
+            context.cutLvl += lvlOffset;
+
+            let levelAmount = this.world.getConfigData(LevelConfig).levels.length;
+
+            if(context.cutLvl < 1) 
+                context.cutLvl = levelAmount;
+            else if(context.cutLvl > levelAmount)
+                context.cutLvl = 1;
 
             this.world.setConfigData(context);
 
             GameService.SendStateCmd(this.world, GameState.Setup);
         }
-  
-        OnEntityUpdate(): void {
-        
-            if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton1Entity).clicked) {
-                this.ChoiseLevelButton(1);
+ 
+        OnEntityUpdate() : void {
+            if(UIService.DetectMouseInteraction(this.world,this.data.ui.leftButton).clicked) {
+                this.UpdateLevel(-1);
             }
-            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton2Entity).clicked) {
-                this.ChoiseLevelButton(2);
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.rightButton).clicked) {
+                this.UpdateLevel(+1);
             }
-            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.testButton3Entity).clicked) {
-                this.ChoiseLevelButton(3);
+            else if(UIService.DetectMouseInteraction(this.world,this.data.ui.playButton).clicked) {
+                GameService.SendStateCmd(this.world, GameState.Play);
             }
         }
     }

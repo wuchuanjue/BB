@@ -132,8 +132,8 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 640,
-                    "y": 480
+                    "x": 1258,
+                    "y": 774
                 }
             }
         }
@@ -173,7 +173,7 @@
             "sizeDelta": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 464.6,
+                    "x": 600,
                     "y": 611
                 }
             },
@@ -194,7 +194,7 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "4fc8803721c4e4347b448a4aace91ce5", "FileId": 21300000, "Type": 3 }
+            "sprite": { "$TypeId": 10, "Guid": "a43ce62e123b340c59e61d7bcc5f69ea", "FileId": 21300000, "Type": 3 }
         }
     }, {
         "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
@@ -202,16 +202,16 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 464.6,
+                    "x": 600,
                     "y": 611
                 }
             },
             "drawMode": {
                 "$TypeId": 8,
                 "Type": { "Id": "a7ae2ef1f120627af99607cbecca330e", "Name": "DrawMode" },
-                "Id": "0334e5a91225cf998b678224025cf40c",
-                "Name": "ContinuousTiling",
-                "Value": 0
+                "Id": "b5e836cf58569b764113a97c4cf32af6",
+                "Name": "Stretch",
+                "Value": 2
             }
         }
     }, {
@@ -354,14 +354,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": 111
+                    "y": 101
                 }
             }
         }
@@ -372,7 +372,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": 111
+                    "y": 101
                 }
             }
         }
@@ -425,7 +425,7 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             }
         }
@@ -471,14 +471,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -13.5
+                    "y": 0
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.8
+                    "y": 0
                 }
             }
         }
@@ -489,7 +489,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.800004
+                    "y": 0
                 }
             }
         }
@@ -571,14 +571,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -29.78999
+                    "y": -39.79003
                 }
             }
         }
@@ -589,7 +589,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -29.78999
+                    "y": -39.79003
                 }
             }
         }
@@ -642,7 +642,7 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             }
         }
@@ -688,14 +688,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -13.5
+                    "y": 0
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.8
+                    "y": 0
                 }
             }
         }
@@ -706,7 +706,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.800004
+                    "y": 0
                 }
             }
         }
@@ -788,14 +788,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -172
+                    "y": -182
                 }
             }
         }
@@ -806,7 +806,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -172
+                    "y": -182
                 }
             }
         }
@@ -859,7 +859,7 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 250,
-                    "y": 94.46002
+                    "y": 110
                 }
             }
         }
@@ -905,14 +905,14 @@
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -13.5
+                    "y": 0
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.8
+                    "y": 0
                 }
             }
         }
@@ -923,7 +923,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -6.800004
+                    "y": 0
                 }
             }
         }
