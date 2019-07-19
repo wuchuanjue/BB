@@ -26,7 +26,7 @@ namespace BB {
         OnEntityUpdate():void { 
             this.fpsAccumulator++;
 
-            if (Time.time() > this.fpsNextPeriod)
+            if (this.scheduler.now() > this.fpsNextPeriod)
             {
                 let currentFps = this.fpsAccumulator / this.fpsMeasurePeriod;
 
@@ -39,7 +39,9 @@ namespace BB {
         }
 
         // this method is called for each entity matching the FpsFilter signature, once when disabled
-        //OnEntityDisable():void { }
+        OnEntityDisable():void { 
+            this.data.textRenderer.text = "";
+        }
 
     }
 }

@@ -123,7 +123,7 @@ namespace BB {
 
             let layoutInfo = world.getConfigData(LayoutInfo);
 
-            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 3 ? 12 : 21.2, layoutInfo);
+            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 5 ? 12 : 21.2, layoutInfo);
 
             world.setConfigData(layoutInfo);
 
@@ -167,7 +167,7 @@ namespace BB {
                 case GameState.Setup:
                     context.cutLife = context.defaultLife;
                     
-                    context.propAmount = context.ballCutAmount = 0;
+                    context.propTimeFlagSec = context.propAmount = context.ballCutAmount = 0;
 
                     EntityManagerService.SetupGamePlayEntitys(world, context, world.getConfigData(LayoutInfo));
 

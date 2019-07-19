@@ -39,26 +39,40 @@ namespace BB {
             if(gameContex.propAmount > 6) 
                 return;
 
+            let timePass = Time.time() - gameContex.propTimeFlagSec;
+            
+            //间隔时间不能太短
+            if(timePass < 1)
+                return;
+
             let randomSeed = Math.random();
 
             let propType = PropType.none;
 
-            let weightOfPropAmount = (3 - gameContex.propAmount) / 3 * 0.6;
+            let weightOfPropAmount = 0.5 + (gameContex.propAmount / 6) * 0.5;     
+
+            let weightOfTimeFlag = 0.2 + Math.max((1 - (timePass / 8)) * 0.8, 0);
  
-            randomSeed *= (1 - weightOfPropAmount);
+            // console.log(`randomSeed0:${randomSeed}  prop amount:${gameContex.propAmount}  timePass:${timePass}`);
+            
+            randomSeed *= weightOfPropAmount * weightOfTimeFlag;
+
+            // console.log(`randomSeed1:${randomSeed}   weightOfPropAmount:${weightOfPropAmount}   weightOfTimeFlag：${weightOfTimeFlag}`);
  
             if(randomSeed <= 0.02) {
-                propType = PropType.split;  
+                propType = PropType.shoot3;  
             }
-            else if(randomSeed <= 0.05) {
-                propType = PropType.shoot3;
+            else if(randomSeed <= 0.04) {
+                propType = PropType.split;
             }
             else if(false && randomSeed < 0.07) {
                 propType = PropType.expand;         //TODO
             }
-  
+   
             if(propType == PropType.none)
                 return;
+
+            gameContex.propTimeFlagSec = Time.time();
 
             EntityManagerService.SpawnProp(world, gameContex,propType, spawnPos);
         }

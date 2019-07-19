@@ -172,7 +172,7 @@ namespace BB {
                                 spriteOptions.size = new Vector2(spriteOptions.size.x, layoutInfo.gameContentRect.height);
                                 break;
                             case 8:
-                                transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5, 0);
+                                transformPos.position = new Vector3(0, layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 + spriteOptions.size.y * 0.5, 0);
                                 spriteOptions.size = new Vector2(layoutInfo.gameContentRect.width, spriteOptions.size.y);
                                 break;
                         }
