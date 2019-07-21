@@ -17,13 +17,18 @@ namespace BB {
         static ExpandPlatform(world:ut.World, gameContex:GameContext) : void {
             let platform =  world.getConfigData(GameReferences).platformEntity;
 
-            // let sprite2DRenderer = 
+            // let sprite2DRenderer =
+
+             
         }
 
         static SplitBall(world:ut.World, gameContex:GameContext) : void {
             let rRange = new ut.Math.Range(1, 359);
 
             world.forEach([ut.Core2D.TransformLocalPosition, Ball],(transformPos, ball)=>{
+                if(gameContex.ballCutAmount >= gameContex.ballMaxAmount)
+                    return;
+
                 EntityManagerService.SpawnBall(world, gameContex, transformPos.position, EntityManagerService.GenRandomDir(rRange));
 
                 EntityManagerService.SpawnBall(world, gameContex, transformPos.position, EntityManagerService.GenRandomDir(rRange));

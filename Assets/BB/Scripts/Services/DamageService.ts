@@ -42,7 +42,7 @@ namespace BB {
             let timePass = Time.time() - gameContex.propTimeFlagSec;
             
             //间隔时间不能太短
-            if(timePass < 1)
+            if(timePass < 2)
                 return;
 
             let randomSeed = Math.random();

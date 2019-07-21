@@ -266,11 +266,16 @@ namespace BB {
                 }
             };
 
-            doSetupBlocks(json.blocks, false);
+            try{
+                doSetupBlocks(json.blocks, false);
+    
+                doSetupBlocks(json.borders, true);
 
-            doSetupBlocks(json.borders, true);
-
-            BlockService.UpdateBlocksCollision(world, blockCache);
+                BlockService.UpdateBlocksCollision(world, blockCache);
+                
+            }catch(err) {
+                console.error(err);
+            }
         }
 
         static ClearGameEntitys(world: ut.World): void {
