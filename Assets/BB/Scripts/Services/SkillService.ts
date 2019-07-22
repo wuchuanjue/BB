@@ -25,7 +25,7 @@ namespace BB {
             let tween = new ut.Tweens.TweenDesc;
             tween.cid = ut.Core2D.Sprite2DRendererOptions.cid;
             tween.offset = 0;
-            tween.duration = 0.2;
+            tween.duration = 0.1;
             tween.func = ut.Tweens.TweenFunc.Linear;
             tween.loop = ut.Core2D.LoopMode.Once;
             tween.destroyWhenDone = true;

@@ -91,7 +91,10 @@
             }
         }
     }, {
-        "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" }
+        "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },
+        "Properties": {
+            "ballMaxAmount": 200
+        }
     }, {
         "Type": { "Id": "38283a6cef9faa790b5c9936163d59e3", "Name": "Physics2DConfig" },
         "Properties": {
