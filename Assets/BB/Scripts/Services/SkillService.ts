@@ -9,19 +9,35 @@ namespace BB {
                     SkillServices.ShootThreeBall(world, gameContext);
                     break;
                  case PropType.expand:
-
+                     SkillServices.ExpandPlatform(world, gameContext);
                      break;
             }
         }
 
         static ExpandPlatform(world:ut.World, gameContex:GameContext) : void {
+            console.log("ExpandPlatform");
+
             let platform =  world.getConfigData(GameReferences).platformEntity;
 
-            // let sprite2DRenderer =
+            let startSize = world.getComponentData(platform, ut.Core2D.Sprite2DRendererOptions).size;
+            let endSize = new Vector2(startSize.x + 0.1, startSize.y);
 
-             
+            let tween = new ut.Tweens.TweenDesc;
+            tween.cid = ut.Core2D.Sprite2DRendererOptions.cid;
+            tween.offset = 0;
+            tween.duration = 0.2;
+            tween.func = ut.Tweens.TweenFunc.Linear;
+            tween.loop = ut.Core2D.LoopMode.Once;
+            tween.destroyWhenDone = true;
+            tween.t = 0.0;
+
+            ut.Tweens.TweenService.addTweenVector2(world, platform,startSize, endSize , tween);
+
+            let touchMovement = world.getComponentData(platform, TouchMovement);
+
+            touchMovement.size = new Vector2(endSize.x + touchMovement.size.y);
         }
-
+ 
         static SplitBall(world:ut.World, gameContex:GameContext) : void {
             let rRange = new ut.Math.Range(1, 359);
 

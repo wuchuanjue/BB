@@ -13,6 +13,10 @@ namespace BB {
             return gameContext.state == state;
         }
 
+        static Test(world:ut.World) : void {
+        
+        }
+
         static Init(world: ut.World, gameContext: BB.GameContext): void {
 
             let displayInfo = world.getConfigData(ut.Core2D.DisplayInfo);
@@ -279,6 +283,9 @@ namespace BB {
                     break;
 
                 case GameState.Test:
+                    //test
+                    GameService.Test(world);
+                    
                     break;
 
                 default:

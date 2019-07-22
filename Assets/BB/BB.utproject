@@ -64,7 +64,8 @@
         { "Id": "60feebda86c36292119505b0bd2ac3e9", "Name": "UTiny.UIControls" },
         { "Id": "0b0e260844fa6632977aa15579b42291", "Name": "UTiny.Text" },
         { "Id": "251df5ef6819533f94e1cbf3181f722e", "Name": "UTiny.Audio" },
-        { "Id": "4ae56f767bc87e1c32e79caa0f3b736a", "Name": "UTiny.UIControlsExtensions" }
+        { "Id": "4ae56f767bc87e1c32e79caa0f3b736a", "Name": "UTiny.UIControlsExtensions" },
+        { "Id": "77778da25aeb380ab7e46deb6d495cdc", "Name": "UTiny.Tweens" }
     ],
     "StartupEntityGroup": { "Id": "3eff0b786cb74f5f925925860abe06b9", "Name": "Main" }
 },

@@ -49,9 +49,9 @@
             "stateWhat": {
                 "$TypeId": 8,
                 "Type": { "Id": "a0b7195c0bd9402d8cf23068868ac08b", "Name": "GameState" },
-                "Id": "8056f352c8634d539957e7ff13528387",
-                "Name": "Init",
-                "Value": 1
+                "Id": "9e28808edb8c4413a81f31fd1cc8fd73",
+                "Name": "Test",
+                "Value": 99
             }
         }
     }]

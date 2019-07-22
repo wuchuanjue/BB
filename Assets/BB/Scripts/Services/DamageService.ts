@@ -65,8 +65,8 @@ namespace BB {
             else if(randomSeed <= 0.04) {
                 propType = PropType.split;
             }
-            else if(false && randomSeed < 0.07) {
-                propType = PropType.expand;         //TODO
+            else if(randomSeed < 0.045) {
+                propType = PropType.expand;        
             }
    
             if(propType == PropType.none)
