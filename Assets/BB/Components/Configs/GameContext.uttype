@@ -108,7 +108,7 @@
         "Properties": {
             "ballSpeed": 4,
             "giftSpeed": 1,
-            "ballMaxAmount": 100,
+            "ballMaxAmount": 250,
             "cutLife": 0,
             "defaultLife": 3
         }

@@ -1,5 +1,16 @@
 namespace BB {
+    
+
     export class SoundService {
+        static PlaySoundHit() : void {
+            // window
+            
+        }
+
+        static PlaySoundReceiveProp() : void {
+
+        }
+
         static PlaySound(world:ut.World, entity:ut.Entity) {
             // console.log("play sound1");
 

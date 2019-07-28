@@ -7,14 +7,14 @@ namespace BB {
             let canvasResolution = new Vector2(displayInfo.width, displayInfo.height);
             
             //TODO 待提出到config
-            let designResolution = new Vector2(900, 1600);
+            let designResolution = new Vector2(360, 640);
             
-            let gameResolutionRect = new ut.Math.Rect(0,-45, 880, 1480);
+            let gameResolutionRect = new ut.Math.Rect(0,-25, 352, 580);
             
-            let blocksResolutionRect = new ut.Math.Rect(0, 205, 880,980);       
+            let blocksResolutionRect = new ut.Math.Rect(0, 69, 352,392);       
  
             //方块间隔
-            let blockSpacingResolution = 4;     
+            let blockSpacingResolution = 1.6;            //原为1.6;     
 
             let canvasRatio = canvasResolution.x / canvasResolution.y;
           

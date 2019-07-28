@@ -19,12 +19,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: Pixellari
     PointSize: 50
-    Scale: 0
+    Scale: 1
     CharacterCount: 191
     LineHeight: 55
     Baseline: 0
     Ascender: 38
-    CapHeight: 0
+    CapHeight: 34.999996
     Descender: -12
     CenterLine: 0
     SuperscriptOffset: 38
@@ -34,7 +34,7 @@ MonoBehaviour:
     UnderlineThickness: 2.4902344
     strikethrough: 9.454545
     strikethroughThickness: 2.4902344
-    TabWidth: 0
+    TabWidth: 160
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -43,10 +43,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 507
-    width: 0
-    height: 0
+    width: 16
+    height: 50
     xOffset: 0
-    yOffset: 0
+    yOffset: 38
     xAdvance: 16
     scale: 1
   - id: 33
@@ -1887,7 +1887,7 @@ Texture2D:
   m_TextureDimension: 2
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 1
     m_MipBias: 0
     m_WrapU: 0

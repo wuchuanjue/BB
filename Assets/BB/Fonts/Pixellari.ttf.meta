@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontName: Pixellari
   fontNames:
-  - Pixellari
+  - Monospace
   fallbackFontReferences:
-  - {fileID: 12800000, guid: a31e47128b5b8284aab0ee7c97fa549b, type: 3}
+  - {fileID: 12800000, guid: 7caf1541ba957904cb0fc9a1370be518, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

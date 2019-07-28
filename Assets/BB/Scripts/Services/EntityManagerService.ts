@@ -47,13 +47,15 @@ namespace BB {
 
             world.setEntityName(blockEntity, id);
 
-            world.usingComponentData(blockEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.Sprite2DRenderer, Block]
-                , (transformPos, spriteRenderer, block) => {
+            world.usingComponentData(blockEntity, [ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalScale, ut.Core2D.Sprite2DRenderer, Block]
+                , (transformPos, transScale, spriteRenderer, block) => {
                     transformPos.position = pos;
 
                     spriteRenderer.color = blockConfig.color;
 
                     block.blockConfig = blockConfig;
+ 
+                    console.log(`block scale: ${transScale.scale.x} | ${transScale.scale.y}`);
                 });
 
             return blockEntity;
@@ -206,7 +208,7 @@ namespace BB {
                 let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
 
                 blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
-
+ 
                 world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
             }
 

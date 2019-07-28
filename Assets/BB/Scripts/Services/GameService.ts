@@ -14,7 +14,11 @@ namespace BB {
         }
 
         static Test(world:ut.World) : void {
-        
+            world.forEach([ut.Text.NativeFont],(nativeFont)=>{
+                console.log("font name:" + nativeFont.name);
+            });
+
+            
         }
 
         static Init(world: ut.World, gameContext: BB.GameContext): void {
@@ -28,6 +32,9 @@ namespace BB {
             gameReferences.uiClickAudio = world.getEntityByName("UIClickAudio");
 
             gameReferences.mainCamera = world.getEntityByName("MainCamera");
+
+            //TODO 获取玩家当前关卡
+            gameContext.cutLvl = 1;
 
             world.setConfigData(gameReferences);
 
@@ -127,7 +134,10 @@ namespace BB {
 
             let layoutInfo = world.getConfigData(LayoutInfo);
 
-            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == 5 ? 12 : 21.2, layoutInfo);
+            let lvlConfig = world.getConfigData(LevelConfig);
+
+            //最后一个关卡尺寸不一样  待改为从关卡配置信息里拿到尺寸信息
+            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == lvlConfig.levels.length ? 4.8 : 8.48, layoutInfo);
 
             world.setConfigData(layoutInfo);
 
@@ -192,8 +202,6 @@ namespace BB {
 
         private static EnterState_Menu(world: ut.World, context: GameContext, preState: GameState) {
             UIService.Show(world, "MainUI");
-
-            context.cutLvl = 1;
             
             switch (preState) {
                 case GameState.Pause:
