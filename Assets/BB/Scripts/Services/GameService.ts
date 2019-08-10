@@ -137,7 +137,7 @@ namespace BB {
             let lvlConfig = world.getConfigData(LevelConfig);
 
             //最后一个关卡尺寸不一样  待改为从关卡配置信息里拿到尺寸信息
-            LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == lvlConfig.levels.length ? 4.8 : 8.48, layoutInfo);
+            // LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == lvlConfig.levels.length ? 4.8 : 8.48, layoutInfo);
 
             world.setConfigData(layoutInfo);
 
@@ -292,7 +292,9 @@ namespace BB {
 
                 case GameState.Test:
                     //test
-                    GameService.Test(world);
+                    // GameService.Test(world);
+
+                    GameService.TestInitLayout(world, context);
                     
                     break;
 

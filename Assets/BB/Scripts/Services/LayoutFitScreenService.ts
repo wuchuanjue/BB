@@ -4,78 +4,100 @@ namespace BB {
          * 计算自适应屏幕的fov,rect等
          */
         public static CalcLayoutInfos(displayInfo : ut.Core2D.DisplayInfo, layoutInfo:LayoutInfo) : void {
-            let canvasResolution = new Vector2(displayInfo.width, displayInfo.height);
-            
-            //TODO 待提出到config
-            let designResolution = new Vector2(360, 640);
-            
-            let gameResolutionRect = new ut.Math.Rect(0,-25, 352, 580);
-            
-            let blocksResolutionRect = new ut.Math.Rect(0, 69, 352,392);       
- 
-            //方块间隔
-            let blockSpacingResolution = 1.6;            //原为1.6;     
+            //方块数量  35x39
 
-            let canvasRatio = canvasResolution.x / canvasResolution.y;
-          
+            //屏幕分辨率
+            let screenResolution = new Vector2(displayInfo.width, displayInfo.height);
+
+            //设计分辨率
+            const designResolution = new Vector2(360,640);
+            
+            const DESIGN_CAMERA_OFOV = 5;
+
+            //方块数量
+            const BLOCK_AMOUNT_XY = new Vector2(35, 39);
+
+            const BLOCK_PADDING = 1;
+
+            const GAME_CONTENT_RESOLUTION_RECT = new ut.Math.Rect(0,-25, 352, 580);
+            
+            //屏幕宽高比
+            let screenRatio = screenResolution.x / screenResolution.y;
+            
+            //设计宽高比
             let designRatio = designResolution.x / designResolution.y;
-
-            let designCameraOFov = 5;
-            let designSize = new Vector2(0, 0);
-
-            designSize.y = designCameraOFov * 2; 
-
-            designSize.x = designSize.y * designRatio;
-
-            layoutInfo.resolutionToSize = designSize.x / designResolution.x; 
- 
-            if(canvasRatio < designRatio) {
+            
+            let designToScreen = 0;
+            
+            if(screenRatio < designRatio) {
                 //更窄
-                layoutInfo.halfVerticalSize = designCameraOFov / (canvasRatio / designRatio);
+                layoutInfo.halfVerticalSize = DESIGN_CAMERA_OFOV / (screenRatio / designRatio);
+
+                designToScreen = screenResolution.x / designResolution.x;
             }
             else {
-                layoutInfo.halfVerticalSize = designCameraOFov;
+                layoutInfo.halfVerticalSize = DESIGN_CAMERA_OFOV;
+
+                designToScreen = screenResolution.y / designResolution.y;
             }
+
+            //全屏尺寸
+            layoutInfo.canvasSize = new Vector2(0, layoutInfo.halfVerticalSize * 2);
+
+            layoutInfo.canvasSize.x = layoutInfo.canvasSize.y * screenRatio;
+
+            //分辨率转世界尺寸
+            layoutInfo.resolutionToSize = layoutInfo.canvasSize.x / screenResolution.x;
+
+            //console.log(`designToScreen:${designToScreen}   screenRatio:${screenRatio}  `);
+
+            let gameContentResolutionRect = new ut.Math.Rect(
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.x * designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.y * designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.width * designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.height * designToScreen)
+            );
+
+            let blockPaddingResolution = Math.ceil(BLOCK_PADDING * designToScreen);
+
+            let blockResolution = Math.floor(gameContentResolutionRect.width / BLOCK_AMOUNT_XY.x - blockPaddingResolution);
             
-            let canvasSize = new Vector2(0, layoutInfo.halfVerticalSize * 2);
+            //console.log(`gameContentR.width:${gameContentResolutionRect.width}   blockR:${blockResolution}    blockPaddingR:${blockPaddingResolution}`);
 
-            canvasSize.x = canvasSize.y * canvasRatio;
-
-            layoutInfo.canvasSize = canvasSize;
-
-            //game contect
-            layoutInfo.gameContentRect = new ut.Math.Rect(
-                gameResolutionRect.x * layoutInfo.resolutionToSize,
-                gameResolutionRect.y * layoutInfo.resolutionToSize, 
-                gameResolutionRect.width * layoutInfo.resolutionToSize, 
-                gameResolutionRect.height * layoutInfo.resolutionToSize
+            //重新调整 gameContent 尺寸
+            gameContentResolutionRect.width = (blockResolution + blockPaddingResolution) * BLOCK_AMOUNT_XY.x - blockPaddingResolution;
+ 
+            //block content 相对 game content 靠上
+            let blockContentResolutionRect = new ut.Math.Rect(
+                0,
+                0,
+                gameContentResolutionRect.width,
+                (blockResolution + blockPaddingResolution) * BLOCK_AMOUNT_XY.y - blockPaddingResolution
             );
  
+            blockContentResolutionRect.y = (gameContentResolutionRect.y + gameContentResolutionRect.height * 0.5 - blockContentResolutionRect.height * 0.5);
+ 
+            //-----------------------------------convert to world size---------------------------------------------
+            layoutInfo.gameContentRect = new ut.Math.Rect(
+                gameContentResolutionRect.x * layoutInfo.resolutionToSize ,
+                gameContentResolutionRect.y * layoutInfo.resolutionToSize,
+                gameContentResolutionRect.width * layoutInfo.resolutionToSize,
+                gameContentResolutionRect.height * layoutInfo.resolutionToSize
+            );
+
             layoutInfo.blockContentRect = new ut.Math.Rect(
-                blocksResolutionRect.x * layoutInfo.resolutionToSize,
-                blocksResolutionRect.y * layoutInfo.resolutionToSize, 
-                blocksResolutionRect.width * layoutInfo.resolutionToSize, 
-                blocksResolutionRect.height * layoutInfo.resolutionToSize                
+                blockContentResolutionRect.x * layoutInfo.resolutionToSize,
+                blockContentResolutionRect.y * layoutInfo.resolutionToSize, 
+                blockContentResolutionRect.width * layoutInfo.resolutionToSize,
+                blockContentResolutionRect.height * layoutInfo.resolutionToSize
             );
             
-            //block靠上
-            //let blockContentRect = new ut.Math.Rect(0,0, blocksResolution.x * layoutInfo.resolutionToSize, blocksResolution.y * layoutInfo.resolutionToSize);
-            
-            //blockContentRect.y = (layoutInfo.gameContentRect.y + layoutInfo.gameContentRect.height * 0.5 - blockContentRect.height * 0.5);
-
-            // layoutInfo.blockContentRect = blockContentRect;
-
-            //改为动态更新
-            // layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
-
-            layoutInfo.blockSpacing = blockSpacingResolution * layoutInfo.resolutionToSize;
-        }
-
-        /**
-         * 方块尺寸允许动态改变，不同的关卡可以指定不一样的block size
-         */
-        public static UpdateBlockSizeConfig(blockResolution:number, layoutInfo:LayoutInfo) : void {
             layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
+
+            layoutInfo.blockSpacing = blockPaddingResolution * layoutInfo.resolutionToSize;
+            
+            console.log(`canvas size:${layoutInfo.canvasSize.x},${layoutInfo.canvasSize.y}`);
+            console.log(`gameContentRect:${layoutInfo.gameContentRect.x},${layoutInfo.gameContentRect.y},${layoutInfo.gameContentRect.width},${layoutInfo.gameContentRect.height}`);
         }
     }
 }

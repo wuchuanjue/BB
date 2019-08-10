@@ -55,7 +55,7 @@ namespace BB {
 
                     block.blockConfig = blockConfig;
  
-                    console.log(`block scale: ${transScale.scale.x} | ${transScale.scale.y}`);
+                    // console.log(`block scale: ${transScale.scale.x} | ${transScale.scale.y}`);
                 });
 
             return blockEntity;
