@@ -35,8 +35,8 @@ namespace BB {
                 if (this.world.hasComponent(target, Platform)) {
                     SkillServices.TriggerSkillFromProp(this.world, prop, gameContex);  
 
-                    SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
- 
+                    SoundService.PlaySoundReceiveProp();    //SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).receivePropAudioEntity);
+
                     removeProp = true;
                 }
                 else if (this.world.hasComponent(target, Border)) {
@@ -169,7 +169,7 @@ namespace BB {
                 });
 
             if (hitSound && gameContex.state == GameState.Play) {
-                SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
+                    SoundService.PlaySoundHit();        //SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).hitBlockAudioEntity);
             }
         }
 

@@ -1,24 +1,21 @@
 namespace BB {
-    
 
-    export class SoundService {
+    export class SoundService{
+
+        static Init() : void {
+            SoundProxy.soundImp = window[`sound`] ? window[`sound`] : new InternalSound(); 
+        }
+
         static PlaySoundHit() : void {
-            // window
-            
+            SoundProxy.PlaySoundHit();
         }
 
         static PlaySoundReceiveProp() : void {
-
+            SoundProxy.PlaySoundReceiveProp();
         }
 
-        static PlaySound(world:ut.World, entity:ut.Entity) {
-            // console.log("play sound1");
-
-            if (!world.hasComponent(entity, ut.Audio.AudioSourceStart)) {
-                // console.log("play sound2");
-
-                world.addComponent(entity, ut.Audio.AudioSourceStart);
-            }
+        static PlaySoundUI() : void {
+            SoundProxy.PlaySoundUI();
         }
     }
 }

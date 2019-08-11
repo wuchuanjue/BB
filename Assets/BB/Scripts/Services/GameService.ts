@@ -1,4 +1,4 @@
-
+ 
 namespace BB {
 
     /** New System */
@@ -11,17 +11,16 @@ namespace BB {
             let gameContext = world.getConfigData(BB.GameContext);
 
             return gameContext.state == state;
-        }
+        } 
 
         static Test(world:ut.World) : void {
-            world.forEach([ut.Text.NativeFont],(nativeFont)=>{
-                console.log("font name:" + nativeFont.name);
-            });
-
-            
+            console.log("test--------");
+ 
         }
 
         static Init(world: ut.World, gameContext: BB.GameContext): void {
+
+            SoundService.Init();
 
             let displayInfo = world.getConfigData(ut.Core2D.DisplayInfo);
 
@@ -292,7 +291,7 @@ namespace BB {
 
                 case GameState.Test:
                     //test
-                    // GameService.Test(world);
+                    GameService.Test(world);
 
                     GameService.TestInitLayout(world, context);
                     

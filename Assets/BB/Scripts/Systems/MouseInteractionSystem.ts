@@ -31,7 +31,7 @@ namespace BB {
             }
 
             if(uiMouseClick) {
-                SoundService.PlaySound(this.world, this.world.getConfigData(GameReferences).uiClickAudio);
+                SoundService.PlaySoundUI();
             }
         }
     }
