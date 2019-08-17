@@ -42,7 +42,7 @@ namespace BB {
             let timePass = Time.time() - gameContex.propTimeFlagSec;
             
             //间隔时间不能太短
-            if(timePass < 2)
+            if(timePass < 3)
                 return;
 
             let randomSeed = Math.random();
@@ -58,17 +58,21 @@ namespace BB {
             randomSeed *= weightOfPropAmount * weightOfTimeFlag;
 
             // console.log(`randomSeed1:${randomSeed}   weightOfPropAmount:${weightOfPropAmount}   weightOfTimeFlag：${weightOfTimeFlag}`);
+  
+            gameContex.propProbability
+
+            for(let i = 0; i < gameContex.propProbability.length; i++) 
+            {
+                let p = gameContex.propProbability[i];
+
+                if(randomSeed <= p) {
+                    propType = i + 1;
+                    break;
+                }
+
+                randomSeed -= p;
+            }
  
-            if(randomSeed <= 0.02) {
-                propType = PropType.shoot3;  
-            }
-            else if(randomSeed <= 0.04) {
-                propType = PropType.split;
-            }
-            else if(randomSeed < 0.045) {
-                propType = PropType.expand;        
-            }
-   
             if(propType == PropType.none)
                 return;
 

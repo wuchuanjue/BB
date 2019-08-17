@@ -102,6 +102,17 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "75fc2214d620408d91afcb510cb78f06",
+        "Name": "propProbability",
+        "Documentation": {
+            "Summary": "掉落概率"
+        },
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "a2d62c4e4b8b478289ceaf71a4dc7c66", "Name": "GameContext" },

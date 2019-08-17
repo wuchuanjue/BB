@@ -143,6 +143,8 @@ namespace BB {
         }
 
         static SetupGamePlayEntitys(world: ut.World, gameContext: BB.GameContext, layoutInfo: LayoutInfo): void {
+            console.log(`test-------  SetupGamePlayEntitys   game content width:${layoutInfo.gameContentRect.width}`)
+
             let bgEntity = world.getEntityByName("BG");
 
             //gamecontent背景
@@ -194,23 +196,10 @@ namespace BB {
             GameService.blockPrefabEntity = world.getEntityByName("Block");
 
             let gameReferences = world.getConfigData(GameReferences);
-
-            gameReferences.hitBlockAudioEntity = world.getEntityByName("HitBlockAudio");
-
-            gameReferences.receivePropAudioEntity = world.getEntityByName("ReceivePropAudio");
-
+  
             gameReferences.platformEntity = world.getEntityByName("Platform");
 
             console.assert(!GameService.blockPrefabEntity.isNone(), "Can not find block prefab.");
-
-            {
-                //修改方块原型的尺寸
-                let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
-
-                blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
- 
-                world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
-            }
 
             {
                 //todo 改成动态加载
@@ -222,9 +211,22 @@ namespace BB {
 
                 json = JSON.parse(levelConfig.levels[gameContext.cutLvl - 1]);
 
+                //根据配置初始化布局 
+                LayoutFitScreenService.UpdateContent(layoutInfo, json.blockAmountX, json.blockAmountY);
+
+                {
+                    //修改方块原型的尺寸
+                    let blockPrefabTransformScale = world.getComponentData(GameService.blockPrefabEntity, ut.Core2D.TransformLocalScale);
+    
+                    blockPrefabTransformScale.scale = new Vector3(layoutInfo.blockSize, layoutInfo.blockSize, 1);
+     
+                    world.setComponentData(GameService.blockPrefabEntity, blockPrefabTransformScale);
+                }
+
                 EntityManagerService.SetupBlocksFromJson(world, layoutInfo, gameContext, json);
             }
 
+            world.setConfigData(layoutInfo);
             world.setConfigData(gameReferences);
         }
 
@@ -233,7 +235,6 @@ namespace BB {
 
             let palettes = json.palette;
 
-            //是否开启碰撞考虑放到配置文件中 TODO
             let blockCache = {};
 
             let doSetupBlocks = (blockList: any, isWall: boolean, ) => {

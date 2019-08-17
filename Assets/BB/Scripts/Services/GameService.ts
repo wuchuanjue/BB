@@ -15,7 +15,7 @@ namespace BB {
 
         static Test(world:ut.World) : void {
             console.log("test--------");
- 
+  
         }
 
         static Init(world: ut.World, gameContext: BB.GameContext): void {
@@ -27,9 +27,7 @@ namespace BB {
             let layoutInfo = world.getConfigData(LayoutInfo);
 
             let gameReferences = world.getConfigData(GameReferences);
-
-            gameReferences.uiClickAudio = world.getEntityByName("UIClickAudio");
-
+ 
             gameReferences.mainCamera = world.getEntityByName("MainCamera");
 
             //TODO 获取玩家当前关卡
@@ -134,10 +132,7 @@ namespace BB {
             let layoutInfo = world.getConfigData(LayoutInfo);
 
             let lvlConfig = world.getConfigData(LevelConfig);
-
-            //最后一个关卡尺寸不一样  待改为从关卡配置信息里拿到尺寸信息
-            // LayoutFitScreenService.UpdateBlockSizeConfig(context.cutLvl == lvlConfig.levels.length ? 4.8 : 8.48, layoutInfo);
-
+ 
             world.setConfigData(layoutInfo);
 
             EntityManagerService.SetupBlockEntitys(world, context, layoutInfo);

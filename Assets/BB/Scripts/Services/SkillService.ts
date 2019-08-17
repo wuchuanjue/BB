@@ -60,13 +60,27 @@ namespace BB {
 
             targetPos.add(new Vector3(0,0.2,0));
 
-            let rRange = new ut.Math.Range(5, 15);
+            let rRange = new ut.Math.Range(5, 10);
  
             EntityManagerService.SpawnBall(world, gameContex, targetPos, EntityManagerService.GenRandomDir(rRange));
 
-            rRange = new ut.Math.Range(-15, -5);
+            rRange = new ut.Math.Range(-10, -5);
             
             EntityManagerService.SpawnBall(world, gameContex, targetPos, EntityManagerService.GenRandomDir(rRange));
+
+            EntityManagerService.SpawnBall(world, gameContex, targetPos, new Vector3(0,1,0));
+        }
+
+        static FireBall(world:ut.World, gameContex:GameContext) : void {
+            let platform =  world.getConfigData(GameReferences).platformEntity;
+
+            let targetPos:Vector3 = world.getComponentData(platform, ut.Core2D.TransformLocalPosition).position;
+
+            targetPos.add(new Vector3(0,0.2,0));
+ 
+            EntityManagerService.SpawnBall(world, gameContex, targetPos, new Vector3(0, 1, 0).applyAxisAngle(new Vector3(0,0,1), Math.PI / 180 * -5));
+ 
+            EntityManagerService.SpawnBall(world, gameContex, targetPos, new Vector3(0, 1, 0).applyAxisAngle(new Vector3(0,0,1), Math.PI / 180 * 5));
 
             EntityManagerService.SpawnBall(world, gameContex, targetPos, new Vector3(0,1,0));
         }

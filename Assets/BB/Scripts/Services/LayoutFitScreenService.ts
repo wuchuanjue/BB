@@ -3,42 +3,31 @@ namespace BB {
         /**
          * 计算自适应屏幕的fov,rect等
          */
-        public static CalcLayoutInfos(displayInfo : ut.Core2D.DisplayInfo, layoutInfo:LayoutInfo) : void {
-            //方块数量  35x39
-
+        public static CalcLayoutInfos(displayInfo: ut.Core2D.DisplayInfo, layoutInfo: LayoutInfo): void {
             //屏幕分辨率
             let screenResolution = new Vector2(displayInfo.width, displayInfo.height);
 
             //设计分辨率
-            const designResolution = new Vector2(360,640);
-            
+            const designResolution = new Vector2(360, 640);
+
             const DESIGN_CAMERA_OFOV = 5;
 
-            //方块数量
-            const BLOCK_AMOUNT_XY = new Vector2(35, 39);
-
-            const BLOCK_PADDING = 1;
-
-            const GAME_CONTENT_RESOLUTION_RECT = new ut.Math.Rect(0,-25, 352, 580);
-            
             //屏幕宽高比
             let screenRatio = screenResolution.x / screenResolution.y;
-            
+
             //设计宽高比
             let designRatio = designResolution.x / designResolution.y;
-            
-            let designToScreen = 0;
-            
-            if(screenRatio < designRatio) {
+             
+            if (screenRatio < designRatio) {
                 //更窄
                 layoutInfo.halfVerticalSize = DESIGN_CAMERA_OFOV / (screenRatio / designRatio);
 
-                designToScreen = screenResolution.x / designResolution.x;
+                layoutInfo.designToScreen = screenResolution.x / designResolution.x;
             }
             else {
                 layoutInfo.halfVerticalSize = DESIGN_CAMERA_OFOV;
 
-                designToScreen = screenResolution.y / designResolution.y;
+                layoutInfo.designToScreen = screenResolution.y / designResolution.y;
             }
 
             //全屏尺寸
@@ -50,36 +39,46 @@ namespace BB {
             layoutInfo.resolutionToSize = layoutInfo.canvasSize.x / screenResolution.x;
 
             //console.log(`designToScreen:${designToScreen}   screenRatio:${screenRatio}  `);
+ 
+            
+            // console.log(`canvas size:${layoutInfo.canvasSize.x},${layoutInfo.canvasSize.y}`);
+            // console.log(`gameContentRect:${layoutInfo.gameContentRect.x},${layoutInfo.gameContentRect.y},${layoutInfo.gameContentRect.width},${layoutInfo.gameContentRect.height}`);
+        }
+
+        public static UpdateContent(layoutInfo: LayoutInfo, blockAmountX:number, blockAmountY:number) {
+            const BLOCK_PADDING = 1;
+
+            const GAME_CONTENT_RESOLUTION_RECT = new ut.Math.Rect(0, -25, 352, 580);
 
             let gameContentResolutionRect = new ut.Math.Rect(
-                Math.floor(GAME_CONTENT_RESOLUTION_RECT.x * designToScreen),
-                Math.floor(GAME_CONTENT_RESOLUTION_RECT.y * designToScreen),
-                Math.floor(GAME_CONTENT_RESOLUTION_RECT.width * designToScreen),
-                Math.floor(GAME_CONTENT_RESOLUTION_RECT.height * designToScreen)
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.x * layoutInfo.designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.y * layoutInfo.designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.width * layoutInfo.designToScreen),
+                Math.floor(GAME_CONTENT_RESOLUTION_RECT.height * layoutInfo.designToScreen)
             );
 
-            let blockPaddingResolution = Math.ceil(BLOCK_PADDING * designToScreen);
+            let blockPaddingResolution = Math.ceil(BLOCK_PADDING * layoutInfo.designToScreen);
 
-            let blockResolution = Math.floor(gameContentResolutionRect.width / BLOCK_AMOUNT_XY.x - blockPaddingResolution);
-            
+            let blockResolution = Math.floor(gameContentResolutionRect.width / blockAmountX - blockPaddingResolution);
+
             //console.log(`gameContentR.width:${gameContentResolutionRect.width}   blockR:${blockResolution}    blockPaddingR:${blockPaddingResolution}`);
 
             //重新调整 gameContent 尺寸
-            gameContentResolutionRect.width = (blockResolution + blockPaddingResolution) * BLOCK_AMOUNT_XY.x - blockPaddingResolution;
- 
+            gameContentResolutionRect.width = (blockResolution + blockPaddingResolution) * blockAmountX - blockPaddingResolution;
+
             //block content 相对 game content 靠上
             let blockContentResolutionRect = new ut.Math.Rect(
                 0,
                 0,
                 gameContentResolutionRect.width,
-                (blockResolution + blockPaddingResolution) * BLOCK_AMOUNT_XY.y - blockPaddingResolution
+                (blockResolution + blockPaddingResolution) * blockAmountY - blockPaddingResolution
             );
- 
+
             blockContentResolutionRect.y = (gameContentResolutionRect.y + gameContentResolutionRect.height * 0.5 - blockContentResolutionRect.height * 0.5);
- 
+
             //-----------------------------------convert to world size---------------------------------------------
             layoutInfo.gameContentRect = new ut.Math.Rect(
-                gameContentResolutionRect.x * layoutInfo.resolutionToSize ,
+                gameContentResolutionRect.x * layoutInfo.resolutionToSize,
                 gameContentResolutionRect.y * layoutInfo.resolutionToSize,
                 gameContentResolutionRect.width * layoutInfo.resolutionToSize,
                 gameContentResolutionRect.height * layoutInfo.resolutionToSize
@@ -87,17 +86,15 @@ namespace BB {
 
             layoutInfo.blockContentRect = new ut.Math.Rect(
                 blockContentResolutionRect.x * layoutInfo.resolutionToSize,
-                blockContentResolutionRect.y * layoutInfo.resolutionToSize, 
+                blockContentResolutionRect.y * layoutInfo.resolutionToSize,
                 blockContentResolutionRect.width * layoutInfo.resolutionToSize,
                 blockContentResolutionRect.height * layoutInfo.resolutionToSize
             );
-            
+
             layoutInfo.blockSize = blockResolution * layoutInfo.resolutionToSize;
 
             layoutInfo.blockSpacing = blockPaddingResolution * layoutInfo.resolutionToSize;
-            
-            console.log(`canvas size:${layoutInfo.canvasSize.x},${layoutInfo.canvasSize.y}`);
-            console.log(`gameContentRect:${layoutInfo.gameContentRect.x},${layoutInfo.gameContentRect.y},${layoutInfo.gameContentRect.width},${layoutInfo.gameContentRect.height}`);
+
         }
     }
 }

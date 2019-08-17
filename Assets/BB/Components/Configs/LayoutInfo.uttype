@@ -62,6 +62,14 @@
         "Visibility": 0,
         "EditorOnly": false,
         "Versioned": true
+    }, {
+        "Id": "d10fd05e0f774dcd89f2dcdb152969e1",
+        "Name": "designToScreen",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "5ca816ac10b14f58914886915d99db66", "Name": "LayoutInfo" }
