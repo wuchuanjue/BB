@@ -7,7 +7,7 @@ Block breaker是一款使用unity project tiny开发的像素打砖块html小游
 
 ### 开发环境
 Unity版本：2018.4.0f1.   
-project tiny版本：0.14.3.(TypeScript的最后一个版本)  
+project tiny版本：0.14.3.(TypeScript的最后一个版本 第一次写ts，现查现写)  
 
 ### Build
 ![avatar](http://wuchuanjue.github.io/BB/index.png)
